@@ -1,0 +1,17 @@
+[Unit]
+Description=DCFC MAVPMAVP2P Service
+After=network.target
+
+[Service]
+ExecStart=/bin/sh -c "/home/pi/combox-fc/mavlink/mavp2p.sh ${MAVGATEWAY_OPTS}"
+EnvironmentFile=/home/pi/combox-fc/mavlink/mavgateway.config
+WorkingDirectory=/home/pi/combox-fc/mavlink
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+RestartSec=10
+User=root
+Type=idle
+
+[Install]
+WantedBy=multi-user.target
