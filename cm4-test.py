@@ -67,7 +67,7 @@ while True:
 			',\"timestamp\":\"' + TIS + '\"' + \
 			',\"latitude\":' + str(LAT / 10000000) + \
 			',\"longitude\":' + str(LON / 10000000) + \
-			',\"altitude\":' + str(ALT / 1000) + \
+			',\"altitude\":' + str(ALT) + \
 			',\"speed\":' + str(VEL * 100) + \
 			',\"satellites\":' + str(SAT) + \
 			',\"pitch\":' + str(PIT) + \
