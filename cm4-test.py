@@ -38,16 +38,24 @@ while True:
 
 		data_gps = data["GPS_RAW_INT"]["message"]
 		data_attitude = data["ATTITUDE"]["message"]
+		data_vibration = data["VIBRATION"]["message"]
 
 		TIS = data["ATTITUDE"]["status"]["time"]["last_update"]	# Timestamp
+		#
 		ALT = data_gps["alt"]									# Altitude  (MSL). Positive for up. mm
 		LAT = data_gps["lat"]									# Latitude  (WGS84, EGM96 ellipsoid) degE7
 		LON = data_gps["lon"]									# Longitude (WGS84, EGM96 ellipsoid) degE7
+		VEL = data_gps["vel"]									# GPS ground speed cm/s
+		#
 		SAT = data_gps["satellites_visible"]					# Number of satellites visible
 		PIT = data_attitude["pitch"]							# Pitch angle (-pi..+pi) radians
 		RLL = data_attitude["roll"]								# Roll  angle (-pi..+pi) radians
 		YAW = data_attitude["yaw"]								# Yaw   angle (-pi..+pi) radians
-		VEL = data_gps["vel"]									# GPS ground speed cm/s
+		#
+		VIX = data_vibration["vibration_x"]						# Vibration levels on X-axis
+		VIY = data_vibration["vibration_y"]						# Vibration levels on Y-axis
+		VIZ = data_vibration["vibration_z"]						# Vibration levels on Z-axis
+		#
 
 		data = '{' + \
 			'\"droneid\":' + str(droneID) + \
@@ -60,6 +68,9 @@ while True:
 			',\"pitch\":' + str(PIT) + \
 			',\"roll\":' + str(RLL) + \
 			',\"yaw\":' + str(YAW) + \
+			',\"vibration_x\":' +str(VIX) + \
+			',\"vibration_y\":' +str(VIY) + \
+			',\"vibration_z\":' +str(VIZ) + \
 			'}'
 		data = json.loads(data)
 		logger.info(data)
