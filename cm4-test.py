@@ -39,6 +39,7 @@ while True:
 		data_gps = data["GPS_RAW_INT"]["message"]
 		data_attitude = data["ATTITUDE"]["message"]
 		data_vibration = data["VIBRATION"]["message"]
+		data_wind = data["WIND"]["message"]
 
 		TIS = data["ATTITUDE"]["status"]["time"]["last_update"]	# Timestamp
 		#
@@ -56,6 +57,10 @@ while True:
 		VIY = data_vibration["vibration_y"]						# Vibration levels on Y-axis
 		VIZ = data_vibration["vibration_z"]						# Vibration levels on Z-axis
 		#
+		WDIR = data_wind["direction"]								#
+		WSPD = data_wind["speed"]									#
+		WSPDZ = data_wind["speed_z"]								#
+		#
 
 		data = '{' + \
 			'\"droneid\":' + str(droneID) + \
@@ -71,7 +76,11 @@ while True:
 			',\"vibration_x\":' +str(VIX) + \
 			',\"vibration_y\":' +str(VIY) + \
 			',\"vibration_z\":' +str(VIZ) + \
+			',\"wind_speed\":' + str(WSPD) + \
+			',\"wind_dir\":' + str(WDIR) + \	
+			',\"wind_speed_z\":' + str(WSPDZ) + \
 			'}'
+
 		data = json.loads(data)
 		logger.info(data)
 		print(data)
