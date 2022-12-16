@@ -19,7 +19,7 @@ device_token = "EeLqJHNQgWR4FtycieRD"
 droneID = "64"
 
 # Wait time between reads (seconds)
-wait_time = 0.5
+wait_time = 0.25
 
 # Endpoints
 #
