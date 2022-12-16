@@ -86,7 +86,7 @@ while True:
 		print(data)
 
 		r = requests.post(url_dashboard, timeout=2, json=data)
-		logger.info(r.status_code)
+		#logger.info(r.status_code)
 		print(r.status_code)
 
 	except KeyboardInterrupt:
