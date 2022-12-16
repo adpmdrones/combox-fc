@@ -77,7 +77,7 @@ while True:
 			',\"vibration_y\":' +str(VIY) + \
 			',\"vibration_z\":' +str(VIZ) + \
 			',\"wind_speed\":' + str(WSPD) + \
-			',\"wind_dir\":' + str(WDIR) + \	
+			',\"wind_dir\":' + str(WDIR) + \
 			',\"wind_speed_z\":' + str(WSPDZ) + \
 			'}'
 
