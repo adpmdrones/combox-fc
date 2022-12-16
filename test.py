@@ -8,7 +8,7 @@ import json
 
 # Create logger
 logger = logging.getLogger('CBFC')
-logging.basicConfig(level=logging.INFO, filename='/var/CBFC.log', \
+logging.basicConfig(level=logging.INFO, filename='/var/log/CBFC-test.log', \
 					format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', \
 					datefmt='%d/%m/%Y %I:%M:%S %p')
 
