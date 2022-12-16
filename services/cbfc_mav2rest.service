@@ -3,7 +3,7 @@ Description=DCFC MAV2REST Service
 After=cbfc_mavp2p.service
 
 [Service]
-ExecStart=/bin/sh -c "/home/pi/combox-fc/mavlink/mavp2rest.sh ${MAVGATEWAY_OPTS}"
+ExecStart=/bin/sh -c "/home/pi/combox-fc/mavlink/mav2rest.sh ${MAVGATEWAY_OPTS}"
 EnvironmentFile=/home/pi/combox-fc/mavlink/mav2rest.config
 WorkingDirectory=/home/pi/combox-fc/mavlink
 StandardOutput=inherit
