@@ -1,5 +1,5 @@
 [Unit]
-Description=DCFC MAVPMAVP2P Service
+Description=DCFC MAVP2P Service
 After=network.target
 
 [Service]
