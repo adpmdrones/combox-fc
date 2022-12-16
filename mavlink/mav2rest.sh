@@ -21,4 +21,4 @@
 #MAV_GCS=udpc:100.96.1.2:14550
 #
 cd /home/pi/combox-fc/mavlink
-/home/pi/combox-fc/mavlink/mav2rest.sh $1 $2 $3
+/home/pi/combox-fc/mavlink/mavlink2rest $1 $2 $3
