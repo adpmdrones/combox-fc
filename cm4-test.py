@@ -115,9 +115,9 @@ while True:
 			',\"servo13\":' + str(SRV13) + \
 			',\"servo14\":' + str(SRV14) + \
 			',\"servo15\":' + str(SRV15) + \
-			',\"servo16\":' + str(SRV16) + \	
+			',\"servo16\":' + str(SRV16) + \
 			'}'
-			
+
 		data = json.loads(data)
 		logger.info(data)
 		print(data)
