@@ -24,10 +24,10 @@ wait_time = 0.25
 # Endpoints
 #
 # Mavlink2rest
-url_uav = "http://localhost:8088/mavlink/vehicles/" + droneID + "/components/1/messages"
+url_uav = f"http://localhost:8088/mavlink/vehicles/{droneID}/components/1/messages"
 #
 # ThingsBoard ADPM
-url_dashboard = "http://dashboard.adpmdrones.com:8080/api/v1/" + device_token + "/telemetry"
+url_dashboard = f"http://dashboard.adpmdrones.com:8080/api/v1/{device_token}/telemetry"
 
 while True:
 	time.sleep(wait_time)
