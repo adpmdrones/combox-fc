@@ -158,7 +158,7 @@ time.sleep(1)
 assert((vehicle_mode() & 128) != 0), "Failed to ARM vehicle."
 
 #print("Test change mode to AUTO")
-#print(vehicle_mode())
+print(vehicle_mode())
 #assert(set_fmode(0)), "Fail to send change mode to AUTO command"
 
 print("Test pretty..")
