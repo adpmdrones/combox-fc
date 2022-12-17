@@ -113,6 +113,24 @@ time.sleep(5)
 assert(set_servo(5, 2000)), "Fail to send SERVO command"
 time.sleep(5)
 assert(set_servo(5, 1500)), "Fail to send SERVO command"
+time.sleep(5)
+assert(set_servo(6, 1000)), "Fail to send SERVO command"
+time.sleep(5)
+assert(set_servo(6, 2000)), "Fail to send SERVO command"
+time.sleep(5)
+assert(set_servo(6, 1500)), "Fail to send SERVO command"
+time.sleep(5)
+assert(set_servo(7, 1000)), "Fail to send SERVO command"
+time.sleep(5)
+assert(set_servo(7, 2000)), "Fail to send SERVO command"
+time.sleep(5)
+assert(set_servo(7, 1500)), "Fail to send SERVO command"
+time.sleep(5)
+assert(set_servo(8, 1000)), "Fail to send SERVO command"
+time.sleep(5)
+assert(set_servo(8, 2000)), "Fail to send SERVO command"
+time.sleep(5)
+assert(set_servo(8, 1500)), "Fail to send SERVO command"
 
 print("Test ARM and DISARM..")
 assert(set_arm(0)), "Fail to send DISARM command"
