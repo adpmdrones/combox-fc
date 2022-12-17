@@ -35,6 +35,9 @@ def set_arm(arm: int):
     response = requests.post(f"{API}/mavlink", json=arm_message)
     return response.status_code == requests.codes.ok
 
+#
+# Control Servo 1 - 16
+#
 def set_servo(servo_num: int, servo_value: int):
     arm_message = {
         "header": {
