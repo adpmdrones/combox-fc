@@ -62,6 +62,39 @@ def set_servo(servo_num: int, servo_value: int):
     response = requests.post(f"{API}/mavlink", json=arm_message)
     return response.status_code == requests.codes.ok
 
+
+#
+# Set Flight Mode
+#
+def set_fmode(fmode: int):
+    arm_message = {
+        "header": {
+            "system_id": 1,
+            "component_id": 1,
+            "sequence": 0
+        },
+        "message": {
+            "type":"COMMAND_LONG",
+            "param1":"MAV_MODE_AUTO",
+            "param2":0.0,
+            "param3":0.0,
+            "param4":0.0,
+            "param5":0.0,
+            "param6":0.0,
+            "param7":0.0,
+            "command":{
+            "type":"MAV_CMD_DO_SET_MODE"
+            },
+            "target_system":0,
+            "target_component":0,
+            "confirmation":0
+        }
+    }
+
+    response = requests.post(f"{API}/mavlink", json=arm_message)
+    return response.status_code == requests.codes.ok
+
+
 async def start_client(url: str, amount: int) -> None:
     ws = await aiohttp.ClientSession().ws_connect(url, autoclose=False, autoping=False)
 
@@ -113,6 +146,7 @@ servo_wait = 2
 print("test servo..")
 for x in servo_num:
     for y in servo_pos:
+        print("Servo: " + str(servo_num) + " postion: " + str(servo_pos))
         assert(set_servo(x, y)), "Fail to send SERVO command"
         time.sleep(servo_wait)
 
