@@ -146,7 +146,7 @@ servo_wait = 2
 print("test servo..")
 for x in servo_num:
     for y in servo_pos:
-        print("Servo: " + str(servo_num) + " postion: " + str(servo_pos))
+        print("Servo: " + str(x) + " postion: " + str(y))
         assert(set_servo(x, y)), "Fail to send SERVO command"
         time.sleep(servo_wait)
 
@@ -157,6 +157,9 @@ assert((vehicle_mode() & 128)  == 0), "Vehicle appears to be ARMED."
 assert(set_arm(1)), "Fail to send ARM command"
 time.sleep(1)
 assert((vehicle_mode() & 128) != 0), "Failed to ARM vehicle."
+
+print("Test change mode to AUTO")
+assert(set_armset_mode(0)), "Fail to send change mode to AUTO command"
 
 print("Test pretty..")
 response = requests.get(f"{API}/mavlink/vehicles/1/components/1/messages/HEARTBEAT")
