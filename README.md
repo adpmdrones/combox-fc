@@ -20,8 +20,6 @@ and enable UART with raspi-config
 2. Install OS dependencies
 
 ```bash
-Install dependencies
-
 sudo apt-get install -yq --no-install-recommends \
   git \
   make \
