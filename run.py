@@ -6,10 +6,10 @@ import json
 import requests
 import time
 
-API = "http://0.0.0.0:8088"
+API = "http://192.168.1.23:8088"
 
 def vehicle_mode():
-    response = requests.get(f"{API}/mavlink/vehicles/1/components/1/messages/HEARTBEAT").json()
+    response = requests.get(f"{API}/mavlink/vehicles/64/components/1/messages/HEARTBEAT").json()
     return response["message"]["base_mode"]["bits"]
 
 def set_arm(arm: int):
