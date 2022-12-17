@@ -159,7 +159,7 @@ time.sleep(1)
 assert((vehicle_mode() & 128) != 0), "Failed to ARM vehicle."
 
 print("Test change mode to AUTO")
-assert(set_armset_mode(0)), "Fail to send change mode to AUTO command"
+assert(set_fmode(0)), "Fail to send change mode to AUTO command"
 
 print("Test pretty..")
 response = requests.get(f"{API}/mavlink/vehicles/1/components/1/messages/HEARTBEAT")
