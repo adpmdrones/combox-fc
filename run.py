@@ -106,31 +106,15 @@ assert(response["message"]["type"] == "HEARTBEAT"), "Message type is incorrect."
 assert(response["message"]["autopilot"]["type"]), "Autopilot type does not exist."
 assert(response["status"]["time"]["frequency"] > 0.0), "Heartbeat frequency is wrong."
 
+servo_num = [1, 2, 3, 4, 5, 6, 7, 8]
+servo_pos = [1000, 1500, 1900, 1500]
+servo_wait = 2
 
 print("test servo..")
-assert(set_servo(5, 1000)), "Fail to send SERVO command"
-time.sleep(5)
-assert(set_servo(5, 2000)), "Fail to send SERVO command"
-time.sleep(5)
-assert(set_servo(5, 1500)), "Fail to send SERVO command"
-time.sleep(5)
-assert(set_servo(6, 1000)), "Fail to send SERVO command"
-time.sleep(5)
-assert(set_servo(6, 2000)), "Fail to send SERVO command"
-time.sleep(5)
-assert(set_servo(6, 1500)), "Fail to send SERVO command"
-time.sleep(5)
-assert(set_servo(7, 1000)), "Fail to send SERVO command"
-time.sleep(5)
-assert(set_servo(7, 2000)), "Fail to send SERVO command"
-time.sleep(5)
-assert(set_servo(7, 1500)), "Fail to send SERVO command"
-time.sleep(5)
-assert(set_servo(8, 1000)), "Fail to send SERVO command"
-time.sleep(5)
-assert(set_servo(8, 2000)), "Fail to send SERVO command"
-time.sleep(5)
-assert(set_servo(8, 1500)), "Fail to send SERVO command"
+for x in servo_num:
+    for y in servo_pos:
+        assert(set_servo(x, y)), "Fail to send SERVO command"
+        time.sleep(servo_wait)
 
 print("Test ARM and DISARM..")
 assert(set_arm(0)), "Fail to send DISARM command"
