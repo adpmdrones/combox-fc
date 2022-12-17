@@ -35,6 +35,30 @@ def set_arm(arm: int):
     response = requests.post(f"{API}/mavlink", json=arm_message)
     return response.status_code == requests.codes.ok
 
+def set_servo(servo_num: int, servo_value: int):
+    arm_message = {
+        "header": {
+            "system_id": 1,
+            "component_id": 1,
+            "sequence": 0
+        },
+        "message": {
+            "type":"COMMAND_LONG",
+            "param1":servo_num,
+            "param2":servo_value,
+            "param3":0.0,"param4":0.0,"param5":0.0,"param6":0.0,"param7":0.0,
+            "command":{
+            "type":"MAV_CMD_DO_SET_SERVO"
+            },
+            "target_system":0,
+            "target_component":0,
+            "confirmation":0
+        }
+    }
+
+    response = requests.post(f"{API}/mavlink", json=arm_message)
+    return response.status_code == requests.codes.ok
+
 async def start_client(url: str, amount: int) -> None:
     ws = await aiohttp.ClientSession().ws_connect(url, autoclose=False, autoping=False)
 
@@ -78,6 +102,10 @@ response = requests.get(f"{API}/mavlink/vehicles/64/components/1/messages/HEARTB
 assert(response["message"]["type"] == "HEARTBEAT"), "Message type is incorrect."
 assert(response["message"]["autopilot"]["type"]), "Autopilot type does not exist."
 assert(response["status"]["time"]["frequency"] > 0.0), "Heartbeat frequency is wrong."
+
+
+print("test servo..")
+assert(set_servo(5, 1850)), "Fail to send SERVO command"
 
 print("Test ARM and DISARM..")
 assert(set_arm(0)), "Fail to send DISARM command"
