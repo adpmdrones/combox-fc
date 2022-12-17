@@ -6,7 +6,7 @@ import json
 import requests
 import time
 
-API = "http://192.168.1.23:8088"
+API = "http://localhost:8088"
 
 def vehicle_mode():
     response = requests.get(f"{API}/mavlink/vehicles/64/components/1/messages/HEARTBEAT").json()
@@ -73,7 +73,7 @@ assert(response["service"]["name"] == "mavlink2rest"), "Invalid service name."
 assert(len(response["service"]["sha"]) != 0), "Invalid sha length."
 
 print("Test heartbeat..")
-response = requests.get(f"{API}/mavlink/vehicles/1/components/1/messages/HEARTBEAT").json()
+response = requests.get(f"{API}/mavlink/vehicles/64/components/1/messages/HEARTBEAT").json()
 
 assert(response["message"]["type"] == "HEARTBEAT"), "Message type is incorrect."
 assert(response["message"]["autopilot"]["type"]), "Autopilot type does not exist."
