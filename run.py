@@ -108,7 +108,11 @@ assert(response["status"]["time"]["frequency"] > 0.0), "Heartbeat frequency is w
 
 
 print("test servo..")
-assert(set_servo(5, 1850)), "Fail to send SERVO command"
+assert(set_servo(5, 1000)), "Fail to send SERVO command"
+time.sleep(5)
+assert(set_servo(5, 2000)), "Fail to send SERVO command"
+time.sleep(5)
+assert(set_servo(5, 1500)), "Fail to send SERVO command"
 
 print("Test ARM and DISARM..")
 assert(set_arm(0)), "Fail to send DISARM command"
