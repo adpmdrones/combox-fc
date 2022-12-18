@@ -111,6 +111,7 @@ while True:
 			',\"satellites\":' + str(SAT) + \
 			',\"pitch\":' + str(PIT) + \
 			',\"roll\":' + str(RLL) + \
+			',\"yaw\":' + str(YAW) + \
 			',\"heading\":' + str(VFR_HDG) + \
 			',\"vibration_x\":' +str(VIX) + \
 			',\"vibration_y\":' +str(VIY) + \
