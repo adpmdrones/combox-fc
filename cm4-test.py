@@ -32,7 +32,7 @@ url_dashboard = f"http://dashboard.adpmdrones.com:8080/api/v1/{device_token}/tel
 while True:
 	time.sleep(wait_time)
 	try:
-		print("Start local request")
+		print(f"Start local request to {url_uav}")
 		r = requests.get(url_uav , timeout=2)
 		data = r.json()
 
@@ -51,10 +51,14 @@ while True:
 		#
 		TIS = data["ATTITUDE"]["status"]["time"]["last_update"]	# Timestamp
 		#
-		ALT = data_gps_raw_int["alt"]								# Altitude  (MSL). Positive for up. mm
-		LAT = data_gps_raw_int["lat"]								# Latitude  (WGS84, EGM96 ellipsoid) degE7
-		LON = data_gps_raw_int["lon"]								# Longitude (WGS84, EGM96 ellipsoid) degE7
-		VEL = data_gps_raw_int["vel"]								# GPS ground speed cm/s
+		ALT_MSL = data_gps_int["alt"]								# Altitude  (MSL). Positive for up. mm
+		ALT_REL = data_gps_int["relative_alt"]						# Altitude above ground
+		LAT = data_gps_int["lat"]									# Latitude  (WGS84, EGM96 ellipsoid) degE7
+		LON = data_gps_int["lon"]									# Longitude (WGS84, EGM96 ellipsoid) degE7
+		HDG = data_gps_int["hdg"]									# Vehicle heading (yaw angle), 0.0..359.99 degrees
+		#
+		VEL = data_gps_int["vel"]									# GPS ground speed cm/s
+		#
 		SAT = data_gps_raw_int["satellites_visible"]				# Number of satellites visible
 		#
 		PIT = data_attitude["pitch"]								# Pitch angle (-pi..+pi) radians
