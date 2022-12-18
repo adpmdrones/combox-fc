@@ -131,7 +131,7 @@ while True:
 			',\"wind_speed_z\":' + str(WSPDZ) + \
 			',\"press_abs\":' + str(PRS_ABS) + \
 			',\"press_dif\":' + str(PRS_DIF) + \
-			',\"press_tmp\":' + str(PRS_TMP) + \
+			',\"press_tmp\":' + str(PRS_TMP / 100) + \
 			',\"servo1\":' + str(SRV01) + \
 			',\"servo2\":' + str(SRV02) + \
 			',\"servo3\":' + str(SRV03) + \
