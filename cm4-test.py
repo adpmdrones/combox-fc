@@ -46,7 +46,6 @@ while True:
 		data_servo = data["SERVO_OUTPUT_RAW"]["message"]			#
 		data_vfr = data["VFR_HUD"]["message"]						# https://mavlink.io/en/messages/common.html#VFR_HUD
 
-
 		# Assign data
 		#
 		TIS = data["ATTITUDE"]["status"]["time"]["last_update"]	# Timestamp
@@ -57,7 +56,6 @@ while True:
 		LON = data_gps_int["lon"]									# Longitude (WGS84, EGM96 ellipsoid) degE7
 		HDG = data_gps_int["hdg"]									# Vehicle heading (yaw angle), 0.0..359.99 degrees
 		#
-		print("HERE")
 		VEL = data_gps_int["vel"]									# GPS ground speed cm/s
 		#
 		SAT = data_gps_raw_int["satellites_visible"]				# Number of satellites visible
@@ -91,7 +89,7 @@ while True:
 		SRV15 = data_servo["servo15_raw"]							# Value 900-2100 ms
 		SRV16 = data_servo["servo16_raw"]							# Value 900-2100 ms
 		#
-
+		print("HERE")
 		data = '{' + \
 			'\"droneid\":' + str(droneID) + \
 			',\"timestamp\":\"' + TIS + '\"' + \
