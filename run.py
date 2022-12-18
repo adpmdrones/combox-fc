@@ -8,8 +8,10 @@ import time
 
 API = "http://localhost:8088"
 
+droneID = "64"
+
 def vehicle_mode():
-    response = requests.get(f"{API}/mavlink/vehicles/64/components/1/messages/HEARTBEAT").json()
+    response = requests.get(f"{API}/mavlink/vehicles/{droneID}/components/1/messages/HEARTBEAT").json()
     return response["message"]["base_mode"]["bits"]
 
 def set_arm(arm: int):
@@ -162,7 +164,7 @@ print(vehicle_mode())
 #assert(set_fmode(0)), "Fail to send change mode to AUTO command"
 
 print("Test pretty..")
-response = requests.get(f"{API}/mavlink/vehicles/64/components/1/messages/HEARTBEAT")
+response = requests.get(f"{API}/mavlink/vehicles/{droneID}/components/1/messages/HEARTBEAT")
 assert(response.text.count('\n') == 26), "Pretty heartbeat does not look correct."
 
 async def test_websocket_fetch_filter():
