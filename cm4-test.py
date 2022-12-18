@@ -59,26 +59,21 @@ while True:
 		SPD_Y = data_gps_int["vy"]									# Ground Y Speed (Longitude, positive east) cm/s
 		SPD_Z = data_gps_int["vz"]									# Ground Z Speed (Altitude, positive down) cm/s
 		#
-		print("HERE")
 		VEL = data_gps_raw_int["vel"]								# GPS ground speed cm/s
 		SAT = data_gps_raw_int["satellites_visible"]				# Number of satellites visible
 		#
-		print("HERE1")
 		PIT = data_attitude["pitch"]								# Pitch angle (-pi..+pi) radians
 		RLL = data_attitude["roll"]									# Roll  angle (-pi..+pi) radians
 		YAW = data_attitude["yaw"]									# Yaw   angle (-pi..+pi) radians
 		#
-		print("HERE2")
 		VIX = data_vibration["vibration_x"]							# Vibration levels on X-axis
 		VIY = data_vibration["vibration_y"]							# Vibration levels on Y-axis
 		VIZ = data_vibration["vibration_z"]							# Vibration levels on Z-axis
 		#
-		print("HERE3")
 		WDIR = data_wind["direction"]								#
 		WSPD = data_wind["speed"]									#
 		WSPDZ = data_wind["speed_z"]								#
 		#
-		print("HERE4")
 		SRV01 = data_servo["servo1_raw"]							# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
 		SRV02 = data_servo["servo2_raw"]							# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
 		SRV03 = data_servo["servo3_raw"]							# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
@@ -96,7 +91,6 @@ while True:
 		SRV15 = data_servo["servo15_raw"]							# Value 900-2100 ms
 		SRV16 = data_servo["servo16_raw"]							# Value 900-2100 ms
 		#
-		print("HERE5")
 
 		data = '{' + \
 			'\"droneid\":' + str(droneID) + \
@@ -133,7 +127,6 @@ while True:
 			',\"servo15\":' + str(SRV15) + \
 			',\"servo16\":' + str(SRV16) + \
 			'}'
-		print("HERE6")
 		data = json.loads(data)
 		logger.info(data)
 		#print(data)
