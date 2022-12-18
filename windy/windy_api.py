@@ -34,7 +34,7 @@ data = {
     "lon": 16.787,
     "model": "gfs",
     "parameters": ["wind", "dewpoint", "rh", "pressure"],
-    "levels": ["surface", "800h", "300h"],
+    "levels": ["surface"],
     "key": "F0qmICttsRDw0UQ2G7KGw6K9B7FHngEY"
 }
 
