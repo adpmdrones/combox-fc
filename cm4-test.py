@@ -116,6 +116,9 @@ while True:
 			',\"vibration_x\":' +str(VIX) + \
 			',\"vibration_y\":' +str(VIY) + \
 			',\"vibration_z\":' +str(VIZ) + \
+			',\"speed_x\":' +str(SPD_X) + \
+			',\"speed_y\":' +str(SPD_Y) + \
+			',\"speed_z\":' +str(SPD_Z) + \
 			',\"wind_speed\":' + str(WSPD) + \
 			',\"wind_dir\":' + str(WDIR) + \
 			',\"wind_speed_z\":' + str(WSPDZ) + \
