@@ -22,7 +22,7 @@ longitude = 0.0
 altitude = 0.0
 
 # Wait time between reads (seconds)
-wait_time = 0.25
+wait_time = 10
 
 # Endpoints
 #
