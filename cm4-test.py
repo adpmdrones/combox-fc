@@ -74,6 +74,12 @@ while True:
 		WSPD = data_wind["speed"]									#
 		WSPDZ = data_wind["speed_z"]								#
 		#
+		VFR_ARSPD = data_vfr["airspeed"]							#
+		VFR_ALT = data_vfr["alt"]									#
+		VFR_CLIMB = data_vfr["climb"]								#
+		VFR_GSPD = data_vfr["groundpseed"]							#
+		VFR_HDG = data_vfr["heading"]								#
+		#
 		SRV01 = data_servo["servo1_raw"]							# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
 		SRV02 = data_servo["servo2_raw"]							# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
 		SRV03 = data_servo["servo3_raw"]							# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
@@ -97,13 +103,15 @@ while True:
 			',\"timestamp\":\"' + TIS + '\"' + \
 			',\"latitude\":' + str(LAT) + \
 			',\"longitude\":' + str(LON) + \
-			',\"altitude\":' + str(ALT_REL) + \
+			',\"altitude\":' + str(VFR_ALT) + \
 			',\"altitude_msl\":' + str(ALT_MSL) + \
-			',\"speed\":' + str(VEL) + \
+			',\"speed\":' + str(VFR_GSPD) + \
+			',\"airspeed\":' + str(VFR_ARSPD) + \
+			',\"climb\":' + str(VFR_CLIMB) + \
 			',\"satellites\":' + str(SAT) + \
 			',\"pitch\":' + str(PIT) + \
 			',\"roll\":' + str(RLL) + \
-			',\"yaw\":' + str(YAW) + \
+			',\"heading\":' + str(VFR_HDG) + \
 			',\"vibration_x\":' +str(VIX) + \
 			',\"vibration_y\":' +str(VIY) + \
 			',\"vibration_z\":' +str(VIZ) + \
