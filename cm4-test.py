@@ -77,7 +77,7 @@ while True:
 		VFR_ARSPD = data_vfr["airspeed"]							#
 		VFR_ALT = data_vfr["alt"]									#
 		VFR_CLIMB = data_vfr["climb"]								#
-		VFR_GSPD = data_vfr["groundpseed"]							#
+		VFR_GSPD = data_vfr["groundspeed"]							#
 		VFR_HDG = data_vfr["heading"]								#
 		#
 		SRV01 = data_servo["servo1_raw"]							# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
