@@ -35,7 +35,6 @@ while True:
 		print(f"Start local request to {url_uav}")
 		r = requests.get(url_uav , timeout=2)
 		data = r.json()
-		print(data)
 
 		# Extract data groups form mavlink
 		#
@@ -91,7 +90,7 @@ while True:
 		SRV15 = data_servo["servo15_raw"]							# Value 900-2100 ms
 		SRV16 = data_servo["servo16_raw"]							# Value 900-2100 ms
 		#
-
+		print("HERE")
 		data = '{' + \
 			'\"droneid\":' + str(droneID) + \
 			',\"timestamp\":\"' + TIS + '\"' + \
