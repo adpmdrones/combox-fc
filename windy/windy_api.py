@@ -17,9 +17,9 @@ logging.basicConfig(level=logging.INFO, filename='/var/log/WINDY-data.log', \
 windy_token = "F0qmICttsRDw0UQ2G7KGw6K9B7FHngEY"
 
 
-latitude = 
-longitude =
-altitude =
+latitude = 0.0
+longitude = 0.0
+altitude = 0.0
 
 # Wait time between reads (seconds)
 wait_time = 0.25
