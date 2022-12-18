@@ -104,6 +104,7 @@ while True:
 			',\"latitude\":' + str(LAT) + \
 			',\"longitude\":' + str(LON) + \
 			',\"altitude\":' + str(ALT_REL) + \
+			',\"altitude_msl\":' + str(ALT_MSL) + \
 			',\"speed\":' + str(VEL) + \
 			',\"satellites\":' + str(SAT) + \
 			',\"pitch\":' + str(PIT) + \
