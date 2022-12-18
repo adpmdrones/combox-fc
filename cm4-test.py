@@ -83,19 +83,6 @@ while True:
 		SRV16 = data_servo["servo16_raw"]						# Value 900-2100 ms
 		#
 
-		data_new = { \
-					'droneid': droneID, \
-					'timestamp': timestamp \
-				}
-
-		data_new = json.dumps(data_new)
-		print("Data new ", data_new)
-
-		r = requests.post(url_dashboard, timeout=2, json=data_new)
-		#logger.info(r.status_code)
-		print(r.status_code)
-
-
 		data = '{' + \
 			'\"droneid\":' + str(droneID) + \
 			',\"timestamp\":\"' + TIS + '\"' + \
