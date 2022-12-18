@@ -55,9 +55,9 @@ while True:
 		LAT = data_gps_int["lat"]									# Latitude  (WGS84, EGM96 ellipsoid) degE7
 		LON = data_gps_int["lon"]									# Longitude (WGS84, EGM96 ellipsoid) degE7
 		HDG = data_gps_int["hdg"]									# Vehicle heading (yaw angle), 0.0..359.99 degrees
-		SPD_X = data_gps_int["vx"]									# Ground X Speed (Latitude, positive north) cm/s
-		SPD_Y = data_gps_int["vy"]									# Ground Y Speed (Longitude, positive east) cm/s
-		SPD_Z = data_gps_int["vz"]									# Ground Z Speed (Altitude, positive down) cm/s
+		GSPD_X = data_gps_int["vx"]									# Ground X Speed (Latitude, positive north) cm/s
+		GSPD_Y = data_gps_int["vy"]									# Ground Y Speed (Longitude, positive east) cm/s
+		GSPD_Z = data_gps_int["vz"]									# Ground Z Speed (Altitude, positive down) cm/s
 		#
 		VEL = data_gps_raw_int["vel"]								# GPS ground speed cm/s
 		SAT = data_gps_raw_int["satellites_visible"]				# Number of satellites visible
@@ -65,6 +65,9 @@ while True:
 		PIT = data_attitude["pitch"]								# Pitch angle (-pi..+pi) radians
 		RLL = data_attitude["roll"]									# Roll  angle (-pi..+pi) radians
 		YAW = data_attitude["yaw"]									# Yaw   angle (-pi..+pi) radians
+		SPD_P = data_attitude["pitchspeed"]									# Ground X Speed (Latitude, positive north) cm/s
+		SPD_R = data_attitude["rollspeed"]									# Ground Y Speed (Longitude, positive east) cm/s
+		SPD_Y = data_attitude["yawspeed"]									# Ground Z Speed (Altitude, positive down) cm/s
 		#
 		VIX = data_vibration["vibration_x"]							# Vibration levels on X-axis
 		VIY = data_vibration["vibration_y"]							# Vibration levels on Y-axis
@@ -116,9 +119,9 @@ while True:
 			',\"vibration_x\":' +str(VIX) + \
 			',\"vibration_y\":' +str(VIY) + \
 			',\"vibration_z\":' +str(VIZ) + \
-			',\"speed_x\":' +str(SPD_X) + \
-			',\"speed_y\":' +str(SPD_Y) + \
-			',\"speed_z\":' +str(SPD_Z) + \
+			',\"pitch_speed\":' +str(SPD_P) + \
+			',\"roll_speed\":' +str(SPD_R) + \
+			',\"yaw_speed\":' +str(SPD_Y) + \
 			',\"wind_speed\":' + str(WSPD) + \
 			',\"wind_dir\":' + str(WDIR) + \
 			',\"wind_speed_z\":' + str(WSPDZ) + \
