@@ -59,17 +59,21 @@ while True:
 		SPD_Y = data_gps_int["vy"]									# Ground Y Speed (Longitude, positive east) cm/s
 		SPD_Z = data_gps_int["vz"]									# Ground Z Speed (Altitude, positive down) cm/s
 		#
+		print("HERE")
 		VEL = data_gps_raw_int["vel"]								# GPS ground speed cm/s
 		SAT = data_gps_raw_int["satellites_visible"]				# Number of satellites visible
 		#
+		print("HERE1")
 		PIT = data_attitude["pitch"]								# Pitch angle (-pi..+pi) radians
 		RLL = data_attitude["roll"]									# Roll  angle (-pi..+pi) radians
 		YAW = data_attitude["yaw"]									# Yaw   angle (-pi..+pi) radians
 		#
+		print("HERE2")
 		VIX = data_vibration["vibration_x"]							# Vibration levels on X-axis
 		VIY = data_vibration["vibration_y"]							# Vibration levels on Y-axis
 		VIZ = data_vibration["vibration_z"]							# Vibration levels on Z-axis
 		#
+		print("HERE3")
 		WDIR = data_wind["direction"]								#
 		WSPD = data_wind["speed"]									#
 		WSPDZ = data_wind["speed_z"]								#
