@@ -35,6 +35,7 @@ while True:
 		print(f"Start local request to {url_uav}")
 		r = requests.get(url_uav , timeout=2)
 		data = r.json()
+		print(data)
 
 		# Extract data groups form mavlink
 		#
