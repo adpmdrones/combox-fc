@@ -45,6 +45,7 @@ while True:
 		data_wind = data["WIND"]["message"]							# 
 		data_servo = data["SERVO_OUTPUT_RAW"]["message"]			#
 		data_vfr = data["VFR_HUD"]["message"]						# https://mavlink.io/en/messages/common.html#VFR_HUD
+		data_pressure = data["SCALED_PRESSUR"]["message"] 			#
 
 		# Assign data
 		#
@@ -100,6 +101,9 @@ while True:
 		SRV15 = data_servo["servo15_raw"]							# Value 900-2100 ms
 		SRV16 = data_servo["servo16_raw"]							# Value 900-2100 ms
 		#
+		PRS_ABS = data_pressure["press_abs"]						#
+		PRS_DIF = data_pressure["press_diff"]						#
+		PRS_TMP = data_pressure["temperature"]						#
 
 		data = '{' + \
 			'\"droneid\":' + str(droneID) + \
@@ -125,6 +129,9 @@ while True:
 			',\"wind_speed\":' + str(WSPD) + \
 			',\"wind_dir\":' + str(WDIR) + \
 			',\"wind_speed_z\":' + str(WSPDZ) + \
+			',\"press_abs\":' + str(PRS_ABS) + \
+			',\"press_dif\":' + str(PRS_DIF) + \
+			',\"press_tmp\":' + str(PRS_TMP) + \
 			',\"servo1\":' + str(SRV01) + \
 			',\"servo2\":' + str(SRV02) + \
 			',\"servo3\":' + str(SRV03) + \
