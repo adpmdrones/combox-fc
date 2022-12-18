@@ -78,6 +78,7 @@ while True:
 		WSPD = data_wind["speed"]									#
 		WSPDZ = data_wind["speed_z"]								#
 		#
+		print("HERE4")
 		SRV01 = data_servo["servo1_raw"]							# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
 		SRV02 = data_servo["servo2_raw"]							# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
 		SRV03 = data_servo["servo3_raw"]							# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
@@ -95,6 +96,7 @@ while True:
 		SRV15 = data_servo["servo15_raw"]							# Value 900-2100 ms
 		SRV16 = data_servo["servo16_raw"]							# Value 900-2100 ms
 		#
+		print("HERE5")
 
 		data = '{' + \
 			'\"droneid\":' + str(droneID) + \
@@ -130,7 +132,7 @@ while True:
 			',\"servo15\":' + str(SRV15) + \
 			',\"servo16\":' + str(SRV16) + \
 			'}'
-
+		print("HERE6")
 		data = json.loads(data)
 		logger.info(data)
 		#print(data)
