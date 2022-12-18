@@ -55,9 +55,11 @@ while True:
 		LAT = data_gps_int["lat"]									# Latitude  (WGS84, EGM96 ellipsoid) degE7
 		LON = data_gps_int["lon"]									# Longitude (WGS84, EGM96 ellipsoid) degE7
 		HDG = data_gps_int["hdg"]									# Vehicle heading (yaw angle), 0.0..359.99 degrees
+		SPD_X = data_gps_int["vx"]									# Ground X Speed (Latitude, positive north) cm/s
+		SPD_Y = data_gps_int["vy"]									# Ground Y Speed (Longitude, positive east) cm/s
+		SPD_Z = data_gps_int["vz"]									# Ground Z Speed (Altitude, positive down) cm/s
 		#
-		VEL = data_gps_int["vel"]									# GPS ground speed cm/s
-		#
+		VEL = data_gps_raw_int["vel"]								# GPS ground speed cm/s
 		SAT = data_gps_raw_int["satellites_visible"]				# Number of satellites visible
 		#
 		PIT = data_attitude["pitch"]								# Pitch angle (-pi..+pi) radians
@@ -89,7 +91,7 @@ while True:
 		SRV15 = data_servo["servo15_raw"]							# Value 900-2100 ms
 		SRV16 = data_servo["servo16_raw"]							# Value 900-2100 ms
 		#
-		print("HERE")
+
 		data = '{' + \
 			'\"droneid\":' + str(droneID) + \
 			',\"timestamp\":\"' + TIS + '\"' + \
