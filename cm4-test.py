@@ -101,8 +101,8 @@ while True:
 		data = '{' + \
 			'\"droneid\":' + str(droneID) + \
 			',\"timestamp\":\"' + TIS + '\"' + \
-			',\"latitude\":' + str(LAT / 10000000) + \
-			',\"longitude\":' + str(LON / 10000000) + \
+			',\"latitude\":' + str(LAT) + \
+			',\"longitude\":' + str(LON) + \
 			',\"altitude\":' + str(ALT / 1000) + \
 			',\"speed\":' + str(VEL * 100) + \
 			',\"satellites\":' + str(SAT) + \
