@@ -42,5 +42,5 @@ while True:
     print(f"Start local request to {url_windy}")
     header = {"Content-Type" :"application/json"}
     r = requests.post(url_windy , headers = header, json = data)
-    print(r.text)
+    print(json.dumps(r.json()))
     time.sleep(wait_time)
