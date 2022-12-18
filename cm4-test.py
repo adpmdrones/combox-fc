@@ -85,7 +85,7 @@ while True:
 
 		data_new = { \
 					'droneid': droneID, \
-					'timestamp:' timestamp \
+					'timestamp': timestamp \
 				}
 
 		data_new = json.dumps(data_new)
