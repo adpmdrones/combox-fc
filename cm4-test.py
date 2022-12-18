@@ -36,51 +36,55 @@ while True:
 		r = requests.get(url_uav , timeout=2)
 		data = r.json()
 
-		# Extract data groups
-		data_gps = data["GPS_RAW_INT"]["message"]
-		data_attitude = data["ATTITUDE"]["message"]
-		data_vibration = data["VIBRATION"]["message"]
-		data_wind = data["WIND"]["message"]
-		data_servo = data["SERVO_OUTPUT_RAW"]["message"]
+		# Extract data groups form mavlink
+		#
+		data_gps_raw_int = data["GPS_RAW_INT"]["message"]			# https://mavlink.io/en/messages/common.html#GPS_RAW_INT
+		data_gps_int = data["GLOBAL_POSITION_INT"]["message"]		# https://mavlink.io/en/messages/common.html#GLOBAL_POSITION_INT
+		data_attitude = data["ATTITUDE"]["message"]					# https://mavlink.io/en/messages/common.html#ATTITUDE
+		data_vibration = data["VIBRATION"]["message"]				# https://mavlink.io/en/messages/common.html#VIBRATION
+		data_wind = data["WIND"]["message"]							# 
+		data_servo = data["SERVO_OUTPUT_RAW"]["message"]			#
+		data_vfr = data["VFR_HUD"]["message"]						# https://mavlink.io/en/messages/common.html#VFR_HUD
 
 
 		# Assign data
+		#
 		TIS = data["ATTITUDE"]["status"]["time"]["last_update"]	# Timestamp
 		#
-		ALT = data_gps["alt"]									# Altitude  (MSL). Positive for up. mm
-		LAT = data_gps["lat"]									# Latitude  (WGS84, EGM96 ellipsoid) degE7
-		LON = data_gps["lon"]									# Longitude (WGS84, EGM96 ellipsoid) degE7
-		VEL = data_gps["vel"]									# GPS ground speed cm/s
+		ALT = data_gps_raw_int["alt"]								# Altitude  (MSL). Positive for up. mm
+		LAT = data_gps_raw_int["lat"]								# Latitude  (WGS84, EGM96 ellipsoid) degE7
+		LON = data_gps_raw_int["lon"]								# Longitude (WGS84, EGM96 ellipsoid) degE7
+		VEL = data_gps_raw_int["vel"]								# GPS ground speed cm/s
+		SAT = data_gps_raw_int["satellites_visible"]				# Number of satellites visible
 		#
-		SAT = data_gps["satellites_visible"]					# Number of satellites visible
-		PIT = data_attitude["pitch"]							# Pitch angle (-pi..+pi) radians
-		RLL = data_attitude["roll"]								# Roll  angle (-pi..+pi) radians
-		YAW = data_attitude["yaw"]								# Yaw   angle (-pi..+pi) radians
+		PIT = data_attitude["pitch"]								# Pitch angle (-pi..+pi) radians
+		RLL = data_attitude["roll"]									# Roll  angle (-pi..+pi) radians
+		YAW = data_attitude["yaw"]									# Yaw   angle (-pi..+pi) radians
 		#
-		VIX = data_vibration["vibration_x"]						# Vibration levels on X-axis
-		VIY = data_vibration["vibration_y"]						# Vibration levels on Y-axis
-		VIZ = data_vibration["vibration_z"]						# Vibration levels on Z-axis
+		VIX = data_vibration["vibration_x"]							# Vibration levels on X-axis
+		VIY = data_vibration["vibration_y"]							# Vibration levels on Y-axis
+		VIZ = data_vibration["vibration_z"]							# Vibration levels on Z-axis
 		#
-		WDIR = data_wind["direction"]							#
-		WSPD = data_wind["speed"]								#
-		WSPDZ = data_wind["speed_z"]							#
+		WDIR = data_wind["direction"]								#
+		WSPD = data_wind["speed"]									#
+		WSPDZ = data_wind["speed_z"]								#
 		#
-		SRV01 = data_servo["servo1_raw"]						# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
-		SRV02 = data_servo["servo2_raw"]						# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
-		SRV03 = data_servo["servo3_raw"]						# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
-		SRV04 = data_servo["servo4_raw"]						# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
-		SRV05 = data_servo["servo5_raw"]						# Value 900-2100 ms
-		SRV06 = data_servo["servo6_raw"]						# Value 900-2100 ms
-		SRV07 = data_servo["servo7_raw"]						# Value 900-2100 ms
-		SRV08 = data_servo["servo8_raw"]						# Value 900-2100 ms
-		SRV09 = data_servo["servo9_raw"]						# Value 900-2100 ms
-		SRV10 = data_servo["servo10_raw"]						# Value 900-2100 ms
-		SRV11 = data_servo["servo11_raw"]						# Value 900-2100 ms
-		SRV12 = data_servo["servo12_raw"]						# Value 900-2100 ms
-		SRV13 = data_servo["servo13_raw"]						# Value 900-2100 ms
-		SRV14 = data_servo["servo14_raw"]						# Value 900-2100 ms
-		SRV15 = data_servo["servo15_raw"]						# Value 900-2100 ms
-		SRV16 = data_servo["servo16_raw"]						# Value 900-2100 ms
+		SRV01 = data_servo["servo1_raw"]							# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
+		SRV02 = data_servo["servo2_raw"]							# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
+		SRV03 = data_servo["servo3_raw"]							# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
+		SRV04 = data_servo["servo4_raw"]							# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
+		SRV05 = data_servo["servo5_raw"]							# Value 900-2100 ms
+		SRV06 = data_servo["servo6_raw"]							# Value 900-2100 ms
+		SRV07 = data_servo["servo7_raw"]							# Value 900-2100 ms
+		SRV08 = data_servo["servo8_raw"]							# Value 900-2100 ms
+		SRV09 = data_servo["servo9_raw"]							# Value 900-2100 ms
+		SRV10 = data_servo["servo10_raw"]							# Value 900-2100 ms
+		SRV11 = data_servo["servo11_raw"]							# Value 900-2100 ms
+		SRV12 = data_servo["servo12_raw"]							# Value 900-2100 ms
+		SRV13 = data_servo["servo13_raw"]							# Value 900-2100 ms
+		SRV14 = data_servo["servo14_raw"]							# Value 900-2100 ms
+		SRV15 = data_servo["servo15_raw"]							# Value 900-2100 ms
+		SRV16 = data_servo["servo16_raw"]							# Value 900-2100 ms
 		#
 
 		data = '{' + \
@@ -120,7 +124,7 @@ while True:
 
 		data = json.loads(data)
 		logger.info(data)
-		print(data)
+		#print(data)
 
 		r = requests.post(url_dashboard, timeout=2, json=data)
 		#logger.info(r.status_code)

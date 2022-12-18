@@ -141,7 +141,7 @@ assert(response["message"]["autopilot"]["type"]), "Autopilot type does not exist
 assert(response["status"]["time"]["frequency"] > 0.0), "Heartbeat frequency is wrong."
 
 servo_num = [5, 6, 7, 8]
-servo_pos = [1000, 1500, 1900, 1500]
+servo_pos = [1100, 1500, 1900, 1500]
 servo_wait = 2
 
 print("test servo..")
