@@ -16,7 +16,7 @@ logging.basicConfig(level=logging.INFO, filename='/var/log/CBFC-data.log', \
 device_token = "EeLqJHNQgWR4FtycieRD"
 
 # Drone ID
-droneID = "64"
+droneID = "30"
 
 # Wait time between reads (seconds)
 wait_time = 0.25
@@ -42,7 +42,7 @@ while True:
 		data_gps_int = data["GLOBAL_POSITION_INT"]["message"]		# https://mavlink.io/en/messages/common.html#GLOBAL_POSITION_INT
 		data_attitude = data["ATTITUDE"]["message"]					# https://mavlink.io/en/messages/common.html#ATTITUDE
 		data_vibration = data["VIBRATION"]["message"]				# https://mavlink.io/en/messages/common.html#VIBRATION
-		data_wind = data["WIND"]["message"]							# 
+		#data_wind = data["WIND"]["message"]							# 
 		data_servo = data["SERVO_OUTPUT_RAW"]["message"]			#
 		data_vfr = data["VFR_HUD"]["message"]						# https://mavlink.io/en/messages/common.html#VFR_HUD
 		data_pressure = data["SCALED_PRESSURE"]["message"] 			#
@@ -74,9 +74,12 @@ while True:
 		VIY = data_vibration["vibration_y"]							# Vibration levels on Y-axis
 		VIZ = data_vibration["vibration_z"]							# Vibration levels on Z-axis
 		#
-		WDIR = data_wind["direction"]								#
-		WSPD = data_wind["speed"]									#
-		WSPDZ = data_wind["speed_z"]								#
+		#WDIR = data_wind["direction"]								#
+		#WSPD = data_wind["speed"]									#
+		#WSPDZ = data_wind["speed_z"]								#
+		WDIR = 0													#
+		WSPD = 0													#
+		WSPDZ = 0													#
 		#
 		VFR_ARSPD = data_vfr["airspeed"]							#
 		VFR_ALT = data_vfr["alt"]									#
