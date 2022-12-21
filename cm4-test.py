@@ -29,9 +29,20 @@ url_uav = f"http://localhost:8088/mavlink/vehicles/{droneID}/components/1/messag
 # ThingsBoard ADPM
 url_dashboard = f"http://dashboard.adpmdrones.com:8080/api/v1/{device_token}/telemetry"
 
-# Request Mavlink data from UAV
-r = requests.get(url_uav , timeout=2)
-data = r.json()
+while True:
+	try:
+		# Request Mavlink data from UAV
+		r = requests.get(url_uav , timeout=2)
+		data = r.json()
+		break
+	except KeyboardInterrupt:
+		break
+	except:
+		print("Error reading mavlink data.")
+		print("Retrying...")
+		logger.error("Error reading mavlink data.")
+		time.sleep(5.0)
+		pass
 
 # Check autopilot
 #
@@ -46,8 +57,31 @@ autopilot = data["HEARTBEAT"]["message"]["autopilot"]["type"]		# https://mavlink
 #  2 - MAV_TYPE_QUADROTOR
 # 13 - MAV_TYPE_HEXAROTOR
 # 14 - MAV_TYPE_OCTOROTOR
+
+mavtype_multirotor = ["MAV_TYPE_QUADROTOR", "MAV_TYPE_HEXAROTOR", "MAV_TYPE_OCTOROTOR"]
+mavtype_wing = ["MAV_TYPE_FIXED_WING"]
  
 mavtype = data["HEARTBEAT"]["message"]["mavtype"]["type"]			# https://mavlink.io/en/messages/common.html#MAV_TYPE
+
+if (autopilot == "MAV_AUTOPILOT_ARDUPILOTMEGA"):
+	print(autopilot)
+elif (autopilot == "MAV_AUTOPILOT_PX4"):
+	print(autopilot)
+else:
+	print("Autopilot not supported. Exiting.")
+	logger.error("Autopilot not supported")
+	quit()
+
+if (mavtype in mavtype_wing):	
+	print(mavtype)
+elif (mavtype in mavtype_multirotor):
+	print(mavtype)
+else:
+	print("mavtype not supported. Exiting.")
+	logger.error("mavtype not supported")
+	quit()
+
+
 
 
 print("autopilot: ", autopilot)
