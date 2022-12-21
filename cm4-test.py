@@ -38,7 +38,7 @@ data = r.json()
 #  3 - MAV_AUTOPILOT_ARDUPILOTMEGA
 # 12 - MAV_AUTOPILOT_PX4
 
-autopilot = data["HEARTBEAT"]["message"]["autopilot"]				# https://mavlink.io/en/messages/common.html#MAV_AUTOPILOT
+autopilot = data["HEARTBEAT"]["message"]["autopilot"]["type"]		# https://mavlink.io/en/messages/common.html#MAV_AUTOPILOT
 
 # Check mavtype
 #
@@ -47,7 +47,7 @@ autopilot = data["HEARTBEAT"]["message"]["autopilot"]				# https://mavlink.io/en
 # 13 - MAV_TYPE_HEXAROTOR
 # 14 - MAV_TYPE_OCTOROTOR
  
-mavtype = data["HEARTBEAT"]["message"]["mavtype"]					# https://mavlink.io/en/messages/common.html#MAV_TYPE
+mavtype = data["HEARTBEAT"]["message"]["mavtype"]["type"]			# https://mavlink.io/en/messages/common.html#MAV_TYPE
 
 
 print("autopilot: ", autopilot)
