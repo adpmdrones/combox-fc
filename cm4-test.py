@@ -77,11 +77,12 @@ while True:
 		#WDIR = data_wind["direction"]								#
 		#WSPD = data_wind["speed"]									#
 		#WSPDZ = data_wind["speed_z"]								#
-		WDIR = 0													#
-		WSPD = 0													#
-		WSPDZ = 0													#
+		WDIR = 10													#
+		WSPD = 10													#
+		WSPDZ = 10													#
 		#
-		VFR_ARSPD = data_vfr["airspeed"]							#
+		#VFR_ARSPD = data_vfr["airspeed"]
+		VFR_ARSPD = 10							#
 		VFR_ALT = data_vfr["alt"]									#
 		VFR_CLIMB = data_vfr["climb"]								#
 		VFR_GSPD = data_vfr["groundspeed"]							#
@@ -107,9 +108,9 @@ while True:
 		#PRS_ABS = data_pressure["press_abs"]						#
 		#PRS_DIF = data_pressure["press_diff"]						#
 		#PRS_TMP = data_pressure["temperature"]						#
-		PRS_ABS = 0													#
-		PRS_DIF = 0													#
-		PRS_TMP = 0													#
+		PRS_ABS = 0									#
+		PRS_DIF = 0									#
+		PRS_TMP = 1000									#
 
 		data = '{' + \
 			'\"droneid\":' + str(droneID) + \
