@@ -82,11 +82,6 @@ else:
 	quit()
 
 
-
-
-print("autopilot: ", autopilot)
-print("mavtype: ", mavtype)
-
 while True:
 	time.sleep(wait_time)
 	try:
