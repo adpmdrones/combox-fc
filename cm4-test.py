@@ -50,6 +50,9 @@ autopilot = data["HEARTBEAT"]["message"]["autopilot"]				# https://mavlink.io/en
 mavtype = data["HEARTBEAT"]["message"]["mavtype"]					# https://mavlink.io/en/messages/common.html#MAV_TYPE
 
 
+print("autopilot: ", autopilot)
+print("mavtype: ", mavtype)
+
 while True:
 	time.sleep(wait_time)
 	try:
