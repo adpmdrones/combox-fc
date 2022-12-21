@@ -29,6 +29,27 @@ url_uav = f"http://localhost:8088/mavlink/vehicles/{droneID}/components/1/messag
 # ThingsBoard ADPM
 url_dashboard = f"http://dashboard.adpmdrones.com:8080/api/v1/{device_token}/telemetry"
 
+# Request Mavlink data from UAV
+r = requests.get(url_uav , timeout=2)
+data = r.json()
+
+# Check autopilot
+#
+#  3 - MAV_AUTOPILOT_ARDUPILOTMEGA
+# 12 - MAV_AUTOPILOT_PX4
+
+autopilot = data["HEARTBEAT"]["message"]["autopilot"]				# https://mavlink.io/en/messages/common.html#MAV_AUTOPILOT
+
+# Check mavtype
+#
+#  1 - MAV_TYPE_FIXED_WING
+#  2 - MAV_TYPE_QUADROTOR
+# 13 - MAV_TYPE_HEXAROTOR
+# 14 - MAV_TYPE_OCTOROTOR
+ 
+mavtype = data["HEARTBEAT"]["message"]["mavtype"]					# https://mavlink.io/en/messages/common.html#MAV_TYPE
+
+
 while True:
 	time.sleep(wait_time)
 	try:
@@ -42,10 +63,10 @@ while True:
 		data_gps_int = data["GLOBAL_POSITION_INT"]["message"]		# https://mavlink.io/en/messages/common.html#GLOBAL_POSITION_INT
 		data_attitude = data["ATTITUDE"]["message"]					# https://mavlink.io/en/messages/common.html#ATTITUDE
 		data_vibration = data["VIBRATION"]["message"]				# https://mavlink.io/en/messages/common.html#VIBRATION
-		#data_wind = data["WIND"]["message"]							# 
+		#data_wind = data["WIND"]["message"]						# 
 		data_servo = data["SERVO_OUTPUT_RAW"]["message"]			#
 		data_vfr = data["VFR_HUD"]["message"]						# https://mavlink.io/en/messages/common.html#VFR_HUD
-		#data_pressure = data["SCALED_PRESSURE"]["message"] 			#
+		#data_pressure = data["SCALED_PRESSURE"]["message"] 		#
 
 		# Assign data
 		#
@@ -82,7 +103,7 @@ while True:
 		WSPDZ = 10													#
 		#
 		#VFR_ARSPD = data_vfr["airspeed"]
-		VFR_ARSPD = 10							#
+		VFR_ARSPD = 10												#
 		VFR_ALT = data_vfr["alt"]									#
 		VFR_CLIMB = data_vfr["climb"]								#
 		VFR_GSPD = data_vfr["groundspeed"]							#
@@ -108,9 +129,9 @@ while True:
 		#PRS_ABS = data_pressure["press_abs"]						#
 		#PRS_DIF = data_pressure["press_diff"]						#
 		#PRS_TMP = data_pressure["temperature"]						#
-		PRS_ABS = 0									#
-		PRS_DIF = 0									#
-		PRS_TMP = 1000									#
+		PRS_ABS = 0													#
+		PRS_DIF = 0													#
+		PRS_TMP = 1000												#
 
 		data = '{' + \
 			'\"droneid\":' + str(droneID) + \
