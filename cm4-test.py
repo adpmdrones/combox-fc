@@ -135,8 +135,7 @@ while True:
 		WSPD = 10													#
 		WSPDZ = 10													#
 		#
-		#VFR_ARSPD = data_vfr["airspeed"]
-		VFR_ARSPD = 10												#
+		VFR_ARSPD = data_vfr["airspeed"]										#
 		VFR_ALT = data_vfr["alt"]									#
 		VFR_CLIMB = data_vfr["climb"]								#
 		VFR_GSPD = data_vfr["groundspeed"]							#
@@ -178,7 +177,7 @@ while True:
 			',\"latitude\":' + str(LAT / 10000000) + \
 			',\"longitude\":' + str(LON / 10000000) + \
 			',\"altitude\":' + str(VFR_ALT) + \
-			',\"altitude_msl\":' + str(ALT_MSL / 100) + \
+			',\"altitude_msl\":' + str(ALT_MSL) + \
 			',\"speed\":' + str(VFR_GSPD) + \
 			',\"airspeed\":' + str(VFR_ARSPD) + \
 			',\"climb\":' + str(VFR_CLIMB) + \
@@ -198,7 +197,7 @@ while True:
 			',\"wind_speed_z\":' + str(WSPDZ) + \
 			',\"press_abs\":' + str(PRS_ABS) + \
 			',\"press_dif\":' + str(PRS_DIF) + \
-			',\"press_tmp\":' + str(PRS_TMP / 100) + \
+			',\"press_tmp\":' + str(PRS_TMP) + \
 			',\"servo1\":' + str(SRV01) + \
 			',\"servo2\":' + str(SRV02) + \
 			',\"servo3\":' + str(SRV03) + \
@@ -224,7 +223,7 @@ while True:
 			',\"adsb_type\":' + str(ADSB_TYP) + \
 			',\"adsb_tslc\":' + str(ADSB_TSL) + \
 			'}'
-
+		print("HERE4")
 		data = json.loads(data)
 		logger.info(data)
 		#print(data)
