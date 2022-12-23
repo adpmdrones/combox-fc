@@ -226,7 +226,7 @@ while True:
 		print("HERE4")
 		data = json.loads(data)
 		logger.info(data)
-		#print(data)
+		print(data)
 
 		r = requests.post(url_dashboard, timeout=2, json=data)
 		#logger.info(r.status_code)
