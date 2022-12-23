@@ -214,8 +214,8 @@ while True:
 			',\"servo14\":' + str(SRV14) + \
 			',\"servo15\":' + str(SRV15) + \
 			',\"servo16\":' + str(SRV16) + \
-			',\"adsb_lat\":' + str(ADSB_LAT) + \
-			',\"adsb_lon\":' + str(ADSB_LON) + \
+			',\"adsb_lat\":' + str(ADSB_LAT / 10000000) + \
+			',\"adsb_lon\":' + str(ADSB_LON / 10000000) + \
 			',\"adsb_lheading\":' + str(ADSB_HDG) + \
 			',\"adsb_hor_velocity\":' + str(ADSB_HSP) + \
 			',\"adsb_ver_velocity\":' + str(ADSB_VSP) + \
