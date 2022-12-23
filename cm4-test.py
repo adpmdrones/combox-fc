@@ -225,8 +225,9 @@ while True:
 			',\"adsb_ver_velocity\":' + str(ADSB_VSP) + \
 			',\"adsb_squawk\":' + str(ADSB_SQW) + \
 			',\"adsb_type\":' + str(ADSB_TYP) + \
-			',\"adsb_tslc\":' + str(ADSB_TSL) + \				
+			',\"adsb_tslc\":' + str(ADSB_TSL) + \
 			'}'
+
 		data = json.loads(data)
 		logger.info(data)
 		#print(data)
@@ -240,4 +241,3 @@ while True:
 	except:
 		logger.error("POST Issue")
 		pass
-	
