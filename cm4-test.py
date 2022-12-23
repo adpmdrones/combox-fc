@@ -220,7 +220,6 @@ while True:
 			',\"adsb_hor_velocity\":' + str(ADSB_HSP) + \
 			',\"adsb_ver_velocity\":' + str(ADSB_VSP) + \
 			',\"adsb_squawk\":' + str(ADSB_SQW) + \
-			',\"adsb_type\":' + str(ADSB_TYP) + \
 			',\"adsb_tslc\":' + str(ADSB_TSL) + \
 			'}'
 		print("HERE4")
