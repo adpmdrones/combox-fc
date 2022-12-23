@@ -91,6 +91,7 @@ while True:
 
 		# Extract data groups form mavlink
 		#
+		data_adsb = data["ADSB_VEHICLE"]["message"]
 		data_gps_raw_int = data["GPS_RAW_INT"]["message"]			# https://mavlink.io/en/messages/common.html#GPS_RAW_INT
 		data_gps_int = data["GLOBAL_POSITION_INT"]["message"]		# https://mavlink.io/en/messages/common.html#GLOBAL_POSITION_INT
 		data_attitude = data["ATTITUDE"]["message"]					# https://mavlink.io/en/messages/common.html#ATTITUDE
@@ -164,6 +165,15 @@ while True:
 		PRS_ABS = 0													#
 		PRS_DIF = 0													#
 		PRS_TMP = 1000												#
+		#
+		ADSB_LAT = data_adsb["lat"]
+		ADSB_LON = data_adsb["lon"]	
+		ADSB_HDG = data_adsb["heading"]	
+		ADSB_HSP = data_adsb["hor_velocity"]
+		ADSB_VSP = data_adsb["ver_velocity"]
+		ADSB_SQW = data_adsb["squawk"]
+		ADSB_TYP = data_adsb["type"]
+		ADSB_TSL = data_adsb["tslc"]
 
 		data = '{' + \
 			'\"droneid\":' + str(droneID) + \
@@ -208,6 +218,14 @@ while True:
 			',\"servo14\":' + str(SRV14) + \
 			',\"servo15\":' + str(SRV15) + \
 			',\"servo16\":' + str(SRV16) + \
+			',\"adsb_lat\":' + str(ADSB_LAT) + \
+			',\"adsb_lon\":' + str(ADSB_LON) + \
+			',\"adsb_lheading\":' + str(ADSB_HDG) + \
+			',\"adsb_hor_velocity\":' + str(ADSB_HSP) + \
+			',\"adsb_ver_velocity\":' + str(ADSB_VSP) + \
+			',\"adsb_squawk\":' + str(ADSB_SQW) + \
+			',\"adsb_type\":' + str(ADSB_TYP) + \
+			',\"adsb_tslc\":' + str(ADSB_TSL) + \				
 			'}'
 		data = json.loads(data)
 		logger.info(data)
@@ -222,3 +240,13 @@ while True:
 	except:
 		logger.error("POST Issue")
 		pass
+
+
+		ADSB_LAT = data_adsb["lat"]
+		ADSB_LON = data_adsb["lon"]	
+		ADSB_HDG = data_adsb["heading"]	
+		ADSB_HSP = data_adsb["hor_velocity"]
+		ADSB_VSP = data_adsb["ver_velocity"]
+		ADSB_SQW = data_adsb["squawk"]
+		ADSB_TYP = data_adsb["type"]
+		ADSB_TSL = data_adsb["tslc"]
