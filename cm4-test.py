@@ -100,7 +100,7 @@ while True:
 		data_servo = data["SERVO_OUTPUT_RAW"]["message"]			#
 		data_vfr = data["VFR_HUD"]["message"]						# https://mavlink.io/en/messages/common.html#VFR_HUD
 		data_pressure = data["SCALED_PRESSURE"]["message"] 		#
-		print("HERE1")
+
 		# Assign data
 		#
 		TIS = data["ATTITUDE"]["status"]["time"]["last_update"]	# Timestamp
@@ -170,7 +170,7 @@ while True:
 		ADSB_SQW = data_adsb["squawk"]
 		ADSB_TYP = data_adsb["type"]
 		ADSB_TSL = data_adsb["tslc"]
-		print("HERE2")
+
 		data = '{' + \
 			'\"droneid\":' + str(droneID) + \
 			',\"timestamp\":\"' + TIS + '\"' + \
@@ -224,6 +224,7 @@ while True:
 			',\"adsb_tslc\":' + str(ADSB_TSL) + \
 			'}'
 		print("HERE4")
+		print(data)
 		data = json.loads(data)
 		logger.info(data)
 		print(data)
