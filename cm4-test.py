@@ -240,13 +240,4 @@ while True:
 	except:
 		logger.error("POST Issue")
 		pass
-
-
-		ADSB_LAT = data_adsb["lat"]
-		ADSB_LON = data_adsb["lon"]	
-		ADSB_HDG = data_adsb["heading"]	
-		ADSB_HSP = data_adsb["hor_velocity"]
-		ADSB_VSP = data_adsb["ver_velocity"]
-		ADSB_SQW = data_adsb["squawk"]
-		ADSB_TYP = data_adsb["type"]
-		ADSB_TSL = data_adsb["tslc"]
+	
