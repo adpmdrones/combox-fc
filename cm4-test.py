@@ -99,7 +99,7 @@ while True:
 		#data_wind = data["WIND"]["message"]						# 
 		data_servo = data["SERVO_OUTPUT_RAW"]["message"]			#
 		data_vfr = data["VFR_HUD"]["message"]						# https://mavlink.io/en/messages/common.html#VFR_HUD
-		data_pressure = data["SCALED_PRESSURE"]["message"] 		#
+		data_pressure = data["SCALED_PRESSURE"]["message"] 			#
 
 		# Assign data
 		#
