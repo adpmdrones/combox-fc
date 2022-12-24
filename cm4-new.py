@@ -30,7 +30,7 @@ logging.basicConfig(level=logging.INFO, filename='/var/log/CBFC-data.log', \
 device_token = "EeLqJHNQgWR4FtycieRD"
 
 # Drone ID
-droneID = "1"
+droneID = "128"
 
 # Wait time between reads (seconds)
 wait_time = 0.25
@@ -66,6 +66,7 @@ def write_telemetry(data, url_dashboard):
 			# POST Telemetry data
 			r = requests.post(url_dashboard, timeout=2, json=data)
 			status = r.status_code
+			print(status)
 			return (status)
 		except KeyboardInterrupt:
 			os._exit(0)
@@ -163,7 +164,7 @@ autopilot = data["HEARTBEAT"]["message"]["autopilot"]["type"]		# https://mavlink
 
 mavtype_multirotor = ["MAV_TYPE_QUADROTOR", "MAV_TYPE_HEXAROTOR", "MAV_TYPE_OCTOROTOR"]
 mavtype_wing = ["MAV_TYPE_FIXED_WING"]
- 
+
 mavtype = data["HEARTBEAT"]["message"]["mavtype"]["type"]			# https://mavlink.io/en/messages/common.html#MAV_TYPE
 
 if (autopilot == "MAV_AUTOPILOT_ARDUPILOTMEGA"):
@@ -175,7 +176,7 @@ else:
 	logger.error("Autopilot not supported")
 	os._exit(0)
 
-if (mavtype in mavtype_wing):	
+if (mavtype in mavtype_wing):
 	print(mavtype)
 elif (mavtype in mavtype_multirotor):
 	print(mavtype)
@@ -191,7 +192,6 @@ while True:
 	#
 	# Reading mavlink data
 	data = read_mavlink(droneID, url_uav)
-
 	telem.TIS = data["ATTITUDE"]["status"]["time"]["last_update"]
 	telem.UAV = droneID
 
@@ -199,9 +199,9 @@ while True:
 	if "ADSB_VEHICLE" in data:
 		# Read ADSB data
 		data_adsb = data["ADSB_VEHICLE"]["message"]					# https://mavlink.io/en/messages/common.html#ADSB_VEHICLE
-		# Update 
-		telem.ADSB_LAT = data_adsb["lat"] / 10000000
-		telem.ADSB_LON = data_adsb["lon"] / 10000000
+		# Update
+		telem.ADSB_LAT = data_adsb["lat"]
+		telem.ADSB_LON = data_adsb["lon"]
 		telem.ADSB_HDG = data_adsb["heading"]
 		telem.ADSB_HSP = data_adsb["hor_velocity"]
 		telem.ADSB_VSP = data_adsb["ver_velocity"]
@@ -212,7 +212,7 @@ while True:
 	# Check if WIND data is available
 	if "WIND" in data:
 		# Read wind data
-		data_wind = data["WIND"]["message"]	
+		data_wind = data["WIND"]["message"]
 		# Update
 		telem.WDIR = data_wind["direction"]
 		telem.WSPD = data_wind["speed"]
@@ -225,8 +225,8 @@ while True:
 	data_gps_int = data["GLOBAL_POSITION_INT"]["message"]			# https://mavlink.io/en/messages/common.html#GLOBAL_POSITION_INT
 	telem.ALT_MSL = data_gps_int["alt"]								# Altitude  (MSL). Positive for up. mm
 	telem.ALT_REL = data_gps_int["relative_alt"]					# Altitude above ground
-	telem.LAT = data_gps_int["lat"] / 10000000						# Latitude  (WGS84, EGM96 ellipsoid) degE7
-	telem.LON = data_gps_int["lon"]	/ 10000000						# Longitude (WGS84, EGM96 ellipsoid) degE7
+	telem.LAT = data_gps_int["lat"]							# Latitude  (WGS84, EGM96 ellipsoid) degE7
+	telem.LON = data_gps_int["lon"]							# Longitude (WGS84, EGM96 ellipsoid) degE7
 	telem.HDG = data_gps_int["hdg"]									# Vehicle heading (yaw angle), 0.0..359.99 degrees
 	telem.GSPD_X = data_gps_int["vx"]								# Ground X Speed (Latitude, positive north) cm/s
 	telem.GSPD_Y = data_gps_int["vy"]								# Ground Y Speed (Longitude, positive east) cm/s
@@ -245,7 +245,7 @@ while True:
 	telem.VIY = data_vibration["vibration_y"]						# Vibration levels on Y-axis
 	telem.VIZ = data_vibration["vibration_z"]						# Vibration levels on Z-axis
 	#
-	data_servo = data["SERVO_OUTPUT_RAW"]["message"]				# https://mavlink.io/en/messages/common.html#SERVO_OUTPUT_RAW
+	data_servo = data["SERVO_OUTPUT_RAW"]["message"]					# https://mavlink.io/en/messages/common.html#SERVO_OUTPUT_RAW
 	telem.SRV01 = data_servo["servo1_raw"]							# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
 	telem.SRV02 = data_servo["servo2_raw"]							# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
 	telem.SRV03 = data_servo["servo3_raw"]							# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
@@ -276,5 +276,8 @@ while True:
 	telem.PRS_TMP = data_pressure["temperature"]					#
 
 	jsonTelem = json.dumps(telem.__dict__)
+	jsonTelem = (telem.__dict__)
+	print(jsonTelem)
+	print(url_dashboard)
 	write_telemetry(jsonTelem, url_dashboard)
 	time.sleep(wait_time)
