@@ -138,14 +138,14 @@ while True:
 		# Read ADSB data
 		data_adsb = data["ADSB_VEHICLE"]["message"]					# https://mavlink.io/en/messages/common.html#ADSB_VEHICLE
 		# Update
-		telem.adsb_lat = data_adsb["lat"]
-		telem.adsb_lon = data_adsb["lon"]
-		telem.adsb_heading = data_adsb["heading"]
-		telem.adsb_hor_velocity = data_adsb["hor_velocity"]
-		telem.adsb_ver_velocity = data_adsb["ver_velocity"]
-		telem.adsb_squawk = data_adsb["squawk"]
-		telem.adsb_type = data_adsb["type"]
-		telem.adsb_tslc = data_adsb["tslc"]
+		telem.adsb_lat = data_adsb["lat"]							# Latitude  (WGS84, EGM96 ellipsoid) degE7
+		telem.adsb_lon = data_adsb["lon"]							# Longitude (WGS84, EGM96 ellipsoid) degE7
+		telem.adsb_heading = data_adsb["heading"]					# Course over ground cDeg
+		telem.adsb_hor_velocity = data_adsb["hor_velocity"]			# The horizontal velocity cm/s
+		telem.adsb_ver_velocity = data_adsb["ver_velocity"]			# The vertical velocity. Positive is up
+		telem.adsb_squawk = data_adsb["squawk"]						# Squawk code
+		telem.adsb_type = data_adsb["type"]							# 
+		telem.adsb_tslc = data_adsb["tslc"]							# Time since last communication in seconds
 	#
 	# Check if WIND data is available
 	if "WIND" in data:
@@ -158,7 +158,7 @@ while True:
 	#
 	data_gps_raw_int = data["GPS_RAW_INT"]["message"]				# https://mavlink.io/en/messages/common.html#GPS_RAW_INT
 	telem.vel = data_gps_raw_int["vel"]								# GPS ground speed cm/s
-	telem.satellites = data_gps_raw_int["satellites_visible"]				# Number of satellites visible
+	telem.satellites = data_gps_raw_int["satellites_visible"]		# Number of satellites visible
 	#
 	data_gps_int = data["GLOBAL_POSITION_INT"]["message"]			# https://mavlink.io/en/messages/common.html#GLOBAL_POSITION_INT
 	telem.altitude_msl = data_gps_int["alt"]						# Altitude  (MSL). Positive for up. mm
@@ -202,16 +202,19 @@ while True:
 	telem.servo16 = data_servo["servo16_raw"]						# Value 900-2100 ms
 	#
 	data_vfr = data["VFR_HUD"]["message"]							# https://mavlink.io/en/messages/common.html#VFR_HUD
-	telem.vfr_airspeed = data_vfr["airspeed"]						#
-	telem.vfr_alt = data_vfr["alt"]									#
-	telem.vfr_climb = data_vfr["climb"]								#
-	telem.vfr_speed = data_vfr["groundspeed"]						#
-	telem.vfr_heading = data_vfr["heading"]							#
+	telem.vfr_airspeed = data_vfr["airspeed"]						# Vehicle speed in form appropriate for vehicle type.
+																	# For standard aircraft this is typically calibrated airspeed (CAS)
+																	# or indicated airspeed (IAS) - either of which can be used by a pilot
+																	# to estimate stall speed. m/s
+	telem.vfr_alt = data_vfr["alt"]									# Current altitude (MSL) m
+	telem.vfr_climb = data_vfr["climb"]								# Current climb rate m/s
+	telem.vfr_speed = data_vfr["groundspeed"]						# Current ground speed m/s
+	telem.vfr_heading = data_vfr["heading"]							# Current heading in compass units (0-360, 0=north) Deg
 
 	data_pressure = data["SCALED_PRESSURE"]["message"] 				# https://mavlink.io/en/messages/common.html#SCALED_PRESSURE
-	telem.press_abs = data_pressure["press_abs"]					#
-	telem.press_dif = data_pressure["press_diff"]					#
-	telem.press_tmp = data_pressure["temperature"]					#
+	telem.press_abs = data_pressure["press_abs"]					# Absolute pressure hPa
+	telem.press_dif = data_pressure["press_diff"]					# Differential pressure hPa
+	telem.press_tmp = data_pressure["temperature"]					# Absolute pressure temperature cdegC
 
 	# jsonTelem = json.dumps(telem.__dict__)
 	# jsonTelem will be dumped in write_telemetry
@@ -219,7 +222,6 @@ while True:
 	jsonTelem = (telem.__dict__)
 	print(jsonTelem)
 	print(url_dashboard)
-
 
 	write_telemetry(jsonTelem, url_dashboard)
 
