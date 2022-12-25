@@ -19,6 +19,7 @@ import requests
 import logging
 import json
 import os
+import random
 
 # Create logger
 logger = logging.getLogger('CBFC')
