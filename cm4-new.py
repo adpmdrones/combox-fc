@@ -161,29 +161,29 @@ while True:
 	telem.satellites = data_gps_raw_int["satellites_visible"]				# Number of satellites visible
 	#
 	data_gps_int = data["GLOBAL_POSITION_INT"]["message"]			# https://mavlink.io/en/messages/common.html#GLOBAL_POSITION_INT
-	telem.altitude_msl = data_gps_int["alt"]								# Altitude  (MSL). Positive for up. mm
+	telem.altitude_msl = data_gps_int["alt"]						# Altitude  (MSL). Positive for up. mm
 	telem.altitude = data_gps_int["relative_alt"]					# Altitude above ground
 	telem.latitude = data_gps_int["lat"]							# Latitude  (WGS84, EGM96 ellipsoid) degE7
 	telem.longitude = data_gps_int["lon"]							# Longitude (WGS84, EGM96 ellipsoid) degE7
-	telem.heading = data_gps_int["hdg"]									# Vehicle heading (yaw angle), 0.0..359.99 degrees
-	telem.vx = data_gps_int["vx"]								# Ground X Speed (Latitude, positive north) cm/s
-	telem.vy = data_gps_int["vy"]								# Ground Y Speed (Longitude, positive east) cm/s
-	telem.vz = data_gps_int["vz"]								# Ground Z Speed (Altitude, positive down) cm/s
+	telem.heading = data_gps_int["hdg"]								# Vehicle heading (yaw angle), 0.0..359.99 degrees
+	telem.vx = data_gps_int["vx"]									# Ground X Speed (Latitude, positive north) cm/s
+	telem.vy = data_gps_int["vy"]									# Ground Y Speed (Longitude, positive east) cm/s
+	telem.vz = data_gps_int["vz"]									# Ground Z Speed (Altitude, positive down) cm/s
 	#
 	data_attitude = data["ATTITUDE"]["message"]						# https://mavlink.io/en/messages/common.html#ATTITUDE
-	telem.pitch = data_attitude["pitch"]								# Pitch angle (-pi..+pi) radians
+	telem.pitch = data_attitude["pitch"]							# Pitch angle (-pi..+pi) radians
 	telem.roll = data_attitude["roll"]								# Roll  angle (-pi..+pi) radians
 	telem.yaw = data_attitude["yaw"]								# Yaw   angle (-pi..+pi) radians
-	telem.pitch_speed = data_attitude["pitchspeed"]						# Ground X Speed (Latitude, positive north) cm/s
-	telem.roll_speed = data_attitude["rollspeed"]						# Ground Y Speed (Longitude, positive east) cm/s
-	telem.yaw_speed = data_attitude["yawspeed"]							# Ground Z Speed (Altitude, positive down) cm/s
+	telem.pitch_speed = data_attitude["pitchspeed"]					# Ground X Speed (Latitude, positive north) cm/s
+	telem.roll_speed = data_attitude["rollspeed"]					# Ground Y Speed (Longitude, positive east) cm/s
+	telem.yaw_speed = data_attitude["yawspeed"]						# Ground Z Speed (Altitude, positive down) cm/s
 	#
 	data_vibration = data["VIBRATION"]["message"]					# https://mavlink.io/en/messages/common.html#VIBRATION 
 	telem.vibration_x = data_vibration["vibration_x"]				# Vibration levels on X-axis
 	telem.vibration_y = data_vibration["vibration_y"]				# Vibration levels on Y-axis
 	telem.vibration_z = data_vibration["vibration_z"]				# Vibration levels on Z-axis
 	#
-	data_servo = data["SERVO_OUTPUT_RAW"]["message"]					# https://mavlink.io/en/messages/common.html#SERVO_OUTPUT_RAW
+	data_servo = data["SERVO_OUTPUT_RAW"]["message"]				# https://mavlink.io/en/messages/common.html#SERVO_OUTPUT_RAW
 	telem.servo1 = data_servo["servo1_raw"]							# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
 	telem.servo2 = data_servo["servo2_raw"]							# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
 	telem.servo3 = data_servo["servo3_raw"]							# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
@@ -193,29 +193,31 @@ while True:
 	telem.servo7 = data_servo["servo7_raw"]							# Value 900-2100 ms
 	telem.servo8 = data_servo["servo8_raw"]							# Value 900-2100 ms
 	telem.servo9 = data_servo["servo9_raw"]							# Value 900-2100 ms
-	telem.servo10 = data_servo["servo10_raw"]							# Value 900-2100 ms
-	telem.servo11 = data_servo["servo11_raw"]							# Value 900-2100 ms
-	telem.servo12 = data_servo["servo12_raw"]							# Value 900-2100 ms
-	telem.servo13 = data_servo["servo13_raw"]							# Value 900-2100 ms
-	telem.servo14 = data_servo["servo14_raw"]							# Value 900-2100 ms
-	telem.servo15 = data_servo["servo15_raw"]							# Value 900-2100 ms
-	telem.servo16 = data_servo["servo16_raw"]							# Value 900-2100 ms
+	telem.servo10 = data_servo["servo10_raw"]						# Value 900-2100 ms
+	telem.servo11 = data_servo["servo11_raw"]						# Value 900-2100 ms
+	telem.servo12 = data_servo["servo12_raw"]						# Value 900-2100 ms
+	telem.servo13 = data_servo["servo13_raw"]						# Value 900-2100 ms
+	telem.servo14 = data_servo["servo14_raw"]						# Value 900-2100 ms
+	telem.servo15 = data_servo["servo15_raw"]						# Value 900-2100 ms
+	telem.servo16 = data_servo["servo16_raw"]						# Value 900-2100 ms
 	#
 	data_vfr = data["VFR_HUD"]["message"]							# https://mavlink.io/en/messages/common.html#VFR_HUD
-	telem.vfr_airspeed = data_vfr["airspeed"]							#
+	telem.vfr_airspeed = data_vfr["airspeed"]						#
 	telem.vfr_alt = data_vfr["alt"]									#
 	telem.vfr_climb = data_vfr["climb"]								#
 	telem.vfr_speed = data_vfr["groundspeed"]						#
-	telem.vfr_heading = data_vfr["heading"]								#
+	telem.vfr_heading = data_vfr["heading"]							#
 
 	data_pressure = data["SCALED_PRESSURE"]["message"] 				# https://mavlink.io/en/messages/common.html#SCALED_PRESSURE
-	telem.press_abs = data_pressure["press_abs"]						#
-	telem.press_dif = data_pressure["press_diff"]						#
+	telem.press_abs = data_pressure["press_abs"]					#
+	telem.press_dif = data_pressure["press_diff"]					#
 	telem.press_tmp = data_pressure["temperature"]					#
 
 	jsonTelem = json.dumps(telem.__dict__)
 	jsonTelem = (telem.__dict__)
 	print(jsonTelem)
 	print(url_dashboard)
+	# jsonTelem will be dumped in write_telemetry
+	# json.dumps(jsonTelem)
 	write_telemetry(jsonTelem, url_dashboard)
 	time.sleep(wait_time)
