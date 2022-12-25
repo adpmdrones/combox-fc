@@ -214,12 +214,13 @@ while True:
 	telem.press_tmp = data_pressure["temperature"]					#
 
 	# jsonTelem = json.dumps(telem.__dict__)
+	# jsonTelem will be dumped in write_telemetry
+
 	jsonTelem = (telem.__dict__)
 	print(jsonTelem)
 	print(url_dashboard)
 
-	# jsonTelem will be dumped in write_telemetry
-	# json.dumps(jsonTelem)
+
 	write_telemetry(jsonTelem, url_dashboard)
 
 	# Wait for next read
