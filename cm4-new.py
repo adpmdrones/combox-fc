@@ -44,6 +44,8 @@ dcm = "2"
 #
 # Mavlink2rest
 url_uav = f"http://localhost:8088/mavlink/vehicles/{droneID}/components/1/messages"
+url_vehicle = "http://localhost:8088/mavlink/vehicles"
+
 #
 # ThingsBoard ADPM
 url_dashboard = f"http://dashboard.adpmdrones.com:8080/api/v1/{device_token}/telemetry"
@@ -87,6 +89,12 @@ class telemetry:
 	droneid = 1				# DroneID
 	timestamp = ''			# timestamp
 
+# Finding mav id
+for n = 1 to 255:
+	mavid = url_vehicle + "/" + str(n)
+	if mavid != "None":
+		droneID = mavid
+		break
 
 # Read mavlink for autopilot, mavtype
 data = read_mavlink(droneID, url_uav)
