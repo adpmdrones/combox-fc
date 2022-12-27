@@ -90,7 +90,7 @@ class telemetry:
 	timestamp = ''			# timestamp
 
 # Finding mav id
-for n = 1 to 255:
+for n in range (255):
 	mavid = url_vehicle + "/" + str(n)
 	if mavid != "None":
 		print("DroneID : " + mavid)
