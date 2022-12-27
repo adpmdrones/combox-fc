@@ -199,8 +199,8 @@ while True:
 		adsb.adsb_tslc = data_adsb["tslc"]									# Time since last communication in seconds
 		adsb.adsb_icao = data_adsb["ICAO_address"]
 		adsb.adsb_alt = data_adsb["altitude"]
-		adsb.adsb_alt = data_adsb["altitude_type"]["type"]
-		adsb.adsb_alt = data_adsb["emitter_type"]["type"]
+		adsb.adsb_alt_type = data_adsb["altitude_type"]["type"]
+		adsb.adsb_emitter = data_adsb["emitter_type"]["type"]
 		
 	#
 	# Check if WIND data is available
