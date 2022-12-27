@@ -312,7 +312,7 @@ while True:
 			print("==================================================")
 
 		for adsb_callsign in adsb_list:
-    		print(adsb_callsign["timestamp"], adsb_callsign["adsb_icao"], adsb_callsign["adsb_alt_type"], adsb_callsign["adsb_emitter"])
+			print(adsb_callsign["timestamp"], adsb_callsign["adsb_icao"], adsb_callsign["adsb_alt_type"], adsb_callsign["adsb_emitter"])
 
 
 
