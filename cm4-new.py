@@ -290,10 +290,11 @@ while True:
 		print(url_device_adsb)
 		write_telemetry(jsonADSB, url_device_adsb)
 
-		adsb_list.append(jsonADSB)
-		print("==================================================")
-		print(adsb_list)
-		print("==================================================")
+		print(jsonADSB['adsb_icao'])
+		#adsb_list.append(jsonADSB)
+		#print("==================================================")
+		#print(adsb_list)
+		#print("==================================================")
 
 	# Wait for next read
 	time.sleep(wait_time)
