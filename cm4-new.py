@@ -44,7 +44,6 @@ dcm = "2"
 #
 # Mavlink2rest
 url_uav = f"http://localhost:8088/mavlink/vehicles/{droneID}/components/1/messages"
-url_vehicle = "http://localhost:8088/mavlink/vehicles"
 
 #
 # ThingsBoard ADPM
@@ -92,7 +91,6 @@ class telemetry:
 # Finding mav id
 for n in range (255):
 	mavid = read_mavlink(str(n), url_uav)
-	print(mavid)
 	if mavid != "None":
 		print("droneID : " + str(n))
 		droneID = str(n)
