@@ -193,8 +193,8 @@ while True:
 		telem.adsb_type = data_adsb["type"]									# 
 		telem.adsb_tslc = data_adsb["tslc"]									# Time since last communication in seconds
 		# Update
-		adsb.adsb_lat = data_adsb["lat"] / 10000000							# Latitude  (WGS84, EGM96 ellipsoid) degE7
-		adsb.adsb_lon = data_adsb["lon"] / 10000000							# Longitude (WGS84, EGM96 ellipsoid) degE7
+		adsb.adsb_lat = data_adsb["latitude"] / 10000000							# Latitude  (WGS84, EGM96 ellipsoid) degE7
+		adsb.adsb_lon = data_adsb["longitude"] / 10000000							# Longitude (WGS84, EGM96 ellipsoid) degE7
 		adsb.adsb_heading = data_adsb["heading"] / 100						# Course over ground cDeg
 		adsb.adsb_hor_velocity = data_adsb["hor_velocity"] /100 			# The horizontal velocity cm/s
 		adsb.adsb_ver_velocity = data_adsb["ver_velocity"] / 100			# The vertical velocity. Positive is up
@@ -286,6 +286,8 @@ while True:
 	print(url_device)
 	write_telemetry(jsonTelem, url_device)
 
+	# ADSB data
+	#
 	if "ADSB_VEHICLE" in data:
 		jsonADSB = (adsb.__dict__)
 		print(jsonADSB)
@@ -318,8 +320,6 @@ while True:
 		for adsb_callsign in adsb_list:
 			print("Last Update :", adsb_callsign["adsb_last_update"], "Callsign :",adsb_callsign["adsb_icao"], adsb_callsign["adsb_alt_type"], adsb_callsign["adsb_emitter"])
 		print("\n")
-
-
 
 	# Wait for next read
 	time.sleep(wait_time)
