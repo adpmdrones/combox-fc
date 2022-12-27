@@ -31,7 +31,7 @@ logging.basicConfig(level=logging.INFO, filename='/var/log/CBFC-data.log', \
 device_token = "EeLqJHNQgWR4FtycieRD"
 
 # Drone ID
-droneID = "128"
+droneID = "1"
 
 # Wait time between reads (seconds)
 wait_time = 1.0
