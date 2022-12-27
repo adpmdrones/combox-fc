@@ -173,9 +173,9 @@ while True:
 	telem.latitude = data_gps_int["lat"] / 10000000					# Latitude  (WGS84, EGM96 ellipsoid) degE7
 	telem.longitude = data_gps_int["lon"] / 10000000				# Longitude (WGS84, EGM96 ellipsoid) degE7
 	telem.heading = data_gps_int["hdg"]								# Vehicle heading (yaw angle), 0.0..359.99 degrees
-	telem.vx = data_gps_int["vx"] / 100								# Ground X Speed (Latitude, positive north) cm/s
-	telem.vy = data_gps_int["vy"] / 100								# Ground Y Speed (Longitude, positive east) cm/s
-	telem.vz = data_gps_int["vz"] / 100								# Ground Z Speed (Altitude, positive down) cm/s
+	telem.vx = float("{:.4f}".format(data_gps_int["vx"] / 100))								# Ground X Speed (Latitude, positive north) cm/s
+	telem.vy = float("{:.4f}".format(data_gps_int["vy"] / 100))								# Ground Y Speed (Longitude, positive east) cm/s
+	telem.vz = float("{:.4f}".format(data_gps_int["vz"] / 100))								# Ground Z Speed (Altitude, positive down) cm/s
 	#
 	data_attitude = data["ATTITUDE"]["message"]						# https://mavlink.io/en/messages/common.html#ATTITUDE
 	telem.pitch = float("{:.4f}".format(math.degrees(data_attitude["pitch"])))				# Pitch angle (-pi..+pi) radians
