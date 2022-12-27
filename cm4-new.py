@@ -93,16 +93,18 @@ class telemetry:
 for n in range (255):
 	# Request Mavlink data from UAV
 	print(url_vehicle + str(n))
-	r = requests.get(url_vehicle + str(n) , timeout=2)
-	data = r.json()
-	print(r)
-	print("==========")
-	print(n)
-	print("==========")
-	if r != "None":
-		print("droneID : " + str(n))
+	try:
+		r = requests.get(url_vehicle + str(n) , timeout=2)
+		data = r.json()
 		droneID = str(n)
 		break
+	except KeyboardInterrupt:
+		os._exit(0)
+	except:
+		print("Vehicle not found.")
+		print("Retrying...")
+		logger.error("Vehicle not found.")
+		pass
 
 # Read mavlink for autopilot, mavtype
 data = read_mavlink(droneID, url_uav)
