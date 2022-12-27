@@ -30,6 +30,7 @@ logging.basicConfig(level=logging.INFO, filename='/var/log/CBFC-data.log', \
 
 # Device Token CM4 Test - ThingsBoard ADPM
 device_token = "EeLqJHNQgWR4FtycieRD"
+device_token_ADSB = "ucaEaGMnN491sfbyBP1g"
 
 # Drone ID
 droneID = "1"
@@ -49,6 +50,7 @@ url_vehicle = "http://localhost:8088/mavlink/vehicles/"
 #
 # ThingsBoard ADPM
 url_dashboard = f"http://dashboard.adpmdrones.com:8080/api/v1/{device_token}/telemetry"
+url_adsb = f"http://dashboard.adpmdrones.com:8080/api/v1/{device_token_ADSB}/telemetry"
 
 # Reading mavlink stream
 def read_mavlink(droneID, url_uav):
@@ -88,6 +90,12 @@ def write_telemetry(data, url_dashboard):
 class telemetry:
 	droneid = 1				# DroneID
 	timestamp = ''			# timestamp
+
+# ADSB class
+class adsb:
+	droneid = 1				# DroneID
+	timestamp = ''			# timestamp
+
 
 # Finding mav id
 for n in range (255):
@@ -173,6 +181,16 @@ while True:
 		telem.adsb_squawk = data_adsb["squawk"]						# Squawk code
 		telem.adsb_type = data_adsb["type"]							# 
 		telem.adsb_tslc = data_adsb["tslc"]							# Time since last communication in seconds
+		# Update
+		adsb.adsb_lat = data_adsb["lat"] / 10000000					# Latitude  (WGS84, EGM96 ellipsoid) degE7
+		adsb.adsb_lon = data_adsb["lon"] / 10000000					# Longitude (WGS84, EGM96 ellipsoid) degE7
+		adsb.adsb_heading = data_adsb["heading"] / 100				# Course over ground cDeg
+		adsb.adsb_hor_velocity = data_adsb["hor_velocity"] /100 	# The horizontal velocity cm/s
+		adsb.adsb_ver_velocity = data_adsb["ver_velocity"] / 100	# The vertical velocity. Positive is up
+		adsb.adsb_squawk = data_adsb["squawk"]						# Squawk code
+		adsb.adsb_type = data_adsb["type"]							# 
+		adsb.adsb_tslc = data_adsb["tslc"]							# Time since last communication in seconds
+
 	#
 	# Check if WIND data is available
 	if "WIND" in data:
@@ -251,6 +269,12 @@ while True:
 	print(url_dashboard)
 
 	write_telemetry(jsonTelem, url_dashboard)
+
+	jsonADSB = (adsb.__dict__)
+	print(jsonADSB)
+	print(url_adsb)
+
+	write_telemetry(jsonADSB, url_adsb)
 
 	# Wait for next read
 	time.sleep(wait_time)
