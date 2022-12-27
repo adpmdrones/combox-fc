@@ -178,17 +178,17 @@ while True:
 	telem.vz = data_gps_int["vz"] / 100								# Ground Z Speed (Altitude, positive down) cm/s
 	#
 	data_attitude = data["ATTITUDE"]["message"]						# https://mavlink.io/en/messages/common.html#ATTITUDE
-	telem.pitch = math.degrees(data_attitude["pitch"])				# Pitch angle (-pi..+pi) radians
-	telem.roll = math.degrees(data_attitude["roll"])				# Roll  angle (-pi..+pi) radians
-	telem.yaw = math.degrees(data_attitude["yaw"])					# Yaw   angle (-pi..+pi) radians
-	telem.pitch_speed = data_attitude["pitchspeed"]					# Ground X Speed (Latitude, positive north) cm/s
-	telem.roll_speed = data_attitude["rollspeed"]					# Ground Y Speed (Longitude, positive east) cm/s
-	telem.yaw_speed = data_attitude["yawspeed"]						# Ground Z Speed (Altitude, positive down) cm/s
+	telem.pitch = float("{:.4f}".format(math.degrees(data_attitude["pitch"])))				# Pitch angle (-pi..+pi) radians
+	telem.roll = float("{:.4f}".format(math.degrees(data_attitude["roll"])))				# Roll  angle (-pi..+pi) radians
+	telem.yaw = float("{:.4f}".format(math.degrees(data_attitude["yaw"])))					# Yaw   angle (-pi..+pi) radians
+	telem.pitch_speed = float("{:.4f}".format(data_attitude["pitchspeed"]))					# Ground X Speed (Latitude, positive north) cm/s
+	telem.roll_speed = float("{:.4f}".format(data_attitude["rollspeed"]))					# Ground Y Speed (Longitude, positive east) cm/s
+	telem.yaw_speed = float("{:.4f}".format(data_attitude["yawspeed"]))						# Ground Z Speed (Altitude, positive down) cm/s
 	#
 	data_vibration = data["VIBRATION"]["message"]					# https://mavlink.io/en/messages/common.html#VIBRATION 
 	telem.vibration_x = float("{:.4f}".format(data_vibration["vibration_x"]))				# Vibration levels on X-axis
 	telem.vibration_y = float("{:.4f}".format(data_vibration["vibration_y"]))				# Vibration levels on Y-axis
-	telem.vibration_z = float("{:.2f}".format(data_vibration["vibration_z"]))				# Vibration levels on Z-axis
+	telem.vibration_z = float("{:.4f}".format(data_vibration["vibration_z"]))				# Vibration levels on Z-axis
 	#
 	data_servo = data["SERVO_OUTPUT_RAW"]["message"]				# https://mavlink.io/en/messages/common.html#SERVO_OUTPUT_RAW
 	telem.servo1 = data_servo["servo1_raw"]							# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
