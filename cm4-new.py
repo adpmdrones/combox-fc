@@ -92,6 +92,7 @@ class telemetry:
 # Finding mav id
 for n in range (255):
 	# Request Mavlink data from UAV
+	print(url_vehicle + str(n))
 	r = requests.get(url_vehicle + str(n) , timeout=2)
 	#data = r.json()
 	print(r)
