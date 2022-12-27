@@ -308,7 +308,7 @@ while True:
 			# Add updated ADSB data to the list
 			adsb_list.append(jsonADSB)
 			print("==================================================")
-			print("List element updated.\n)
+			print("List element updated.\n")
 			print("==================================================")
 
 		for adsb_callsign in adsb_list:
