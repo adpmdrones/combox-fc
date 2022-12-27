@@ -20,6 +20,7 @@ import logging
 import json
 import os
 import random
+import math
 
 # Create logger
 logger = logging.getLogger('CBFC')
@@ -144,8 +145,8 @@ while True:
 		telem.adsb_lat = data_adsb["lat"] / 10000000				# Latitude  (WGS84, EGM96 ellipsoid) degE7
 		telem.adsb_lon = data_adsb["lon"] / 10000000				# Longitude (WGS84, EGM96 ellipsoid) degE7
 		telem.adsb_heading = data_adsb["heading"]					# Course over ground cDeg
-		telem.adsb_hor_velocity = data_adsb["hor_velocity"]			# The horizontal velocity cm/s
-		telem.adsb_ver_velocity = data_adsb["ver_velocity"]			# The vertical velocity. Positive is up
+		telem.adsb_hor_velocity = data_adsb["hor_velocity"] /100 	# The horizontal velocity cm/s
+		telem.adsb_ver_velocity = data_adsb["ver_velocity"] / 100	# The vertical velocity. Positive is up
 		telem.adsb_squawk = data_adsb["squawk"]						# Squawk code
 		telem.adsb_type = data_adsb["type"]							# 
 		telem.adsb_tslc = data_adsb["tslc"]							# Time since last communication in seconds
@@ -160,7 +161,7 @@ while True:
 		telem.wind_speed_z = data_wind["speed_z"]
 	#
 	data_gps_raw_int = data["GPS_RAW_INT"]["message"]				# https://mavlink.io/en/messages/common.html#GPS_RAW_INT
-	telem.vel = data_gps_raw_int["vel"]								# GPS ground speed cm/s
+	telem.vel = data_gps_raw_int["vel"] / 100						# GPS ground speed cm/s
 	telem.satellites = data_gps_raw_int["satellites_visible"]		# Number of satellites visible
 	#
 	data_gps_int = data["GLOBAL_POSITION_INT"]["message"]			# https://mavlink.io/en/messages/common.html#GLOBAL_POSITION_INT
@@ -169,17 +170,17 @@ while True:
 	telem.latitude = data_gps_int["lat"] / 10000000					# Latitude  (WGS84, EGM96 ellipsoid) degE7
 	telem.longitude = data_gps_int["lon"] / 10000000				# Longitude (WGS84, EGM96 ellipsoid) degE7
 	telem.heading = data_gps_int["hdg"]								# Vehicle heading (yaw angle), 0.0..359.99 degrees
-	telem.vx = data_gps_int["vx"]									# Ground X Speed (Latitude, positive north) cm/s
-	telem.vy = data_gps_int["vy"]									# Ground Y Speed (Longitude, positive east) cm/s
-	telem.vz = data_gps_int["vz"]									# Ground Z Speed (Altitude, positive down) cm/s
+	telem.vx = data_gps_int["vx"] / 100								# Ground X Speed (Latitude, positive north) cm/s
+	telem.vy = data_gps_int["vy"] / 100								# Ground Y Speed (Longitude, positive east) cm/s
+	telem.vz = data_gps_int["vz"] / 100								# Ground Z Speed (Altitude, positive down) cm/s
 	#
 	data_attitude = data["ATTITUDE"]["message"]						# https://mavlink.io/en/messages/common.html#ATTITUDE
-	telem.pitch = data_attitude["pitch"]							# Pitch angle (-pi..+pi) radians
-	telem.roll = data_attitude["roll"]								# Roll  angle (-pi..+pi) radians
-	telem.yaw = data_attitude["yaw"]								# Yaw   angle (-pi..+pi) radians
-	telem.pitch_speed = data_attitude["pitchspeed"]					# Ground X Speed (Latitude, positive north) cm/s
-	telem.roll_speed = data_attitude["rollspeed"]					# Ground Y Speed (Longitude, positive east) cm/s
-	telem.yaw_speed = data_attitude["yawspeed"]						# Ground Z Speed (Altitude, positive down) cm/s
+	telem.pitch = math.degrees(data_attitude["pitch"])				# Pitch angle (-pi..+pi) radians
+	telem.roll = math.degrees(data_attitude["roll"])				# Roll  angle (-pi..+pi) radians
+	telem.yaw = math.degrees(data_attitude["yaw"])					# Yaw   angle (-pi..+pi) radians
+	telem.pitch_speed = data_attitude["pitchspeed"]  / 100			# Ground X Speed (Latitude, positive north) cm/s
+	telem.roll_speed = data_attitude["rollspeed"] / 100				# Ground Y Speed (Longitude, positive east) cm/s
+	telem.yaw_speed = data_attitude["yawspeed"] / 100				# Ground Z Speed (Altitude, positive down) cm/s
 	#
 	data_vibration = data["VIBRATION"]["message"]					# https://mavlink.io/en/messages/common.html#VIBRATION 
 	telem.vibration_x = data_vibration["vibration_x"]				# Vibration levels on X-axis
