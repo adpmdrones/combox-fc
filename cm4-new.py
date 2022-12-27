@@ -70,10 +70,10 @@ def read_mavlink(droneID, url_uav):
 			pass
 
 # Posting telemetry data 
-def write_telemetry(data, url_dashboard):
+def write_telemetry(data, url_thingsboard):
 		try:
 			# POST Telemetry data
-			r = requests.post(url_dashboard, timeout=2, json=data)
+			r = requests.post(url_thingsboard, timeout=2, json=data)
 			status = r.status_code
 			print(status)
 			return (status)
@@ -160,6 +160,7 @@ else:
 while True:
 	#
 	telem = telemetry()
+	adsb = adsb()
 	#
 	# Reading mavlink data
 	data = read_mavlink(droneID, url_uav)
@@ -274,11 +275,12 @@ while True:
 
 	write_telemetry(jsonTelem, url_dashboard)
 
-	jsonADSB = (adsb.__dict__)
-	print(jsonADSB)
-	print(url_adsb)
+	if "ADSB_VEHICLE" in data:
+		jsonADSB = (adsb.__dict__)
+		print(jsonADSB)
+		print(url_adsb)
 
-	write_telemetry(jsonADSB, url_adsb)
+		write_telemetry(jsonADSB, url_adsb)
 
 	# Wait for next read
 	time.sleep(wait_time)
