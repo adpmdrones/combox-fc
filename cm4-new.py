@@ -299,8 +299,8 @@ while True:
 			# Add new ADSB data to the list
 			adsb_list.append(jsonADSB)
 			print("==================================================")
-			print("List element added.\n")
-			print("==================================================")
+			print("ADSB List element added.")
+			print("==================================================\n")
 		else:
 			# Update ADSB data
 			# First remove data
@@ -308,11 +308,14 @@ while True:
 			# Add updated ADSB data to the list
 			adsb_list.append(jsonADSB)
 			print("==================================================")
-			print("List element updated.\n")
-			print("==================================================")
+			print("ADSB List element updated.")
+			print("==================================================\n")
 
+		print("ADSB list")
+		print("==================================================")
 		for adsb_callsign in adsb_list:
 			print(adsb_callsign["timestamp"], adsb_callsign["adsb_icao"], adsb_callsign["adsb_alt_type"], adsb_callsign["adsb_emitter"])
+		print("\n")
 
 
 
