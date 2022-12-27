@@ -216,7 +216,7 @@ while True:
 	telem.vfr_heading = data_vfr["heading"]							# Current heading in compass units (0-360, 0=north) Deg
 
 	data_pressure = data["SCALED_PRESSURE"]["message"] 				# https://mavlink.io/en/messages/common.html#SCALED_PRESSURE
-	telem.press_abs = data_pressure["press_abs"]					# Absolute pressure hPa
+	telem.press_abs = float("{:.4f}".format(data_pressure["press_abs"]))	# Absolute pressure hPa
 	telem.press_dif = data_pressure["press_diff"]					# Differential pressure hPa
 	telem.press_tmp = data_pressure["temperature"] / 100			# Absolute pressure temperature cdegC
 
