@@ -91,7 +91,7 @@ class telemetry:
 
 # Finding mav id
 for n in range (255):
-	mavid = read_mavlink(n, url_vehicle + "/" + str(n))
+	mavid = read_mavlink(str(n), url_uav)
 	print(mavid)
 	if mavid != "None":
 		print("droneID : " + mavid)
