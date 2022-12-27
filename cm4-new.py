@@ -32,7 +32,7 @@ logging.basicConfig(level=logging.INFO, filename='/var/log/CBFC-data.log', \
 device_token = "EeLqJHNQgWR4FtycieRD"
 
 # Drone ID
-droneID = "1"
+# droneID = "1"
 
 # Wait time between reads (seconds)
 wait_time = 1.0
@@ -91,19 +91,19 @@ class telemetry:
 
 # Finding mav id
 for n in range (255):
-	# Request Mavlink data from UAV
-	print(url_vehicle + str(n))
+	# Request Mavlink data
+	url = url_vehicle + str(n)
 	try:
-		r = requests.get(url_vehicle + str(n) , timeout=2)
+		r = requests.get(url, timeout=2)
 		data = r.json()
 		droneID = str(n)
 		break
 	except KeyboardInterrupt:
 		os._exit(0)
 	except:
-		print("Vehicle not found.")
+		print("Vehicle not found @" + url)
 		print("Retrying...")
-		logger.error("Vehicle not found.")
+		logger.error("Vehicle not found @" + url)
 		pass
 
 # Read mavlink for autopilot, mavtype
