@@ -93,7 +93,7 @@ class telemetry:
 for n in range (255):
 	# Request Mavlink data from UAV
 	r = requests.get(url_vehicle + str(n) , timeout=2)
-	data = r.json()
+	#data = r.json()
 	print(r)
 	print("==========")
 	print(n)
