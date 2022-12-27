@@ -37,6 +37,9 @@ droneID = "1"
 # Wait time between reads (seconds)
 wait_time = 1.0
 
+# Decimals to show
+dcm = "2"
+
 # Endpoints
 #
 # Mavlink2rest
@@ -183,9 +186,9 @@ while True:
 	telem.yaw_speed = data_attitude["yawspeed"]						# Ground Z Speed (Altitude, positive down) cm/s
 	#
 	data_vibration = data["VIBRATION"]["message"]					# https://mavlink.io/en/messages/common.html#VIBRATION 
-	telem.vibration_x = data_vibration["vibration_x"]				# Vibration levels on X-axis
-	telem.vibration_y = data_vibration["vibration_y"]				# Vibration levels on Y-axis
-	telem.vibration_z = data_vibration["vibration_z"]				# Vibration levels on Z-axis
+	telem.vibration_x = float("{:.4f}".format(data_vibration["vibration_x"]))				# Vibration levels on X-axis
+	telem.vibration_y = float("{:.4f}".format(data_vibration["vibration_y"]))				# Vibration levels on Y-axis
+	telem.vibration_z = float("{:.2f}".format(data_vibration["vibration_z"]))				# Vibration levels on Z-axis
 	#
 	data_servo = data["SERVO_OUTPUT_RAW"]["message"]				# https://mavlink.io/en/messages/common.html#SERVO_OUTPUT_RAW
 	telem.servo1 = data_servo["servo1_raw"]							# Value 900-2100 ms (DO NOT USE- ASSIGNED TO FC controls)
@@ -216,7 +219,7 @@ while True:
 	telem.vfr_heading = data_vfr["heading"]							# Current heading in compass units (0-360, 0=north) Deg
 
 	data_pressure = data["SCALED_PRESSURE"]["message"] 				# https://mavlink.io/en/messages/common.html#SCALED_PRESSURE
-	telem.press_abs = float("{:.4f}".format(data_pressure["press_abs"]))	# Absolute pressure hPa
+	telem.press_abs = float("{:.2f}".format(data_pressure["press_abs"]))	# Absolute pressure hPa
 	telem.press_dif = data_pressure["press_diff"]					# Differential pressure hPa
 	telem.press_tmp = data_pressure["temperature"] / 100			# Absolute pressure temperature cdegC
 
