@@ -93,6 +93,7 @@ class telemetry:
 for n = 1 to 255:
 	mavid = url_vehicle + "/" + str(n)
 	if mavid != "None":
+		print("DroneID : " + mavid)
 		droneID = mavid
 		break
 
