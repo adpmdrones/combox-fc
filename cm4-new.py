@@ -182,6 +182,7 @@ while True:
 	if "ADSB_VEHICLE" in data:
 		# Read ADSB data
 		data_adsb = data["ADSB_VEHICLE"]["message"]							# https://mavlink.io/en/messages/common.html#ADSB_VEHICLE
+		data_adsb_status = data["ADSB_VEHICLE"]["status"]
 		# Update
 		telem.adsb_lat = data_adsb["lat"] / 10000000						# Latitude  (WGS84, EGM96 ellipsoid) degE7
 		telem.adsb_lon = data_adsb["lon"] / 10000000						# Longitude (WGS84, EGM96 ellipsoid) degE7
@@ -205,7 +206,7 @@ while True:
 		adsb.adsb_alt_type = data_adsb["altitude_type"]["type"]
 		adsb.adsb_emitter = data_adsb["emitter_type"]["type"]
 		adsb.adsb_callsign = data_adsb["callsign"]
-		adsb.adsb_last_update = data_adsb["status"]["time"]["last_update"]
+		adsb.adsb_last_update = data_adsb_status["time"]["last_update"]
 		
 	#
 	# Check if WIND data is available
