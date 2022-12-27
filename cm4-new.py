@@ -217,13 +217,6 @@ while True:
 	telem.press_dif = data_pressure["press_diff"]					# Differential pressure hPa
 	telem.press_tmp = data_pressure["temperature"]					# Absolute pressure temperature cdegC
 
-	telem.latitude = 41.9319396 * random.random()/1000
-	telem.longitude = 12.6319116 * random.random()/1000
-	telem.latitude2 = 41.9316562
-	telem.longitude2 = 12.6301521
-
-		
-
 	# jsonTelem = json.dumps(telem.__dict__)
 	# jsonTelem will be dumped in write_telemetry
 
