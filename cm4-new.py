@@ -295,12 +295,20 @@ while True:
 		result = next((item for item in adsb_list if item["adsb_icao"] == icao), None)
 		print(result)
 		if  result is None:
+			# Add new ADSB data to the list
 			adsb_list.append(jsonADSB)
 			print("==================================================")
-			print(adsb_list)
+			print("List element added.\n",adsb_list)
 			print("==================================================")
 		else:
-			print(result)
+			# Update ADSB data
+			# First remove data
+			adsb_list = [item for item in adsb_list if item.get('adsb_icao') != icao]
+			# Add updated ADSB data to the list
+			adsb_list.append(jsonADSB)
+			print("==================================================")
+			print("List element updated.\n",adsb_list)
+			print("==================================================")
 
 	# Wait for next read
 	time.sleep(wait_time)
