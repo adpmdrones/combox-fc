@@ -93,6 +93,8 @@ for n in range (255):
 	mavid = read_mavlink(str(n), url_uav)
 	print(mavid)
 	print("==========")
+	print(n)
+	print("==========")
 	if mavid != "None":
 		print("droneID : " + str(n))
 		droneID = str(n)
