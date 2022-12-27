@@ -193,8 +193,8 @@ while True:
 		telem.adsb_type = data_adsb["type"]									# 
 		telem.adsb_tslc = data_adsb["tslc"]									# Time since last communication in seconds
 		# Update
-		adsb.adsb_lat = data_adsb["latitude"] / 10000000							# Latitude  (WGS84, EGM96 ellipsoid) degE7
-		adsb.adsb_lon = data_adsb["longitude"] / 10000000							# Longitude (WGS84, EGM96 ellipsoid) degE7
+		adsb.adsb_lat = data_adsb["lat"] / 10000000							# Latitude  (WGS84, EGM96 ellipsoid) degE7
+		adsb.adsb_lon = data_adsb["lon"] / 10000000							# Longitude (WGS84, EGM96 ellipsoid) degE7
 		adsb.adsb_heading = data_adsb["heading"] / 100						# Course over ground cDeg
 		adsb.adsb_hor_velocity = data_adsb["hor_velocity"] /100 			# The horizontal velocity cm/s
 		adsb.adsb_ver_velocity = data_adsb["ver_velocity"] / 100			# The vertical velocity. Positive is up
