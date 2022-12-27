@@ -316,7 +316,7 @@ while True:
 		print("ADSB list")
 		print("==================================================")
 		for adsb_callsign in adsb_list:
-			print("Last Update :", adsb_callsign["adsb.last_update"], "Callsign :",adsb_callsign["adsb_icao"], adsb_callsign["adsb_alt_type"], adsb_callsign["adsb_emitter"])
+			print("Last Update :", adsb_callsign["adsb_last_update"], "Callsign :",adsb_callsign["adsb_icao"], adsb_callsign["adsb_alt_type"], adsb_callsign["adsb_emitter"])
 		print("\n")
 
 
