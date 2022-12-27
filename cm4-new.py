@@ -96,6 +96,8 @@ for n in range (255):
 	try:
 		r = requests.get(url, timeout=2)
 		data = r.json()
+		print("Vehicle found @" + url)
+		logger.error("Vehicle found @" + url)
 		droneID = str(n)
 		break
 	except KeyboardInterrupt:
