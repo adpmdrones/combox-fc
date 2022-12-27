@@ -218,7 +218,7 @@ while True:
 	data_pressure = data["SCALED_PRESSURE"]["message"] 				# https://mavlink.io/en/messages/common.html#SCALED_PRESSURE
 	telem.press_abs = data_pressure["press_abs"]					# Absolute pressure hPa
 	telem.press_dif = data_pressure["press_diff"]					# Differential pressure hPa
-	telem.press_tmp = data_pressure["temperature"]					# Absolute pressure temperature cdegC
+	telem.press_tmp = data_pressure["temperature"] / 100			# Absolute pressure temperature cdegC
 
 	# jsonTelem = json.dumps(telem.__dict__)
 	# jsonTelem will be dumped in write_telemetry
