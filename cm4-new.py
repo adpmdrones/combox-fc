@@ -290,15 +290,16 @@ while True:
 		print(url_device_adsb)
 		write_telemetry(jsonADSB, url_device_adsb)
 
-		print(jsonADSB['adsb_icao'])
-		result = next((item for item in adsb_list if item["adsb_icao"] == 7607717), None)
-		print(result)
-
-
-		#adsb_list.append(jsonADSB)
-		#print("==================================================")
-		#print(adsb_list)
-		#print("==================================================")
+		icao = jsonADSB['adsb_icao']
+		print(icao)
+		result = next((item for item in adsb_list if item["adsb_icao"] == icao), None)
+		if  result != None:
+			adsb_list.append(jsonADSB)
+			print("==================================================")
+			print(adsb_list)
+			print("==================================================")
+		else:
+			print(result)
 
 	# Wait for next read
 	time.sleep(wait_time)
