@@ -290,6 +290,7 @@ while True:
 		print(url_device_adsb)
 		write_telemetry(jsonADSB, url_device_adsb)
 
+		# Update ADSB list
 		icao = jsonADSB['adsb_icao']
 		print(icao)
 		result = next((item for item in adsb_list if item["adsb_icao"] == icao), None)
@@ -298,7 +299,7 @@ while True:
 			# Add new ADSB data to the list
 			adsb_list.append(jsonADSB)
 			print("==================================================")
-			print("List element added.\n",adsb_list)
+			print("List element added.\n")
 			print("==================================================")
 		else:
 			# Update ADSB data
@@ -307,8 +308,13 @@ while True:
 			# Add updated ADSB data to the list
 			adsb_list.append(jsonADSB)
 			print("==================================================")
-			print("List element updated.\n",adsb_list)
+			print("List element updated.\n)
 			print("==================================================")
+
+		for adsb_callsign in adsb_list:
+    		print(adsb_callsign["timestamp"], adsb_callsign["adsb_icao"], adsb_callsign["adsb_alt_type"], adsb_callsign["adsb_emitter"])
+
+
 
 	# Wait for next read
 	time.sleep(wait_time)
