@@ -164,10 +164,14 @@ while True:
 	# Reading mavlink data
 	data = read_mavlink(droneID, url_uav)
 	telem.timestamp = data["ATTITUDE"]["status"]["time"]["last_update"]
+
 	telem.droneid = droneID
 	telem.autopilot = autopilot
 	telem.mavtype = mavtype
 
+	adsb.timestamp = telem.timestamp
+	adsb.droneid = telem.droneid
+	
 	# Check if ADSB data is available
 	if "ADSB_VEHICLE" in data:
 		# Read ADSB data
