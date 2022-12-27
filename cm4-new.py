@@ -92,7 +92,7 @@ class telemetry:
 	timestamp = ''			# timestamp
 
 # ADSB class
-class adsb:
+class telemetry_adsb:
 	droneid = 1				# DroneID
 	timestamp = ''			# timestamp
 
@@ -160,7 +160,7 @@ else:
 while True:
 	#
 	telem = telemetry()
-	adsb = adsb()
+	adsb = telemetry_adsb()
 	#
 	# Reading mavlink data
 	data = read_mavlink(droneID, url_uav)
