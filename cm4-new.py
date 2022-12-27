@@ -205,7 +205,7 @@ while True:
 		adsb.adsb_alt_type = data_adsb["altitude_type"]["type"]
 		adsb.adsb_emitter = data_adsb["emitter_type"]["type"]
 		adsb.adsb_callsign = data_adsb["callsign"]
-		adsb_adsb_last_update = data_adsb["status"]["time"]["last_update"]
+		adsb.adsb_last_update = data_adsb["status"]["time"]["last_update"]
 		
 	#
 	# Check if WIND data is available
