@@ -98,6 +98,9 @@ class telemetry_adsb:
 	droneid = 1				# DroneID
 	timestamp = ''			# timestamp
 
+# ADSB list
+adsb_list = []
+
 # We try from 1 to 255 to get automatically the mavid
 # Finding mav id
 for n in range (255):
@@ -286,6 +289,9 @@ while True:
 		print(jsonADSB)
 		print(url_device_adsb)
 		write_telemetry(jsonADSB, url_device_adsb)
+
+		adsb_list.append(jsonADSB)
+		print(adsb.list)
 
 	# Wait for next read
 	time.sleep(wait_time)
