@@ -94,12 +94,12 @@ for n in range (255):
 	# Request Mavlink data from UAV
 	print(url_vehicle + str(n))
 	r = requests.get(url_vehicle + str(n) , timeout=2)
-	#data = r.json()
+	data = r.json()
 	print(r)
 	print("==========")
 	print(n)
 	print("==========")
-	if mavid != "None":
+	if r != "None":
 		print("droneID : " + str(n))
 		droneID = str(n)
 		break
