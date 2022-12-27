@@ -293,7 +293,8 @@ while True:
 		icao = jsonADSB['adsb_icao']
 		print(icao)
 		result = next((item for item in adsb_list if item["adsb_icao"] == icao), None)
-		if  result != None:
+		print(result)
+		if  result is None:
 			adsb_list.append(jsonADSB)
 			print("==================================================")
 			print(adsb_list)
