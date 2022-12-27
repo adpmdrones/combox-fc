@@ -133,14 +133,16 @@ while True:
 	data = read_mavlink(droneID, url_uav)
 	telem.timestamp = data["ATTITUDE"]["status"]["time"]["last_update"]
 	telem.droneid = droneID
+	telem.autopilot = autopilot
+	telem.mavtype = mavtype
 
 	# Check if ADSB data is available
 	if "ADSB_VEHICLE" in data:
 		# Read ADSB data
 		data_adsb = data["ADSB_VEHICLE"]["message"]					# https://mavlink.io/en/messages/common.html#ADSB_VEHICLE
 		# Update
-		telem.adsb_lat = data_adsb["lat"]							# Latitude  (WGS84, EGM96 ellipsoid) degE7
-		telem.adsb_lon = data_adsb["lon"]							# Longitude (WGS84, EGM96 ellipsoid) degE7
+		telem.adsb_lat = data_adsb["lat"] / 10000000				# Latitude  (WGS84, EGM96 ellipsoid) degE7
+		telem.adsb_lon = data_adsb["lon"] / 10000000				# Longitude (WGS84, EGM96 ellipsoid) degE7
 		telem.adsb_heading = data_adsb["heading"]					# Course over ground cDeg
 		telem.adsb_hor_velocity = data_adsb["hor_velocity"]			# The horizontal velocity cm/s
 		telem.adsb_ver_velocity = data_adsb["ver_velocity"]			# The vertical velocity. Positive is up
@@ -164,8 +166,8 @@ while True:
 	data_gps_int = data["GLOBAL_POSITION_INT"]["message"]			# https://mavlink.io/en/messages/common.html#GLOBAL_POSITION_INT
 	telem.altitude_msl = data_gps_int["alt"]						# Altitude  (MSL). Positive for up. mm
 	telem.altitude = data_gps_int["relative_alt"]					# Altitude above ground
-	telem.latitude = data_gps_int["lat"]							# Latitude  (WGS84, EGM96 ellipsoid) degE7
-	telem.longitude = data_gps_int["lon"]							# Longitude (WGS84, EGM96 ellipsoid) degE7
+	telem.latitude = data_gps_int["lat"] / 10000000					# Latitude  (WGS84, EGM96 ellipsoid) degE7
+	telem.longitude = data_gps_int["lon"] / 10000000				# Longitude (WGS84, EGM96 ellipsoid) degE7
 	telem.heading = data_gps_int["hdg"]								# Vehicle heading (yaw angle), 0.0..359.99 degrees
 	telem.vx = data_gps_int["vx"]									# Ground X Speed (Latitude, positive north) cm/s
 	telem.vy = data_gps_int["vy"]									# Ground Y Speed (Longitude, positive east) cm/s
