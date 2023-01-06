@@ -143,6 +143,17 @@ for n in range (6):
 		telem.rh_surface = windy_data["rh-surface"][n]
 		telem.pressure_surface = windy_data["pressure-surface"][n]
 
+		telem.wind_u_300h = windy_data["wind_u-300h"][n]
+		telem.wind_v_300h = windy_data["wind_v-300h"][n]
+		telem.dewpoint_300h = windy_data["dewpoint-300h"][n]
+		telem.rh_300h = windy_data["rh-300h"][n]
+
+		telem.wind_u_800h = windy_data["wind_u-800h"][n]
+		telem.wind_v_800h = windy_data["wind_v-800h"][n]
+		telem.dewpoint_800h = windy_data["dewpoint-800h"][n]
+		telem.rh_800h = windy_data["rh-800h"][n]
+
+
 		jsonTelem = (telem.__dict__)
 		write_telemetry(jsonTelem, url_device)
 
