@@ -96,10 +96,10 @@ def write_telemetry(data, url_thingsboard):
 			pass
 
 # Post windy request data
-def get_windy(data, lat, lon):
+def get_windy(data, url, lat, lon):
 		try:
 			# POST windy request data
-			r = requests.post(windy_url , timeout=2, json=data)
+			r = requests.post(url , timeout=2, json=data)
 			status = r.status_code
 			print(status)
 			return (status)
@@ -113,7 +113,7 @@ def get_windy(data, lat, lon):
 			pass
 
 # Windy class
-class windy:
+class windy_data:
 	lat = 49.809
 	lon = 16.787
 	model = 'gfs'
@@ -209,7 +209,7 @@ else:
 # Start loop
 # telemetry post to dashboard
 while True:
-	windy_data = get_windy(windy, 41, 12)
+	windy_data = get_windy(windy, windy_url, 41, 12)
 	print(windy_data)
 	print("*" * 20)
 	#
