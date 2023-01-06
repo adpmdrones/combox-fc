@@ -105,6 +105,9 @@ adsb_list = []
 # Finding mav id
 flag_found_vehicle = False
 while not flag_found_vehicle:
+	# retry for different FC boot time
+	# if the first run does not return a 
+	# vehicle ID
 	for n in range (255):
 		# Request Mavlink data
 		url = url_vehicle + str(n)
