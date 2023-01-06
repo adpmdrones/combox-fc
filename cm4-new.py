@@ -106,7 +106,7 @@ adsb_list = []
 
 flag_found_vehicle = False
 
-while True:
+while not flag_found_vehicle:
 	for n in range (255):
 		# Request Mavlink data
 		url = url_vehicle + str(n)
@@ -126,8 +126,7 @@ while True:
 			print("Retrying...")
 			logger.error("Vehicle not found @" + url)
 			pass
-	if flag_found_vehicle == True:
-		break
+
 
 
 # Read mavlink for autopilot, mavtype
