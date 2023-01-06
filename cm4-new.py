@@ -37,6 +37,9 @@ combox_UUID = "331f20a2-a36d-4a2a-add1-56dcb1757b5d"
 device_token = "EeLqJHNQgWR4FtycieRD"
 device_token_ADSB = "ucaEaGMnN491sfbyBP1g"
 
+# Windy Token
+windy_token = "F0qmICttsRDw0UQ2G7KGw6K9B7FHngEY"
+
 # Drone ID - just for setting the variable
 droneID = "1"
 
@@ -103,6 +106,20 @@ class telemetry_adsb:
 
 # ADSB list
 adsb_list = []
+
+# Windy data
+def get_windy(lat, lon, token)
+data = {
+    "lat": lat,
+    "lon": lon,
+    "model": "gfs",
+    "parameters": ["wind", "dewpoint", "rh", "pressure"],
+    "levels": ["surface", "800h", "300h"],
+    "key": token
+}
+data_json = simplejson.dumps(data)
+payload = {'json_payload': data_json}
+r = requests.post("https://api.windy.com/api/point-forecast/v2", data=payload)
 
 # We try from 1 to 255 to get automatically the mavid
 # Finding mav id
@@ -178,6 +195,9 @@ else:
 # Start loop
 # telemetry post to dashboard
 while True:
+	windy_data = get_windy(41, 12, windy_token)
+	print(windy_data)
+	print("*" * 20)
 	#
 	telem = telemetry()
 	adsb = telemetry_adsb()
