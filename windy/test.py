@@ -8,7 +8,7 @@ import json
 import os
 import random
 import math
-import datetime
+from datetime import datetime
 
 # Windy Token
 windy_token = "F0qmICttsRDw0UQ2G7KGw6K9B7FHngEY"
