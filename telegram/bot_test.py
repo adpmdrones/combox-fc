@@ -4,8 +4,6 @@
 
 from telegram.ext import Updater, CommandHandler, MessageHandler
 import exchange
- 
-
 
 # IMPORTANTE: inserire il token fornito dal BotFather nella seguente stringa
 TOKEN="5400252474:AAEmdKWMQGYSJf5WkOBNufq81fZC6x2gECs"
