@@ -70,7 +70,7 @@ for n in range (16):
 	dt_obj = datetime.utcnow() 
 	dt = int(float(dt_obj.strftime('%s.%f')))
 	print(dt)
-	if data >= dt and data <= dt + 10800:
+	if date >= dt and date <= dt + 10800:
 		os.system('clear')
 		print("*" * 20)
 		print(dt)
