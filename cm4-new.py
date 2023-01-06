@@ -30,6 +30,9 @@ logging.basicConfig(level=logging.INFO, filename='/var/log/CBFC-data.log', \
 					format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', \
 					datefmt='%d/%m/%Y %I:%M:%S %p')
 
+# Device UUID version 4
+combox_UUID = "331f20a2-a36d-4a2a-add1-56dcb1757b5d"
+
 # Device Token CM4 Test - ThingsBoard ADPM
 device_token = "EeLqJHNQgWR4FtycieRD"
 device_token_ADSB = "ucaEaGMnN491sfbyBP1g"

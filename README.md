@@ -4,6 +4,12 @@ COMBOX with Flight Control Hardware
 https://github.com/ochin-space/ochin-CM4
 
 
+
+# UUID generator
+
+https://www.uuidgenerator.net/
+
+
 # raspiOS installation
 
 1. Install raspiOS 64bit from scratch
