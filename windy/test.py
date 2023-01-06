@@ -139,7 +139,7 @@ for n in range (6):
 		print("rh-800h:", windy_data["rh-800h"][n], windy_data["units"]["rh-800h"])
  
 
-		telem.timestamp = windy_data["ts"][n]
+		telem.timestamp[n] = windy_data["ts"][n]
 		telem.wind_u_surface = windy_data["wind_u-surface"][n]
 		telem.wind_v_surface = windy_data["wind_v-surface"][n]
 		telem.dewpoint_surface = windy_data["dewpoint-surface"][n]
