@@ -71,10 +71,6 @@ def write_telemetry(data, url_thingsboard):
 class telemetry:
 	lat = 49.809
 	lon = 16.787
-	model = 'gfs'
-	parameters = ['wind', 'dewpoint', 'rh', 'pressure']
-	levels = ['surface', '800h', '300h']
-	key: 'F0qmICttsRDw0UQ2G7KGw6K9B7FHngEY'
 
 # Start
 #
