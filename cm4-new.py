@@ -123,6 +123,7 @@ for n in range (255):
 		logger.error("Vehicle not found @" + url)
 		pass
 
+print(url_uav)
 
 # Read mavlink for autopilot, mavtype
 data = read_mavlink(droneID, url_uav)
