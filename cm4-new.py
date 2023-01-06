@@ -110,13 +110,13 @@ adsb_list = []
 # Windy data
 def get_windy(lat, lon, token):
 data = {
-    "lat": lat,
-    "lon": lon,
-    "model": "gfs",
-    "parameters": ["wind", "dewpoint", "rh", "pressure"],
-    "levels": ["surface", "800h", "300h"],
-    "key": token
-}
+	"lat": lat,
+	"lon": lon,
+	"model": "gfs",
+	"parameters": ["wind", "dewpoint", "rh", "pressure"],
+	"levels": ["surface", "800h", "300h"],
+	"key": token
+	}
 data_json = simplejson.dumps(data)
 payload = {'json_payload': data_json}
 r = requests.post("https://api.windy.com/api/point-forecast/v2", data=payload)
