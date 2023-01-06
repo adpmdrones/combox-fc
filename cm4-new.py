@@ -125,6 +125,7 @@ while not flag_found_vehicle:
 			print("Retrying...")
 			logger.error("Vehicle not found @" + url)
 			pass
+	print(flag_found_vehicle)
 	print("Retry from start")
 
 
