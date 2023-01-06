@@ -10,6 +10,15 @@ import random
 import math
 from datetime import datetime
 
+
+'''
+{'wind_u-surface': 'm*s-1', 'wind_u-800h': 'm*s-1', 'wind_u-300h': 'm*s-1', 
+'wind_v-surface': 'm*s-1', 'wind_v-800h': 'm*s-1', 'wind_v-300h': 'm*s-1',
+ 'dewpoint-surface': 'K', 'dewpoint-800h': 'K', 'dewpoint-300h': 'K', 
+ 'rh-surface': '%', 'rh-800h': '%', 'rh-300h': '%', 
+ 'pressure-surface': 'Pa'}
+ '''
+
 # Windy Token
 windy_token = "F0qmICttsRDw0UQ2G7KGw6K9B7FHngEY"
 # Windy URL
@@ -95,24 +104,18 @@ for n in range (6):
 		print("*" * 20)
 		print("300h")
 		print("*" * 20)
-		print("wind_u-300h:", windy_data["wind_u-300h"][n])
-		print("wind_v-300h:", windy_data["wind_v-300h"][n])
-		print("dewpoint-300h:", windy_data["dewpoint-300h"][n])
-		print("rh-300h:", windy_data["rh-300h"][n])
+		print("wind_u-300h:", windy_data["wind_u-300h"][n], windy_data["units"]["wind_u-300h"])
+		print("wind_v-300h:", windy_data["wind_v-300h"][n], windy_data["units"]["wind_v-300h"])
+		print("dewpoint-300h:", windy_data["dewpoint-300h"][n], windy_data["units"]["dewpoint-300h"])
+		print("rh-300h:", windy_data["rh-300h"][n], windy_data["units"]["rh-300h"])
 
 		print("*" * 20)
 		print("800h")
 		print("*" * 20)
-		print("wind_u-800h:", windy_data["wind_u-800h"][n])
-		print("wind_v-800h:", windy_data["wind_v-800h"][n])
-		print("dewpoint-800h:", windy_data["dewpoint-800h"][n])
-		print("rh-800h:", windy_data["rh-800h"][n])
+		print("wind_u-800h:", windy_data["wind_u-800h"][n], windy_data["units"]["wind_u-800h"])
+		print("wind_v-800h:", windy_data["wind_v-800h"][n], windy_data["units"]["wind_v-800h"])
+		print("dewpoint-800h:", windy_data["dewpoint-800h"][n], windy_data["units"]["dewpoint-800h"])
+		print("rh-800h:", windy_data["rh-800h"][n], windy_data["units"]["rh-800h"])
 		time.sleep(2)
 
-'''
-{'wind_u-surface': 'm*s-1', 'wind_u-800h': 'm*s-1', 'wind_u-300h': 'm*s-1', 
-'wind_v-surface': 'm*s-1', 'wind_v-800h': 'm*s-1', 'wind_v-300h': 'm*s-1',
- 'dewpoint-surface': 'K', 'dewpoint-800h': 'K', 'dewpoint-300h': 'K', 
- 'rh-surface': '%', 'rh-800h': '%', 'rh-300h': '%', 
- 'pressure-surface': 'Pa'}
- '''
+
