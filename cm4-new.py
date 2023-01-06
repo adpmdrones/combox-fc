@@ -108,7 +108,7 @@ class telemetry_adsb:
 adsb_list = []
 
 # Windy data
-def get_windy(lat, lon, token)
+def get_windy(lat, lon, token):
 data = {
     "lat": lat,
     "lon": lon,
