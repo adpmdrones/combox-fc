@@ -59,7 +59,11 @@ windy_data = get_windy(jsonWindy, windy_url, 41, 12)
 #print("*" * 20)
 #print(windy_data)
 
-for n in range (24):
+dt_obj = datetime.utcnow() 
+dt = int(float(dt_obj.strftime('%s.%f')))
+print(dt)
+
+for n in range (16):
 	os.system('clear')
 	date = datetime.datetime.fromtimestamp(windy_data["ts"][n]/1000.0)
 
