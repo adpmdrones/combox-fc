@@ -86,32 +86,33 @@ for n in range (6):
 		print("Surface")
 		print("*" * 20)
 		print(windy_data["ts"][n])
-		print("wind_u-surface: " + windy_data["wind_u-surface"][n])
-		print(windy_data["wind_v-surface"][n])
-		print(windy_data["dewpoint-surface"][n])
-		print(windy_data["rh-surface"][n])
-		print(windy_data["pressure-surface"][n])
+		print("wind_u-surface:", windy_data["wind_u-surface"][n])
+		print("wind_v-surface:", windy_data["wind_v-surface"][n])
+		print("dewpoint-surface:", windy_data["dewpoint-surface"][n])
+		print("rh-surface:", windy_data["rh-surface"][n])
+		print("pressure-surface:", windy_data["pressure-surface"][n])
 
 		print("*" * 20)
 		print("300h")
 		print("*" * 20)
-		print(windy_data["wind_u-300h"][n])
-		print(windy_data["wind_v-300h"][n])
-		print(windy_data["dewpoint-300h"][n])
-		print(windy_data["rh-300h"][n])
+		print("wind_u-300h:", windy_data["wind_u-300h"][n])
+		print("wind_v-300h:", windy_data["wind_v-300h"][n])
+		print("dewpoint-300h:", windy_data["dewpoint-300h"][n])
+		print("rh-300h:", windy_data["rh-300h"][n])
 
 		print("*" * 20)
 		print("800h")
 		print("*" * 20)
-		print(windy_data["wind_u-800h"][n])
-		print(windy_data["wind_v-800h"][n])
-		print(windy_data["dewpoint-800h"][n])
-		print(windy_data["rh-800h"][n])
+		print("wind_u-800h:", windy_data["wind_u-800h"][n])
+		print("wind_v-800h:", windy_data["wind_v-800h"][n])
+		print("dewpoint-800h:", windy_data["dewpoint-800h"][n])
+		print("rh-800h:", windy_data["rh-800h"][n])
 		time.sleep(2)
 
-
+'''
 {'wind_u-surface': 'm*s-1', 'wind_u-800h': 'm*s-1', 'wind_u-300h': 'm*s-1', 
 'wind_v-surface': 'm*s-1', 'wind_v-800h': 'm*s-1', 'wind_v-300h': 'm*s-1',
  'dewpoint-surface': 'K', 'dewpoint-800h': 'K', 'dewpoint-300h': 'K', 
  'rh-surface': '%', 'rh-800h': '%', 'rh-300h': '%', 
  'pressure-surface': 'Pa'}
+ '''
