@@ -67,6 +67,15 @@ def write_telemetry(data, url_thingsboard):
 			time.sleep(5.0)
 			pass
 
+# Telemetry class
+class telemetry:
+	lat = 49.809
+	lon = 16.787
+	model = 'gfs'
+	parameters = ['wind', 'dewpoint', 'rh', 'pressure']
+	levels = ['surface', '800h', '300h']
+	key: 'F0qmICttsRDw0UQ2G7KGw6K9B7FHngEY'
+
 # Start
 #
 windy = windy()
@@ -97,6 +106,8 @@ for n in range (6):
 	dt = int(float(dt_obj.strftime('%s.%f')))
 
 	if dt_windy >= dt and dt_windy <= dt + windy_forecast_span:
+		telem = telemetry()
+
 		os.system('clear')
 		print("*" * 20)
 		print("Windy ts ", dt_windy)
@@ -130,7 +141,14 @@ for n in range (6):
 		print("dewpoint-800h:", windy_data["dewpoint-800h"][n], windy_data["units"]["dewpoint-800h"])
 		print("rh-800h:", windy_data["rh-800h"][n], windy_data["units"]["rh-800h"])
 
-		write_telemetry(windy_data, url_device)
+		telem.wind_u-surface = windy_data["wind_u-surface"][n]
+		telem.wind_v-surface = windy_data["wind_v-surface"][n]
+		telem.dewpoint-surface = windy_data["dewpoint-surface"][n]
+		telem.rh-surface = windy_data["rh-surface"][n]
+		telem.pressure-surface = windy_data["pressure-surface"][n]
+
+		jsonTelem = (telem.__dict__)
+		write_telemetry(jsonTelem, url_device)
 
 		time.sleep(2)
 
