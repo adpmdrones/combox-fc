@@ -34,7 +34,7 @@ logging.basicConfig(level=logging.INFO, filename='/var/log/CBFC-data.log', \
 device_token = "EeLqJHNQgWR4FtycieRD"
 device_token_ADSB = "ucaEaGMnN491sfbyBP1g"
 
-# Drone ID
+# Drone ID - just for setting the variable
 droneID = "1"
 
 # Wait time between reads (seconds)
@@ -116,9 +116,11 @@ while not flag_found_vehicle:
 			r = requests.get(url, timeout=2)
 			data = r.json()
 			print("Vehicle found @" + url)
-			logger.error("Vehicle found @" + url)
+			logger.info("Vehicle found @" + url)
 			droneID = str(n)
 			url_uav = f"http://localhost:8088/mavlink/vehicles/{droneID}/components/1/messages"
+			# exit the loop
+			# vehicle ID found
 			flag_found_vehicle = True
 			break
 		except KeyboardInterrupt:
@@ -171,6 +173,7 @@ else:
 	os._exit(0)
 
 # Start loop
+# telemetry post to dashboard
 while True:
 	#
 	telem = telemetry()
