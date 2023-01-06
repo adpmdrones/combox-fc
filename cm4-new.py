@@ -187,6 +187,7 @@ while True:
 	telem.timestamp = data["ATTITUDE"]["status"]["time"]["last_update"]
 
 	telem.droneid = droneID
+	telem.combox_UUID = combox_UUID
 	telem.autopilot = autopilot
 	telem.mavtype = mavtype
 
