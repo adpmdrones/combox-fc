@@ -113,7 +113,7 @@ for n in range (255):
 		data = r.json()
 		print("Vehicle found @" + url)
 		logger.error("Vehicle found @" + url)
-		droneID = n
+		droneID = str(n)
 		break
 	except KeyboardInterrupt:
 		os._exit(0)
