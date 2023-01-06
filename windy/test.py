@@ -11,13 +11,11 @@ import math
 from datetime import datetime
 
 
-'''
-{'wind_u-surface': 'm*s-1', 'wind_u-800h': 'm*s-1', 'wind_u-300h': 'm*s-1', 
-'wind_v-surface': 'm*s-1', 'wind_v-800h': 'm*s-1', 'wind_v-300h': 'm*s-1',
- 'dewpoint-surface': 'K', 'dewpoint-800h': 'K', 'dewpoint-300h': 'K', 
- 'rh-surface': '%', 'rh-800h': '%', 'rh-300h': '%', 
- 'pressure-surface': 'Pa'}
- '''
+# Device Token CM4 Test - ThingsBoard ADPM
+device_token = "EeLqJHNQgWR4FtycieRD"
+
+# ThingsBoard ADPM
+url_device = f"http://dashboard.adpmdrones.com:8080/api/v1/{device_token}/telemetry"
 
 # Windy Token
 windy_token = "F0qmICttsRDw0UQ2G7KGw6K9B7FHngEY"
@@ -52,7 +50,25 @@ class windy:
 	levels = ['surface', '800h', '300h']
 	key: 'F0qmICttsRDw0UQ2G7KGw6K9B7FHngEY'
 
+# Posting telemetry data 
+def write_telemetry(data, url_thingsboard):
+		try:
+			# POST Telemetry data
+			r = requests.post(url_thingsboard, timeout=2, json=data)
+			status = r.status_code
+			print(status)
+			return (status)
+		except KeyboardInterrupt:
+			os._exit(0)
+		except:
+			print("Error posting telemetry data.")
+			print("Retrying...")
+			logger.error("Error posting telemetry data.")
+			time.sleep(5.0)
+			pass
 
+# Start
+#
 windy = windy()
 
 windy.key = windy_token
@@ -113,6 +129,9 @@ for n in range (6):
 		print("wind_v-800h:", windy_data["wind_v-800h"][n], windy_data["units"]["wind_v-800h"])
 		print("dewpoint-800h:", windy_data["dewpoint-800h"][n], windy_data["units"]["dewpoint-800h"])
 		print("rh-800h:", windy_data["rh-800h"][n], windy_data["units"]["rh-800h"])
+
+		write_telemetry(windy_data, url_device)
+
 		time.sleep(2)
 
 
