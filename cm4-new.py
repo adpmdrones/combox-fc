@@ -116,6 +116,7 @@ while not flag_found_vehicle:
 			logger.error("Vehicle found @" + url)
 			droneID = str(n)
 			url_uav = f"http://localhost:8088/mavlink/vehicles/{droneID}/components/1/messages"
+			flag_found_vehicle = True
 			break
 		except KeyboardInterrupt:
 			os._exit(0)
