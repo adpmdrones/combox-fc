@@ -95,33 +95,6 @@ def write_telemetry(data, url_thingsboard):
 			time.sleep(5.0)
 			pass
 
-# Post windy request data
-def get_windy(data, url, lat, lon):
-		try:
-			# POST windy request data
-			r = requests.post(url , timeout=2, json=data)
-			status = r.status_code
-			print(status)
-			return (status)
-		except KeyboardInterrupt:
-			os._exit(0)
-		except:
-			print("Error getting windy data.")
-			print("Retrying...")
-			logger.error("Error getting windy data.")
-			time.sleep(5.0)
-			pass
-
-# Windy class
-class windy:
-	lat = 49.809
-	lon = 16.787
-	model = 'gfs'
-	parameters = ['wind', 'dewpoint', 'rh', 'pressure']
-	levels = ['surface', '800h', '300h']
-	key: 'F0qmICttsRDw0UQ2G7KGw6K9B7FHngEY'
-
-
 # Telemetry class
 class telemetry:
 	droneid = 1				# DroneID

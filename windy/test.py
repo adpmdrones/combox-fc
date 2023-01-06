@@ -22,7 +22,8 @@ def get_windy(data, url, lat, lon):
 			r = requests.post(url , timeout=2, json=data)
 			status = r.status_code
 			print(status)
-			return (r.text)
+			data = r.json()
+			return (data)
 		except KeyboardInterrupt:
 			os._exit(0)
 		except:
