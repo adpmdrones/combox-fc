@@ -69,6 +69,7 @@ def write_telemetry(data, url_thingsboard):
 
 # Telemetry class
 class telemetry:
+	timestamp = ''
 	lat = 49.809
 	lon = 16.787
 
