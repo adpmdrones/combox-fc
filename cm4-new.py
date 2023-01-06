@@ -115,7 +115,7 @@ def get_windy(lat, lon, token):
 		'model': 'gfs',
 		'parameters': ['wind', 'dewpoint', 'rh', 'pressure'],
 		'levels': ['surface', '800h', '300h'],
-		'key': token
+		'key': 'F0qmICttsRDw0UQ2G7KGw6K9B7FHngEY'
 	}
 data_json = json.dumps(data)
 payload = {'json_payload': data_json}
