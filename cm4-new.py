@@ -117,7 +117,7 @@ def get_windy(lat, lon, token):
 		"levels": ["surface", "800h", "300h"],
 		"key": token
 	}
-data_json = simplejson.dumps(data)
+data_json = json.dumps(data)
 payload = {'json_payload': data_json}
 r = requests.post("https://api.windy.com/api/point-forecast/v2", data=payload)
 
