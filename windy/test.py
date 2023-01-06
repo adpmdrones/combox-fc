@@ -64,6 +64,7 @@ windy.lon = 13.100
 windy.key = windy_token
 windy.parameters = ['wind', 'dewpoint', 'rh', 'pressure']
 windy.levels = ['surface', '800h', '300h']
+windy.model = 'gfs'
 
 jsonWindy = (windy.__dict__)
 print(jsonWindy)
