@@ -211,8 +211,8 @@ else:
 # Start loop
 # telemetry post to dashboard
 while True:
-	windyDATA = (windy_data.__dict__)
-	windy = get_windy(windyDATA, windy_url, 41, 12)
+	jsonWindy = (windy_data.__dict__)
+	windy = get_windy(jsonWindy, windy_url, 41, 12)
 	print(windy)
 	print("*" * 20)
 	#
