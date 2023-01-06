@@ -126,7 +126,7 @@ while not flag_found_vehicle:
 			print("Retrying...")
 			logger.error("Vehicle not found @" + url)
 			pass
-print(n)
+print(droneID)
 
 
 # Read mavlink for autopilot, mavtype
