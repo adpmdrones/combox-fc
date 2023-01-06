@@ -63,12 +63,12 @@ for n in range (16):
 
 	dt_windy_obj = datetime.fromtimestamp(windy_data["ts"][n]/1000.0)
 	dt_windy = int(float(dt_windy_obj.strftime('%s.%f')))
-	print(dt_windy)
+	print("Windy ts ", dt_windy)
 
 
 	dt_obj = datetime.utcnow() 
 	dt = int(float(dt_obj.strftime('%s.%f')))
-	print(dt)
+	print("Box ts ", dt)
 
 	if dt_windy >= dt and dt_windy <= dt + 10800:
 		os.system('clear')
