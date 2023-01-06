@@ -32,7 +32,7 @@ def get_windy(data, url, lat, lon):
 			# POST windy request data
 			r = requests.post(url , timeout=2, json=data)
 			status = r.status_code
-			print(status)
+			#print(status)
 			data = r.json()
 			return (data)
 		except KeyboardInterrupt:
@@ -64,7 +64,7 @@ windy.levels = ['surface', '800h', '300h']
 windy.model = 'gfs'
 
 jsonWindy = (windy.__dict__)
-print(jsonWindy)
+#print(jsonWindy)
 
 windy_data = get_windy(jsonWindy, windy_url, 41, 12)
 #print("*" * 20)
@@ -88,9 +88,6 @@ for n in range (6):
 		print("Record: " + str(n), datetime.fromtimestamp(dt_windy))
 		print("*" * 20)
 		print("units")
-		print("*" * 20)
-		print(windy_data["units"])
-
 		print("*" * 20)
 		print("Surface")
 		print("*" * 20)
