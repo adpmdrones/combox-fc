@@ -75,7 +75,7 @@ for n in range (16):
 		print("*" * 20)
 		print(dt)
 		print(windy_data["ts"][n]/1000.0)
-		print("Record: " + str(n), date)
+		print("Record: " + str(n), dt_windy)
 		print("*" * 20)
 		print("units")
 		print("*" * 20)
