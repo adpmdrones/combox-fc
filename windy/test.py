@@ -63,7 +63,8 @@ for n in range (16):
 
 	dt_windy_obj = datetime.fromtimestamp(windy_data["ts"][n]/1000.0)
 	dt_windy = int(float(dt_windy_obj.strftime('%s.%f')))
-	print("Windy ts ", dt_windy)
+	print("Windy ts ", dt_windy, datetime.fromtimestamp(dt_windy))
+
 
 
 	dt_obj = datetime.utcnow() 
