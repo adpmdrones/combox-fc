@@ -56,6 +56,6 @@ jsonWindy = (windy.__dict__)
 print(jsonWindy)
 
 windy_data = get_windy(jsonWindy, windy_url, 41, 12)
-print(windy_data)
+print(windy_data["ts"][0])
 print("*" * 20)
 
