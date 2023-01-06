@@ -103,23 +103,29 @@ adsb_list = []
 
 # We try from 1 to 255 to get automatically the mavid
 # Finding mav id
-for n in range (255):
-	# Request Mavlink data
-	url = url_vehicle + str(n)
-	try:
-		r = requests.get(url, timeout=2)
-		data = r.json()
-		print("Vehicle found @" + url)
-		logger.error("Vehicle found @" + url)
-		droneID = str(n)
-		break
-	except KeyboardInterrupt:
-		os._exit(0)
-	except:
-		print("Vehicle not found @" + url)
-		print("Retrying...")
-		logger.error("Vehicle not found @" + url)
-		pass
+
+flag_found_vehicle = False
+
+while not flag_found_vehicle:
+	for n in range (255):
+		# Request Mavlink data
+		url = url_vehicle + str(n)
+		try:
+			r = requests.get(url, timeout=2)
+			data = r.json()
+			print("Vehicle found @" + url)
+			logger.error("Vehicle found @" + url)
+			droneID = str(n)
+			flag_found_vehicle = True
+			break
+		except KeyboardInterrupt:
+			os._exit(0)
+		except:
+			print("Vehicle not found @" + url)
+			print("Retrying...")
+			logger.error("Vehicle not found @" + url)
+			pass
+
 
 # Read mavlink for autopilot, mavtype
 data = read_mavlink(droneID, url_uav)
