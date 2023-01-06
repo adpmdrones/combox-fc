@@ -70,7 +70,7 @@ for n in range (16):
 	dt = int(float(dt_obj.strftime('%s.%f')))
 	print(dt)
 
-	if int(dt_windy) >= dt and int(dt_windy) <= dt + 10800:
+	if dt_windy >= dt and dt_windy <= dt + 10800:
 		os.system('clear')
 		print("*" * 20)
 		print(dt)
