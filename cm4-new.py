@@ -209,13 +209,6 @@ else:
 # Start loop
 # telemetry post to dashboard
 while True:
-
-	jsonWindy = (windy.__dict__)
-	print(jsonWindy)
-	windy_data = get_windy(jsonWindy, windy_url, 41, 12)
-	print(windy_data)
-	print("*" * 20)
-
 	#
 	telem = telemetry()
 	adsb = telemetry_adsb()
