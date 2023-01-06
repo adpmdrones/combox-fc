@@ -1,20 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-#
-# This Python code is  a script for collecting telemetry data from a drone using the MAVLink protocol
-# and sending it to a remote ThingsBoard dashboard. 
-# It uses the "requests" library to make HTTP requests to the drone and send telemetry data to the dashboard.
-# The script defines several functions for reading MAVLink data from the drone, sending it to the dashboard, 
-# and handling errors during execution. 
-# It also includes a "telemetry" class representing the drone's telemetry data and a logger to log events 
-# and errors during script execution.
-#
-# To run the script, the ThingsBoard device token and the drone ID must be specified, as well as endpoint 
-# variables for the drone and dashboard. 
-# The script then makes periodic requests to the drone for MAVLink data and sends telemetry data to the dashboard via HTTP POST requests.
-
-# In order to avoid incorrect behavior when working with the map, we use different devices to show their coordinates on the map
-# for tracking vehicle and ADSB data
 
 import time
 import requests
@@ -37,7 +22,7 @@ def get_windy(data, url, lat, lon):
 			r = requests.post(url , timeout=2, json=data)
 			status = r.status_code
 			print(status)
-			return (status)
+			return (r.text)
 		except KeyboardInterrupt:
 			os._exit(0)
 		except:
@@ -63,7 +48,7 @@ windy.lat = 42.100
 windy.lon = 13.100
 windy.key = windy_token
 windy.parameters = ['wind', 'dewpoint', 'rh', 'pressure']
-windy.levels = ['surface', '800h', '300h']
+windy.levels = ['surface']
 windy.model = 'gfs'
 
 jsonWindy = (windy.__dict__)
