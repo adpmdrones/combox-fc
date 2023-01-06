@@ -35,7 +35,7 @@ device_token = "EeLqJHNQgWR4FtycieRD"
 device_token_ADSB = "ucaEaGMnN491sfbyBP1g"
 
 # Drone ID
-droneID = "64"
+droneID = "1"
 
 # Wait time between reads (seconds)
 wait_time = 1.0
