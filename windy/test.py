@@ -75,7 +75,7 @@ for n in range (16):
 		print("*" * 20)
 		print("Windy ts ", dt_windy)
 		print("Box ts ", dt)
-		print("Record: " + str(n), dt_windy)
+		print("Record: " + str(n), datetime.fromtimestamp(dt_windy))
 		print("*" * 20)
 		print("units")
 		print("*" * 20)
