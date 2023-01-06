@@ -65,12 +65,12 @@ print(dt)
 
 for n in range (16):
 
-	date = datetime.fromtimestamp(windy_data["ts"][n]/1000.0)
-	print(date)
+	dt_windy = datetime.fromtimestamp(windy_data["ts"][n]/1000.0)
+	print(dt_windy)
 	dt_obj = datetime.utcnow() 
 	dt = int(float(dt_obj.strftime('%s.%f')))
 	print(dt)
-	if date >= dt and date <= dt + 10800:
+	if dt_windy >= dt and dt_windy <= dt + 10800:
 		os.system('clear')
 		print("*" * 20)
 		print(dt)
