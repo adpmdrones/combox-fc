@@ -209,7 +209,7 @@ else:
 # Start loop
 # telemetry post to dashboard
 while True:
-	windy_data = get_windy(windy, windy_url, 41, 12)
+	windy_data = get_windy(windy_data, windy_url, 41, 12)
 	print(windy_data)
 	print("*" * 20)
 	#
