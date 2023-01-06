@@ -114,6 +114,7 @@ for n in range (255):
 		print("Vehicle found @" + url)
 		logger.error("Vehicle found @" + url)
 		droneID = str(n)
+		url_uav = url
 		break
 	except KeyboardInterrupt:
 		os._exit(0)
