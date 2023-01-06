@@ -67,9 +67,11 @@ for n in range (16):
 
 	dt_windy = datetime.fromtimestamp(windy_data["ts"][n]/1000.0)
 	print(dt_windy)
+	print(type(dt_windy))
 	dt_obj = datetime.utcnow() 
 	dt = int(float(dt_obj.strftime('%s.%f')))
 	print(dt)
+
 	if int(dt_windy) >= dt and int(dt_windy) <= dt + 10800:
 		os.system('clear')
 		print("*" * 20)
