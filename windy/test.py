@@ -69,8 +69,6 @@ for n in range (16):
 	dt_windy = int(float(dt_windy_obj.strftime('%s.%f')))
 	print("Windy ts ", dt_windy, datetime.fromtimestamp(dt_windy))
 
-
-
 	dt_obj = datetime.utcnow() 
 	dt = int(float(dt_obj.strftime('%s.%f')))
 	print("Box ts ", dt)
@@ -111,5 +109,4 @@ for n in range (16):
 		print(windy_data["wind_v-800h"][n])
 		print(windy_data["dewpoint-800h"][n])
 		print(windy_data["rh-800h"][n])
-
-	time.sleep(2.5)
+		time.sleep(2)
