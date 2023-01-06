@@ -8,7 +8,7 @@ import json
 import os
 import random
 import math
-
+import datetime
 
 # Windy Token
 windy_token = "F0qmICttsRDw0UQ2G7KGw6K9B7FHngEY"
@@ -49,13 +49,47 @@ windy.lat = 42.100
 windy.lon = 13.100
 windy.key = windy_token
 windy.parameters = ['wind', 'dewpoint', 'rh', 'pressure']
-windy.levels = ['surface']
+windy.levels = ['surface', '800h', '300h']
 windy.model = 'gfs'
 
 jsonWindy = (windy.__dict__)
 print(jsonWindy)
 
 windy_data = get_windy(jsonWindy, windy_url, 41, 12)
-print(windy_data["ts"][0])
+#print("*" * 20)
+#print(windy_data)
+date = datetime.datetime.fromtimestamp(windy_data["ts"][0]/1000.0)
+
 print("*" * 20)
+print(date)
+print("*" * 20)
+print("units")
+print("*" * 20)
+print(windy_data["units"])
+
+print("*" * 20)
+print("Surface")
+print("*" * 20)
+print(windy_data["ts"][0])
+print(windy_data["wind_u-surface"][0])
+print(windy_data["wind_v-surface"][0])
+print(windy_data["dewpoint-surface"][0])
+print(windy_data["rh-surface"][0])
+print(windy_data["pressure-surface"][0])
+
+print("*" * 20)
+print("300h")
+print("*" * 20)
+print(windy_data["wind_u-300h"][0])
+print(windy_data["wind_v-300h"][0])
+print(windy_data["dewpoint-300h"][0])
+print(windy_data["rh-300h"][0])
+
+print("*" * 20)
+print("800h")
+print("*" * 20)
+print(windy_data["wind_u-800h"][0])
+print(windy_data["wind_v-800h"][0])
+print(windy_data["dewpoint-800h"][0])
+print(windy_data["rh-800h"][0])
 
