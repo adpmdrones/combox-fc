@@ -1,6 +1,7 @@
 # combox-fc
 COMBOX with Flight Control Hardware
 
+https://github.com/ochin-space/ochin-CM4
 
 
 # raspiOS installation

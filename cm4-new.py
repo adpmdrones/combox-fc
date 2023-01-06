@@ -38,7 +38,7 @@ device_token_ADSB = "ucaEaGMnN491sfbyBP1g"
 droneID = "1"
 
 # Wait time between reads (seconds)
-wait_time = 1.0
+wait_time = 2.0
 
 # Decimals to show
 dcm = "2"
