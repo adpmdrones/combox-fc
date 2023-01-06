@@ -59,7 +59,7 @@ windy_data = get_windy(jsonWindy, windy_url, 41, 12)
 #print("*" * 20)
 #print(windy_data)
 
-for n in range (80):
+for n in range (12):
 	os.system('clear')
 	date = datetime.datetime.fromtimestamp(windy_data["ts"][n]/1000.0)
 
@@ -96,4 +96,4 @@ for n in range (80):
 	print(windy_data["dewpoint-800h"][n])
 	print(windy_data["rh-800h"][n])
 
-	time.sleep(5)
+	time.sleep(2.5)
