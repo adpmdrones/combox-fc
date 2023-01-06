@@ -99,6 +99,8 @@ def write_telemetry(data, url_thingsboard):
 def get_windy(data, url, lat, lon):
 		try:
 			# POST windy request data
+			print(data)
+			print(url)
 			r = requests.post(url , timeout=2, json=data)
 			status = r.status_code
 			print(status)
