@@ -110,6 +110,7 @@ while True:
 	for n in range (255):
 		# Request Mavlink data
 		url = url_vehicle + str(n)
+		print("Checking vehicle ID " + str(n))
 		try:
 			r = requests.get(url, timeout=2)
 			data = r.json()
