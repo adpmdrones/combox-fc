@@ -10,6 +10,13 @@ https://github.com/ochin-space/ochin-CM4
 https://www.uuidgenerator.net/
 
 
+# Windy API
+
+Point Forecast API
+F0qmICttsRDw0UQ2G7KGw6K9B7FHngEY
+
+
+
 # raspiOS installation
 
 1. Install raspiOS 64bit from scratch
