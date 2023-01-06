@@ -12,8 +12,10 @@ from datetime import datetime
 
 # Windy Token
 windy_token = "F0qmICttsRDw0UQ2G7KGw6K9B7FHngEY"
-# Windi URL
+# Windy URL
 windy_url = "https://api.windy.com/api/point-forecast/v2"
+# Windy forecast timespan
+windy_forecast = 2	# step. each step forecast is every 3 hours
 
 # Post windy request data
 def get_windy(data, url, lat, lon):
@@ -59,6 +61,8 @@ windy_data = get_windy(jsonWindy, windy_url, 41, 12)
 #print("*" * 20)
 #print(windy_data)
 
+windy_forecast_span = windy_forecast * 3 * 3600	# transform in seconds
+
 for n in range (16):
 
 	dt_windy_obj = datetime.fromtimestamp(windy_data["ts"][n]/1000.0)
@@ -71,7 +75,7 @@ for n in range (16):
 	dt = int(float(dt_obj.strftime('%s.%f')))
 	print("Box ts ", dt)
 
-	if dt_windy >= dt and dt_windy <= dt + 21600:
+	if dt_windy >= dt and dt_windy <= dt + windy_forecast_span
 		os.system('clear')
 		print("*" * 20)
 		print("Windy ts ", dt_windy)
