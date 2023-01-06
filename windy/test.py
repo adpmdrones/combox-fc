@@ -65,7 +65,7 @@ print(dt)
 
 for n in range (16):
 	os.system('clear')
-	date = datetime.datetime.fromtimestamp(windy_data["ts"][n]/1000.0)
+	date = datetime.fromtimestamp(windy_data["ts"][n]/1000.0)
 
 	print("*" * 20)
 	print("Record: " + str(n), date)
