@@ -137,7 +137,8 @@ for n in range (6):
 		print("dewpoint-800h:", windy_data["dewpoint-800h"][n], windy_data["units"]["dewpoint-800h"])
 		print("rh-800h:", windy_data["rh-800h"][n], windy_data["units"]["rh-800h"])
 
-		telem.wind_u-surface = windy_data["wind_u-surface"][n]
+		a = windy_data["wind_u-surface"][n]
+		telem.wind_u-surface = a
 		telem.wind_v-surface = windy_data["wind_v-surface"][n]
 		telem.dewpoint-surface = windy_data["dewpoint-surface"][n]
 		telem.rh-surface = windy_data["rh-surface"][n]
