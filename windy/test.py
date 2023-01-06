@@ -75,7 +75,7 @@ for n in range (16):
 	dt = int(float(dt_obj.strftime('%s.%f')))
 	print("Box ts ", dt)
 
-	if dt_windy >= dt and dt_windy <= dt + windy_forecast_span
+	if dt_windy >= dt and dt_windy <= dt + windy_forecast_span:
 		os.system('clear')
 		print("*" * 20)
 		print("Windy ts ", dt_windy)
