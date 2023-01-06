@@ -86,7 +86,7 @@ for n in range (6):
 		print("Surface")
 		print("*" * 20)
 		print(windy_data["ts"][n])
-		print("wind_u-surface:", windy_data["wind_u-surface"][n])
+		print("wind_u-surface:", windy_data["wind_u-surface"][n], windy_data[units][wind_u-surface])
 		print("wind_v-surface:", windy_data["wind_v-surface"][n])
 		print("dewpoint-surface:", windy_data["dewpoint-surface"][n])
 		print("rh-surface:", windy_data["rh-surface"][n])
