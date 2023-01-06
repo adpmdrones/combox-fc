@@ -102,7 +102,7 @@ for n in range (6):
 	dt = int(float(dt_obj.strftime('%s.%f')))
 
 	if dt_windy >= dt and dt_windy <= dt + windy_forecast_span:
-		telemetry = telemetry()
+		telem = telemetry()
 
 		os.system('clear')
 		print("*" * 20)
@@ -137,11 +137,11 @@ for n in range (6):
 		print("dewpoint-800h:", windy_data["dewpoint-800h"][n], windy_data["units"]["dewpoint-800h"])
 		print("rh-800h:", windy_data["rh-800h"][n], windy_data["units"]["rh-800h"])
  
-		telemetry.wind_u-surface = windy_data["wind_u-surface"][n]
-		telemetry.wind_v-surface = windy_data["wind_v-surface"][n]
-		telemetry.dewpoint-surface = windy_data["dewpoint-surface"][n]
-		telemetry.rh-surface = windy_data["rh-surface"][n]
-		telemetry.pressure-surface = windy_data["pressure-surface"][n]
+		telem.wind_u_surface = windy_data["wind_u-surface"][n]
+		telem.wind_v_surface = windy_data["wind_v-surface"][n]
+		telem.dewpoint_surface = windy_data["dewpoint-surface"][n]
+		telem.rh_surface = windy_data["rh-surface"][n]
+		telem.pressure_surface = windy_data["pressure-surface"][n]
 
 		jsonTelem = (telem.__dict__)
 		write_telemetry(jsonTelem, url_device)
