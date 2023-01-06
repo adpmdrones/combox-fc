@@ -64,7 +64,7 @@ for n in range (80):
 	date = datetime.datetime.fromtimestamp(windy_data["ts"][n]/1000.0)
 
 	print("*" * 20)
-	print(date)
+	print("Record: " + str(n), date)
 	print("*" * 20)
 	print("units")
 	print("*" * 20)
