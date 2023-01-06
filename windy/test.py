@@ -70,11 +70,11 @@ for n in range (16):
 	dt = int(float(dt_obj.strftime('%s.%f')))
 	print("Box ts ", dt)
 
-	if dt_windy >= dt and dt_windy <= dt + 10800:
+	if dt_windy >= dt:
 		os.system('clear')
 		print("*" * 20)
-		print(dt)
-		print(windy_data["ts"][n]/1000.0)
+		print("Windy ts ", dt_windy)
+		print("Box ts ", dt)
 		print("Record: " + str(n), dt_windy)
 		print("*" * 20)
 		print("units")
