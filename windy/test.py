@@ -56,6 +56,7 @@ class windy:
 	key: 'F0qmICttsRDw0UQ2G7KGw6K9B7FHngEY'
 
 
+windy = windy()
 
 windy.key = windy_token
 windy.lat = 42.100
