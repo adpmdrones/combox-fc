@@ -114,6 +114,7 @@ for n in range (255):
 		print("Vehicle found @" + url)
 		logger.error("Vehicle found @" + url)
 		droneID = str(n)
+		url_uav = f"http://localhost:8088/mavlink/vehicles/{droneID}/components/1/messages"
 		break
 	except KeyboardInterrupt:
 		os._exit(0)
