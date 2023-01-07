@@ -11,22 +11,22 @@ import math
 from datetime import datetime
 import bisect
 
-
-# Windy class
-class windy_class:
-	lat = 49.809
-	lon = 16.787
-	model = 'gfs'
-	parameters = ['wind', 'dewpoint', 'rh', 'pressure']
-	levels = ['surface', '800h']
-	key: 'token'
-
 # Gh altitude
 #
 gh = [150, 200, 300, 400, 500, 600, 700, 800, 850, 900, 925, 950, 1000]
 
 
 def get(url_device, windy_token, lat, lon, press):
+
+    # Windy class
+    class windy_class:
+        lat = 49.809
+        lon = 16.787
+        model = 'gfs'
+        parameters = ['wind', 'dewpoint', 'rh', 'pressure']
+        levels = ['surface', '800h']
+        key: 'token'
+
     print("Windy data")
     print("url device :" + url_device)
     print("windy_token :" + windy_token)
