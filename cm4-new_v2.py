@@ -33,10 +33,7 @@ logging.basicConfig(level=logging.INFO, filename='/var/log/CBFC-data.log', \
 ###########################
 # Configuration variables #
 ###########################
-class config(object):
-	###########################
-	# Configuration variables #
-	###########################
+class config():
 
 	# Device UUID version 4
 	#
