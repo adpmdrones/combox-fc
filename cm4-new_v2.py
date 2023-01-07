@@ -25,7 +25,6 @@ import os
 import random
 import math
 
-
 import windy as windy_data
 
 # Create logger
@@ -154,6 +153,9 @@ def check_autopilot(data_telemetry):
 	#
 	return autopilot, mavtype
 
+def test_schedule():
+	print("*" * 20, str(time), "*" * 20)
+
 ###########################
 # Configuration variables #
 ###########################
@@ -212,6 +214,8 @@ adsb_list = []
 ###########################
 #          Start          #
 ###########################
+
+schedule.every(1).minutes.do(test_schedule)
 
 # Read config variables
 #
@@ -365,6 +369,8 @@ while True:
 		data_gps_int["lon"] / 10000000, \
 		float("{:.4f}".format(data_pressure["press_abs"])) \
 		)
+
+	schedule.run_pending()
 
 	###########################
 	# send telemetry to
