@@ -92,7 +92,7 @@ def get(url_device, windy_token, lat, lon, press):
 
             os.system('clear')
             print("*" * 20)
-            print(gh)
+            print(gh_h)
             print("*" * 20)
             print("Windy ts ", dt_windy)
             print("Box ts ", dt)
