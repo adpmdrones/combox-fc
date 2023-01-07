@@ -261,6 +261,8 @@ autopilot, mavtype = check_autopilot(data)
 #
 schedule.every(5).minutes.do(windy_schedule)
 
+flag_windy_first_run = False
+
 # Start loop
 # telemetry post to dashboard
 #
@@ -383,6 +385,13 @@ while True:
 
 	# jsonTelem = json.dumps(telem.__dict__)
 	# jsonTelem will be dumped in write_telemetry
+
+	# Get Windy data at boot
+	#
+	if not flag_windy_first_run:
+		windy_schedule()
+		flag_windy_first_run = True
+
 
 	schedule.run_pending()
 
