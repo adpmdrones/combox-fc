@@ -152,7 +152,7 @@ for n in range (5):
 		telem.rh_surface = windy_data["rh-surface"][n]
 		telem.pressure_surface = windy_data["pressure-surface"][n]
 
-		telem.h = "ciccio"[n]
+		telem.h = "ciccio"
 		telem.wind_u_h = windy_data["wind_u-" + gh_h][n]
 		telem.wind_v_h = windy_data["wind_v-" + gh_h][n]
 		telem.dewpoint_h = windy_data["dewpoint-" + gh_h][n]
