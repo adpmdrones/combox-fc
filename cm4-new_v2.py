@@ -392,7 +392,8 @@ while True:
 		windy_schedule()
 		flag_windy_first_run = True
 
-
+	# Checking scheduled jobs
+	#
 	schedule.run_pending()
 
 	###########################
