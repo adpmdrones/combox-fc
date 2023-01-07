@@ -154,7 +154,7 @@ def get(url_device, windy_token, lat, lon, press):
             telem.rh_surface = windy_data["rh-surface"][n]
             telem.pressure_surface = windy_data["pressure-surface"][n]
 
-            telem.h = gh_h[n]
+            telem.h = gh_h
             telem.wind_u_h = windy_data["wind_u-" + gh_h][n]
             telem.wind_v_h = windy_data["wind_v-" + gh_h][n]
             telem.dewpoint_h = windy_data["dewpoint-" + gh_h][n]
