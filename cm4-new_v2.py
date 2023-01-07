@@ -16,6 +16,7 @@
 # In order to avoid incorrect behavior when working with the map, we use different devices to show their coordinates on the map
 # for tracking vehicle and ADSB data
 
+import schedule
 import time
 import requests
 import logging
@@ -23,6 +24,7 @@ import json
 import os
 import random
 import math
+
 
 import windy as windy_data
 
@@ -356,6 +358,7 @@ while True:
 	# jsonTelem = json.dumps(telem.__dict__)
 	# jsonTelem will be dumped in write_telemetry
 
+	# Windy data @location / surface / altitude
 	windy_data.get(config.url_device, \
 		config.windy_token, \
 		data_gps_int["lat"] / 10000000, \
