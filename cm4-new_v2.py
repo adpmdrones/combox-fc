@@ -24,7 +24,7 @@ import os
 import random
 import math
 
-import windy
+import windy as windy_data
 
 # Create logger
 logger = logging.getLogger('CBFC')
@@ -356,7 +356,7 @@ while True:
 	# jsonTelem = json.dumps(telem.__dict__)
 	# jsonTelem will be dumped in write_telemetry
 
-	a = windy.windy(config.url_device, \
+	windy_data.get(config.url_device, \
 		config.windy_token, \
 		data_gps_int["lat"] / 10000000, \
 		data_gps_int["lon"] / 10000000, \
