@@ -204,7 +204,8 @@ adsb_list = []
 #
 url_uav = find_mavID()
 
-# Read mavlink for autopilot, mavtype
+# Read mavlink stream
+# with the correct mavID
 #
 data = read_mavlink(url_uav)
 
