@@ -364,6 +364,7 @@ while True:
 	print("Telemetry data:\n", jsonTelem)
 	print("*" * 20)
 	print("URL:\n", config.url_device)
+	print("*" * 20)
 	write_telemetry(jsonTelem, config.url_device)
 
 	# ADSB data
