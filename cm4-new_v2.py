@@ -154,7 +154,7 @@ def check_autopilot(data_telemetry):
 	#
 	return autopilot, mavtype
 
-def windy_schedule(url_device, windy_token, lat, lon, press):
+def windy_schedule(self,url_device, windy_token, lat, lon, press):
 	# Windy data @location / surface / altitude
 	print("Getting Windy data")
 	windy_data.get(url_device, \
