@@ -91,8 +91,13 @@ windy.model = 'gfs'
 jsonWindy = (windy.__dict__)
 #print(jsonWindy)
 
+# Parameter from FC
 press = 543
 
+# Choose the right gh value
+# based on pressure
+# surface and actual level
+#
 gh = bisect.bisect(windy_gh, press)
 if gh == 0:
 	gh = 1

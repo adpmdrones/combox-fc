@@ -24,6 +24,8 @@ import os
 import random
 import math
 
+import windy
+
 # Create logger
 logger = logging.getLogger('CBFC')
 logging.basicConfig(level=logging.INFO, filename='/var/log/CBFC-data.log', \
@@ -353,6 +355,13 @@ while True:
 
 	# jsonTelem = json.dumps(telem.__dict__)
 	# jsonTelem will be dumped in write_telemetry
+
+	windy(config.url_device, \
+		config.windy_token, \
+		data_gps_int["lat"] / 10000000, \
+		data_gps_int["lon"] / 10000000, \
+		float("{:.4f}".format(data_pressure["press_abs"])) \
+		)
 
 	###########################
 	# send telemetry to
