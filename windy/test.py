@@ -92,7 +92,7 @@ jsonWindy = (windy.__dict__)
 
 press = 1018.20
 
-gh = [ i for i in windy_gh if i >= press and i <= press ]
+gh = [ i for i in windy_gh if press  ]
 
 windy_data = get_windy(jsonWindy, windy_url, 41, 12)
 
