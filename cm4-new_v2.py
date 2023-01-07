@@ -374,12 +374,7 @@ while True:
 	# Test scheduling jobs
 	#
 	schedule.every(30).seconds.do(test_schedule)
-	schedule.every(1).minutes.do(windy_schedule(config.url_device, \
-						config.windy_token, \
-						data_gps_int["lat"] / 10000000, \
-						data_gps_int["lon"] / 10000000, \
-						float("{:.4f}".format(data_pressure["press_abs"])) \
-						))
+	schedule.every(1).minutes.do(windy_schedule(config.url_device, config.windy_token, data_gps_int["lat"] / 10000000, data_gps_int["lon"] / 10000000, float("{:.4f}".format(data_pressure["press_abs"]))))
 
 	schedule.run_pending()
 
