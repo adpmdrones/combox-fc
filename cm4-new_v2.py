@@ -59,7 +59,7 @@ def write_telemetry(data, url_thingsboard):
 			# POST Telemetry data
 			r = requests.post(url_thingsboard, timeout=2, json=data)
 			status = r.status_code
-			print(status)
+			print("Post telemetry status:",status)
 			return (status)
 		except KeyboardInterrupt:
 			os._exit(0)
@@ -360,8 +360,9 @@ while True:
 	###########################
 	#
 	jsonTelem = (telem.__dict__)
-	print(jsonTelem)
-	print(config.url_device)
+	print("Telemetry data:\n", jsonTelem)
+	print("*" * 20)
+	print("URL:\n", config.url_device)
 	write_telemetry(jsonTelem, config.url_device)
 
 	# ADSB data
