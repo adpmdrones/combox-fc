@@ -207,7 +207,7 @@ config = config()
 
 # Finding mavID from the telemetry stream
 #
-url_uav = find_mavID(config.url_vehicle())
+url_uav = find_mavID(config.url_vehicle)
 
 # Read mavlink stream
 # with the correct mavID
