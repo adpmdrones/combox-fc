@@ -10,7 +10,6 @@ import random
 import math
 from datetime import datetime
 
-
 # Device Token CM4 Test - ThingsBoard ADPM
 device_token = "EeLqJHNQgWR4FtycieRD"
 
@@ -23,6 +22,10 @@ windy_token = "F0qmICttsRDw0UQ2G7KGw6K9B7FHngEY"
 windy_url = "https://api.windy.com/api/point-forecast/v2"
 # Windy forecast timespan
 windy_forecast = 1	# step. each step forecast is every 3 hours
+
+# Gh altitude
+#
+windy_gh = [1000, 950, 925, 900, 850, 800, 700, 600, 500, 400, 300, 200, 150]
 
 # Post windy request data
 def get_windy(data, url, lat, lon):
@@ -47,7 +50,7 @@ class windy:
 	lon = 16.787
 	model = 'gfs'
 	parameters = ['wind', 'dewpoint', 'rh', 'pressure']
-	levels = ['surface', '800h', '300h']
+	levels = ['surface', '800h']
 	key: 'F0qmICttsRDw0UQ2G7KGw6K9B7FHngEY'
 
 # Posting telemetry data 
@@ -63,7 +66,6 @@ def write_telemetry(data, url_thingsboard):
 		except:
 			print("Error posting telemetry data.")
 			print("Retrying...")
-			logger.error("Error posting telemetry data.")
 			time.sleep(5.0)
 			pass
 
@@ -88,7 +90,14 @@ windy.model = 'gfs'
 jsonWindy = (windy.__dict__)
 #print(jsonWindy)
 
+press = 1018.20
+
+gh = [ i for i in windy_gh if i => press and i <= press ]
+
+print(gh)
+
 windy_data = get_windy(jsonWindy, windy_url, 41, 12)
+
 #print("*" * 20)
 #print(windy_data)
 
@@ -124,14 +133,6 @@ for n in range (5):
 		print("pressure-surface:", windy_data["pressure-surface"][n], windy_data["units"]["pressure-surface"])
 
 		print("*" * 20)
-		print("300h")
-		print("*" * 20)
-		print("wind_u-300h:", windy_data["wind_u-300h"][n], windy_data["units"]["wind_u-300h"])
-		print("wind_v-300h:", windy_data["wind_v-300h"][n], windy_data["units"]["wind_v-300h"])
-		print("dewpoint-300h:", windy_data["dewpoint-300h"][n], windy_data["units"]["dewpoint-300h"])
-		print("rh-300h:", windy_data["rh-300h"][n], windy_data["units"]["rh-300h"])
-
-		print("*" * 20)
 		print("800h")
 		print("*" * 20)
 		print("wind_u-800h:", windy_data["wind_u-800h"][n], windy_data["units"]["wind_u-800h"])
@@ -146,11 +147,6 @@ for n in range (5):
 		telem.dewpoint_surface = windy_data["dewpoint-surface"][n]
 		telem.rh_surface = windy_data["rh-surface"][n]
 		telem.pressure_surface = windy_data["pressure-surface"][n]
-
-		telem.wind_u_300h = windy_data["wind_u-300h"][n]
-		telem.wind_v_300h = windy_data["wind_v-300h"][n]
-		telem.dewpoint_300h = windy_data["dewpoint-300h"][n]
-		telem.rh_300h = windy_data["rh-300h"][n]
 
 		telem.wind_u_800h = windy_data["wind_u-800h"][n]
 		telem.wind_v_800h = windy_data["wind_v-800h"][n]
