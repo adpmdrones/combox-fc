@@ -154,10 +154,10 @@ def check_autopilot(data_telemetry):
 	#
 	return autopilot, mavtype
 
-def windy_schedule(self,url_device, windy_token, lat, lon, press):
+def windy_schedule(url_device, windy_token, lat, lon, press):
 	# Windy data @location / surface / altitude
 	print("Getting Windy data")
-	windy_data.get(url_device, \
+	windy_data.get(self, url_device, \
 		windy_token, \
 		lat, \
 		lon, \
@@ -379,7 +379,7 @@ while True:
 	c = data_gps_int["lat"] / 10000000
 	d = data_gps_int["lon"] / 10000000
 	f = float("{:.4f}".format(data_pressure["press_abs"]))
-	schedule.every(1).minutes.do(windy_schedule(True, a, b, c, d, f))
+	schedule.every(1).minutes.do(windy_schedule(a, b, c, d, f))
 
 	schedule.run_pending()
 
