@@ -175,7 +175,7 @@ adsb_list = []
 
 # Read config variables
 #
-config = config()
+#config = config()
 
 # Finding mavID from the telemetry stream
 # returns url_uav and droneID
