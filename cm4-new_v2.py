@@ -354,7 +354,7 @@ while True:
 	jsonTelem = (telem.__dict__)
 	print(jsonTelem)
 	print(config.url_device)
-	write_telemetry(jsonTelem, config.url)
+	write_telemetry(jsonTelem, config.url_device)
 
 	# ADSB data
 	#
