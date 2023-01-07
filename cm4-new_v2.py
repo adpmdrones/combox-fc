@@ -125,7 +125,9 @@ def find_mavID():
 		# vehicle ID
 		for n in range (255):
 			# Request Mavlink data
-			url = str(config.url_vehicle()) + str(n)
+			base_url = config.url_vehicle()
+			url = base_url + str(n)
+			print(url)
 			print("Checking vehicle ID " + str(n))
 			try:
 				r = requests.get(url, timeout=2)
