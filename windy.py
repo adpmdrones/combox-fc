@@ -62,7 +62,7 @@ def write_telemetry(data, url_thingsboard):
 			pass
 
 
-def get(self, url_device, windy_token, lat, lon, press):
+def get(url_device, windy_token, lat, lon, press):
 
     # Windy class
     class windy_class:
