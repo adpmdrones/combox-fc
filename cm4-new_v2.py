@@ -129,7 +129,7 @@ def find_mavID(base_url):
 				# exit the loop
 				# vehicle ID found
 				flag_found_vehicle = True
-				return(url_uav)
+				return(url_uav, droneID)
 			except KeyboardInterrupt:
 				os._exit(0)
 			except:
@@ -206,8 +206,9 @@ adsb_list = []
 config = config()
 
 # Finding mavID from the telemetry stream
+# returns url_uav and droneID
 #
-url_uav = find_mavID(config.url_vehicle)
+url_uav, droneID = find_mavID(config.url_vehicle)
 
 # Read mavlink stream
 # with the correct mavID
@@ -235,7 +236,7 @@ while True:
 	telem.timestamp = data["ATTITUDE"]["status"]["time"]["last_update"]
 
 	telem.droneid = droneID
-	telem.combox_UUID = config.combox_UUID()
+	telem.combox_UUID = config.combox_UUID
 	telem.autopilot = autopilot
 	telem.mavtype = mavtype
 
