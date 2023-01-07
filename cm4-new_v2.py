@@ -257,11 +257,11 @@ autopilot, mavtype = check_autopilot(data)
 
 # Test scheduling jobs
 #
-schedule.every(30).seconds.do(test_schedule)
+schedule.every(10).seconds.do(test_schedule)
 
 # Scheduling Windy data
 #
-schedule.every(30).seconds.do(windy_schedule)
+schedule.every(15).seconds.do(windy_schedule)
 
 # Start loop
 # telemetry post to dashboard
