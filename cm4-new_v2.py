@@ -260,6 +260,7 @@ autopilot, mavtype = check_autopilot(data)
 #schedule.every(10).seconds.do(test_schedule)
 
 # Scheduling Windy data
+# every 5 minutes
 #
 schedule.every(5).minutes.do(windy_schedule)
 
