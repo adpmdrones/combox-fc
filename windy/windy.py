@@ -11,7 +11,7 @@ import math
 from datetime import datetime
 import bisect
 
-def windy(url_device, windy_token, lat, lon, press):
+def windy(self, url_device, windy_token, lat, lon, press):
     print("url device :" + url_device)
     print("windy_token :" + windy_token)
     print("lat :" + str(lat))

@@ -356,7 +356,7 @@ while True:
 	# jsonTelem = json.dumps(telem.__dict__)
 	# jsonTelem will be dumped in write_telemetry
 
-	windy(config.url_device, \
+	a = windy(config.url_device, \
 		config.windy_token, \
 		data_gps_int["lat"] / 10000000, \
 		data_gps_int["lon"] / 10000000, \
