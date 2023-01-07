@@ -115,7 +115,7 @@ def write_telemetry(data, url_thingsboard):
 
 # Finding mavID
 #
-def find_mavID():
+def find_mavID(base_url):
 	# We try from 1 to 255 to get automatically the mavid
 	# Finding mav id
 	flag_found_vehicle = False
@@ -125,7 +125,6 @@ def find_mavID():
 		# vehicle ID
 		for n in range (255):
 			# Request Mavlink data
-			base_url = config.url_vehicle()
 			url = base_url + str(n)
 			print(url)
 			print("Checking vehicle ID " + str(n))
@@ -217,7 +216,7 @@ config = config()
 
 # Finding mavID from the telemetry stream
 #
-url_uav = find_mavID()
+url_uav = find_mavID(config.url_vehicle())
 
 # Read mavlink stream
 # with the correct mavID
