@@ -157,7 +157,7 @@ def check_autopilot(data_telemetry):
 def windy_schedule(self, url_device, windy_token, lat, lon, press):
 	# Windy data @location / surface / altitude
 	print("Getting Windy data")
-	windy_data.get(True, url_device, \
+	windy_data.get(self.local, url_device, \
 		windy_token, \
 		lat, \
 		lon, \
