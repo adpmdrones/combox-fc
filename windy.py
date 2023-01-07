@@ -38,6 +38,30 @@ def get_windy(data, url):
 			time.sleep(5.0)
 			pass
 
+
+# Telemetry class
+class telemetry:
+	timestamp = ''
+	lat = 0.0
+	lon = 0.0
+
+# Posting telemetry data 
+def write_telemetry(data, url_thingsboard):
+		try:
+			# POST Telemetry data
+			r = requests.post(url_thingsboard, timeout=2, json=data)
+			status = r.status_code
+			print(status)
+			return (status)
+		except KeyboardInterrupt:
+			os._exit(0)
+		except:
+			print("Error posting telemetry data.")
+			print("Retrying...")
+			time.sleep(5.0)
+			pass
+
+
 def get(url_device, windy_token, lat, lon, press):
 
     # Windy class
@@ -88,7 +112,7 @@ def get(url_device, windy_token, lat, lon, press):
 
         if dt_windy >= dt and dt_windy <= dt + windy_forecast_span:
             
-            #telem = telemetry()
+            telem = telemetry()
 
             os.system('clear')
             print("*" * 20)
