@@ -360,6 +360,7 @@ while True:
 	###########################
 	#
 	jsonTelem = (telem.__dict__)
+	print("*" * 20)
 	print("Telemetry data:\n", jsonTelem)
 	print("*" * 20)
 	print("URL:\n", config.url_device)
