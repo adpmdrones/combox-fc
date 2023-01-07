@@ -251,12 +251,16 @@ autopilot, mavtype = check_autopilot(data)
 # Test scheduling jobs
 #
 schedule.every(30).seconds.do(test_schedule)
+
+# Scheduling Windy data
+# We get Windy data each hour
+# 
 a = config.url_device
 b = config.windy_token
 c = 0.0
 d = 0.0
 e = 1000
-schedule.every(3).hours.do(windy_schedule, a, b, c, d, e)
+schedule.every(30).minutes.do(windy_schedule, a, b, c, d, e)
 
 # Start loop
 # telemetry post to dashboard
