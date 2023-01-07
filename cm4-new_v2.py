@@ -125,7 +125,7 @@ def find_mavID():
 		# vehicle ID
 		for n in range (255):
 			# Request Mavlink data
-			url = config.url_vehicle + str(n)
+			url = config.url_vehicle() + str(n)
 			print("Checking vehicle ID " + str(n))
 			try:
 				r = requests.get(url, timeout=2)
@@ -243,7 +243,7 @@ while True:
 	telem.timestamp = data["ATTITUDE"]["status"]["time"]["last_update"]
 
 	telem.droneid = droneID
-	telem.combox_UUID = config.combox_UUID
+	telem.combox_UUID = config.combox_UUID()
 	telem.autopilot = autopilot
 	telem.mavtype = mavtype
 
