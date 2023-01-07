@@ -15,6 +15,25 @@ import bisect
 #
 windy_gh = [150, 200, 300, 400, 500, 600, 700, 800, 850, 900, 925, 950, 1000]
 
+# Windy URL
+windy_url = "https://api.windy.com/api/point-forecast/v2"
+
+# Post windy request data
+def get_windy(data, url):
+		try:
+			# POST windy request data
+			r = requests.post(url , timeout=2, json=data)
+			status = r.status_code
+			#print(status)
+			data = r.json()
+			return (data)
+		except KeyboardInterrupt:
+			os._exit(0)
+		except:
+			print("Error getting windy data.")
+			print("Retrying...")
+			time.sleep(5.0)
+			pass
 
 def get(url_device, windy_token, lat, lon, press):
 
@@ -48,12 +67,52 @@ def get(url_device, windy_token, lat, lon, press):
     if extracted_gh_index == 0:
 	    extracted_gh_index = 1
 
-    levelh = str(windy_gh[extracted_gh_index - 1]) + "h"
+    gh_h = str(windy_gh[extracted_gh_index - 1]) + "h"
 
-    windy_class.levels = ['surface', levelh]
+    windy_class.levels = ['surface', gh_h]
 
+    windy_data = get_windy(jsonWindy, windy_url)
 
+    windy_forecast_span = windy_forecast * 3 * 3600	# transform in seconds
 
+    for n in range (5):
+
+        dt_windy_obj = datetime.fromtimestamp(windy_data["ts"][n]/1000.0)
+        dt_windy = int(float(dt_windy_obj.strftime('%s.%f')))
+
+        dt_obj = datetime.utcnow() 
+        dt = int(float(dt_obj.strftime('%s.%f')))
+
+        if dt_windy >= dt and dt_windy <= dt + windy_forecast_span:
+            
+            #telem = telemetry()
+
+            os.system('clear')
+            print("*" * 20)
+            print(gh)
+            print("*" * 20)
+            print("Windy ts ", dt_windy)
+            print("Box ts ", dt)
+            print("Record: " + str(n), datetime.fromtimestamp(dt_windy))
+            print("*" * 20)
+            print("units")
+            print("*" * 20)
+            print("Surface")
+            print("*" * 20)
+            print(windy_data["ts"][n])
+            print("wind_u-surface:", windy_data["wind_u-surface"][n], windy_data["units"]["wind_u-surface"])
+            print("wind_v-surface:", windy_data["wind_v-surface"][n], windy_data["units"]["wind_v-surface"])
+            print("dewpoint-surface:", windy_data["dewpoint-surface"][n], windy_data["units"]["dewpoint-surface"])
+            print("rh-surface:", windy_data["rh-surface"][n], windy_data["units"]["rh-surface"])
+            print("pressure-surface:", windy_data["pressure-surface"][n], windy_data["units"]["pressure-surface"])
+
+            print("*" * 20)
+            print(gh_h)
+            print("*" * 20)
+            print("wind_u-" + gh_h + ":", windy_data["wind_u-" + gh_h][n], windy_data["units"]["wind_u-" + gh_h])
+            print("wind_v-" + gh_h + ":", windy_data["wind_v-" + gh_h][n], windy_data["units"]["wind_v-" + gh_h])
+            print("dewpoint-" + gh_h + ":", windy_data["dewpoint-" + gh_h][n], windy_data["units"]["dewpoint-" + gh_h])
+            print("rh-" + gh_h + ":", windy_data["rh-" + gh_h][n], windy_data["units"]["rh-" + gh_h])   
 
 
 def main():
