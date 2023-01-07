@@ -30,6 +30,9 @@ logging.basicConfig(level=logging.INFO, filename='/var/log/CBFC-data.log', \
 					format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', \
 					datefmt='%d/%m/%Y %I:%M:%S %p')
 
+###########################
+# Configuration variables #
+###########################
 # Device UUID version 4
 combox_UUID = "331f20a2-a36d-4a2a-add1-56dcb1757b5d"
 
@@ -51,18 +54,21 @@ wait_time = 5.0
 dcm = "2"
 
 # Endpoints
-#
+
 # Mavlink2rest
-url_uav = f"http://localhost:8088/mavlink/vehicles/{droneID}/components/1/messages"
+url_uav = f"http://localhost:8088/mavlink/vehicles/{droneID}/components/1/messages" # url_uav - just for setting the variable
 url_vehicle = "http://localhost:8088/mavlink/vehicles/"
 
-#
 # ThingsBoard ADPM
 url_device = f"http://dashboard.adpmdrones.com:8080/api/v1/{device_token}/telemetry"
 url_device_adsb = f"http://dashboard.adpmdrones.com:8080/api/v1/{device_token_ADSB}/telemetry"
 
+###########################
+#        Functions        #
+###########################
+
 # Reading mavlink stream
-def read_mavlink(droneID, url_uav):
+def read_mavlink(url_uav):
 	while True:
 		try:
 			# Request Mavlink data from UAV
@@ -95,6 +101,78 @@ def write_telemetry(data, url_thingsboard):
 			time.sleep(5.0)
 			pass
 
+# Finding mavID
+def find_mavID():
+	# We try from 1 to 255 to get automatically the mavid
+	# Finding mav id
+	flag_found_vehicle = False
+	while not flag_found_vehicle:
+		# retry for different FC boot time
+		# if the first run does not return a 
+		# vehicle ID
+		for n in range (255):
+			# Request Mavlink data
+			url = url_vehicle + str(n)
+			print("Checking vehicle ID " + str(n))
+			try:
+				r = requests.get(url, timeout=2)
+				data = r.json()
+				print("Vehicle found @" + url)
+				logger.info("Vehicle found @" + url)
+				droneID = str(n)
+				url_uav = f"http://localhost:8088/mavlink/vehicles/{droneID}/components/1/messages"
+				# exit the loop
+				# vehicle ID found
+				flag_found_vehicle = True
+				return(url_uav)
+			except KeyboardInterrupt:
+				os._exit(0)
+			except:
+				print("Vehicle not found @" + url)
+				print("Retrying...")
+				logger.error("Vehicle not found @" + url)
+				pass
+		print("Retry from start...")
+
+def check_autopilot(data_telemetry):
+	# Check autopilot
+	#
+	#  3 - MAV_AUTOPILOT_ARDUPILOTMEGA
+	# 12 - MAV_AUTOPILOT_PX4
+	#
+	autopilot = data_telemetry["HEARTBEAT"]["message"]["autopilot"]["type"]		# https://mavlink.io/en/messages/common.html#MAV_AUTOPILOT
+
+	# Check mavtype
+	#
+	#  1 - MAV_TYPE_FIXED_WING
+	#  2 - MAV_TYPE_QUADROTOR
+	# 13 - MAV_TYPE_HEXAROTOR
+	# 14 - MAV_TYPE_OCTOROTOR
+	#
+	mavtype_multirotor = ["MAV_TYPE_QUADROTOR", "MAV_TYPE_HEXAROTOR", "MAV_TYPE_OCTOROTOR"]
+	mavtype_wing = ["MAV_TYPE_FIXED_WING"]
+
+	mavtype = data_telemetry["HEARTBEAT"]["message"]["mavtype"]["type"]				# https://mavlink.io/en/messages/common.html#MAV_TYPE
+
+	if (autopilot == "MAV_AUTOPILOT_ARDUPILOTMEGA"):
+		print(autopilot)
+	elif (autopilot == "MAV_AUTOPILOT_PX4"):
+		print(autopilot)
+	else:
+		print("Autopilot not supported. Exiting.")
+		logger.error("Autopilot not supported")
+		os._exit(0)
+
+	if (mavtype in mavtype_wing):
+		print(mavtype)
+	elif (mavtype in mavtype_multirotor):
+		print(mavtype)
+	else:
+		print("mavtype not supported. Exiting.")
+		logger.error("mavtype not supported")
+		os._exit(0)
+
+
 # Telemetry class
 class telemetry:
 	droneid = 1				# DroneID
@@ -108,79 +186,28 @@ class telemetry_adsb:
 # ADSB list
 adsb_list = []
 
-# We try from 1 to 255 to get automatically the mavid
-# Finding mav id
-flag_found_vehicle = False
-while not flag_found_vehicle:
-	# retry for different FC boot time
-	# if the first run does not return a 
-	# vehicle ID
-	for n in range (255):
-		# Request Mavlink data
-		url = url_vehicle + str(n)
-		print("Checking vehicle ID " + str(n))
-		try:
-			r = requests.get(url, timeout=2)
-			data = r.json()
-			print("Vehicle found @" + url)
-			logger.info("Vehicle found @" + url)
-			droneID = str(n)
-			url_uav = f"http://localhost:8088/mavlink/vehicles/{droneID}/components/1/messages"
-			# exit the loop
-			# vehicle ID found
-			flag_found_vehicle = True
-			break
-		except KeyboardInterrupt:
-			os._exit(0)
-		except:
-			print("Vehicle not found @" + url)
-			print("Retrying...")
-			logger.error("Vehicle not found @" + url)
-			pass
-	print("Retry from start...")
+###########################
+#          Start          #
+###########################
+
+# Finding mavID from the telemetry stream
+#
+url_uav = find_mavID()
 
 # Read mavlink for autopilot, mavtype
-data = read_mavlink(droneID, url_uav)
 #
+data = read_mavlink(url_uav)
+
 # Check autopilot
 #
 #  3 - MAV_AUTOPILOT_ARDUPILOTMEGA
 # 12 - MAV_AUTOPILOT_PX4
-
-autopilot = data["HEARTBEAT"]["message"]["autopilot"]["type"]		# https://mavlink.io/en/messages/common.html#MAV_AUTOPILOT
-
-# Check mavtype
 #
-#  1 - MAV_TYPE_FIXED_WING
-#  2 - MAV_TYPE_QUADROTOR
-# 13 - MAV_TYPE_HEXAROTOR
-# 14 - MAV_TYPE_OCTOROTOR
-
-mavtype_multirotor = ["MAV_TYPE_QUADROTOR", "MAV_TYPE_HEXAROTOR", "MAV_TYPE_OCTOROTOR"]
-mavtype_wing = ["MAV_TYPE_FIXED_WING"]
-
-mavtype = data["HEARTBEAT"]["message"]["mavtype"]["type"]				# https://mavlink.io/en/messages/common.html#MAV_TYPE
-
-if (autopilot == "MAV_AUTOPILOT_ARDUPILOTMEGA"):
-	print(autopilot)
-elif (autopilot == "MAV_AUTOPILOT_PX4"):
-	print(autopilot)
-else:
-	print("Autopilot not supported. Exiting.")
-	logger.error("Autopilot not supported")
-	os._exit(0)
-
-if (mavtype in mavtype_wing):
-	print(mavtype)
-elif (mavtype in mavtype_multirotor):
-	print(mavtype)
-else:
-	print("mavtype not supported. Exiting.")
-	logger.error("mavtype not supported")
-	os._exit(0)
+check_autopilot(data)
 
 # Start loop
 # telemetry post to dashboard
+#
 while True:
 	#
 	telem = telemetry()
@@ -301,6 +328,11 @@ while True:
 	# jsonTelem = json.dumps(telem.__dict__)
 	# jsonTelem will be dumped in write_telemetry
 
+	###########################
+	# send telemetry to
+	# dashboard
+	###########################
+	#
 	jsonTelem = (telem.__dict__)
 	print(jsonTelem)
 	print(url_device)
@@ -341,5 +373,5 @@ while True:
 			print("Last Update :", adsb_callsign["adsb_last_update"], "Callsign :",adsb_callsign["adsb_icao"], adsb_callsign["adsb_alt_type"], adsb_callsign["adsb_emitter"])
 		print("\n")
 
-	# Wait for next read
+	# Wait for next update
 	time.sleep(wait_time)
