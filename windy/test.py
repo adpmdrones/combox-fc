@@ -94,7 +94,7 @@ windy_data = get_windy(jsonWindy, windy_url, 41, 12)
 
 windy_forecast_span = windy_forecast * 3 * 3600	# transform in seconds
 
-for n in range (6):
+for n in range (5):
 
 	dt_windy_obj = datetime.fromtimestamp(windy_data["ts"][n]/1000.0)
 	dt_windy = int(float(dt_windy_obj.strftime('%s.%f')))
