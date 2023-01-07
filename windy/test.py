@@ -94,8 +94,6 @@ press = 1018.20
 
 gh = [ i for i in windy_gh if i >= press and i <= press ]
 
-print(gh)
-
 windy_data = get_windy(jsonWindy, windy_url, 41, 12)
 
 #print("*" * 20)
@@ -116,6 +114,8 @@ for n in range (5):
 		telem = telemetry()
 
 		os.system('clear')
+		print("*" * 20)
+		print(gh)
 		print("*" * 20)
 		print("Windy ts ", dt_windy)
 		print("Box ts ", dt)
