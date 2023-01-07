@@ -156,7 +156,8 @@ def check_autopilot(data_telemetry):
 
 def windy_schedule(url_device, windy_token, lat, lon, press):
 	# Windy data @location / surface / altitude
-	print("Getting Windy data")
+	print("*" * 20)
+	print("Read Windy data")
 	windy_data.get(url_device, \
 		windy_token, \
 		lat, \
@@ -260,7 +261,7 @@ b = config.windy_token
 c = 0.0
 d = 0.0
 e = 1000
-schedule.every(30).minutes.do(windy_schedule, a, b, c, d, e)
+schedule.every(1).minutes.do(windy_schedule, a, b, c, d, e)
 
 # Start loop
 # telemetry post to dashboard

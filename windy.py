@@ -51,7 +51,7 @@ def write_telemetry(data, url_thingsboard):
 			# POST Telemetry data
 			r = requests.post(url_thingsboard, timeout=2, json=data)
 			status = r.status_code
-			print(status)
+			print("Windy data post status:", status)
 			return (status)
 		except KeyboardInterrupt:
 			os._exit(0)
@@ -72,7 +72,7 @@ def get(url_device, windy_token, lat, lon, press):
         parameters = ['wind', 'dewpoint', 'rh', 'pressure']
         levels = ['surface', '800h']
         key: 'token'
-
+    print("*" * 20)
     print("Windy data")
     print("url device :" + url_device)
     print("windy_token :" + windy_token)
