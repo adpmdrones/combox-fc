@@ -256,7 +256,7 @@ b = config.windy_token
 c = 0.0
 d = 0.0
 e = 1000
-schedule.every(1).minutes.do(windy_schedule, a, b, c, d, e)
+schedule.every(3).hours.do(windy_schedule, a, b, c, d, e)
 
 # Start loop
 # telemetry post to dashboard
