@@ -92,8 +92,11 @@ jsonWindy = (windy.__dict__)
 #print(jsonWindy)
 
 press = 1018.20
+if press > 1000:
+	press = 1000
+	
 gh = bisect.bisect(windy_gh, press)
-gh_h = str(windy_gh[gh]) + "h"
+gh_h = str(windy_gh[gh - 13]) + "h"
 windy.levels = ['surface', gh_h]
 
 windy_data = get_windy(jsonWindy, windy_url, 41, 12)
