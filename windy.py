@@ -18,6 +18,9 @@ windy_gh = [150, 200, 300, 400, 500, 600, 700, 800, 850, 900, 925, 950, 1000]
 # Windy URL
 windy_url = "https://api.windy.com/api/point-forecast/v2"
 
+# Windy forecast timespan
+windy_forecast = 1	# step. each step forecast is every 3 hours
+
 # Post windy request data
 def get_windy(data, url):
 		try:
