@@ -378,8 +378,8 @@ while True:
 	b = config.windy_token
 	c = data_gps_int["lat"] / 10000000
 	d = data_gps_int["lon"] / 10000000
-	f = float("{:.4f}".format(data_pressure["press_abs"]))
-	schedule.every(1).minutes.do(windy_schedule(self.local, a, b, c, d, f))
+	e = float("{:.4f}".format(data_pressure["press_abs"]))
+	schedule.every(1).minutes.do(self.local, windy_schedule, a, b, c, d, e)
 
 	schedule.run_pending()
 
