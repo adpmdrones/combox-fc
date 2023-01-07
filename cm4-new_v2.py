@@ -379,7 +379,7 @@ while True:
 	c = data_gps_int["lat"] / 10000000
 	d = data_gps_int["lon"] / 10000000
 	e = float("{:.4f}".format(data_pressure["press_abs"]))
-	schedule.every(1).minutes.do(windy_schedule, a, b, c, d, e)
+	schedule.every(5).minutes.do(windy_schedule, a, b, c, d, e)
 
 	schedule.run_pending()
 
