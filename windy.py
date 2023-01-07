@@ -141,6 +141,23 @@ def get(url_device, windy_token, lat, lon, press):
             print("dewpoint-" + gh_h + ":", windy_data["dewpoint-" + gh_h][n], windy_data["units"]["dewpoint-" + gh_h])
             print("rh-" + gh_h + ":", windy_data["rh-" + gh_h][n], windy_data["units"]["rh-" + gh_h])   
 
+            telem.timestamp = windy_data["ts"]
+            telem.wind_u_surface = windy_data["wind_u-surface"]
+            telem.wind_v_surface = windy_data["wind_v-surface"]
+            telem.dewpoint_surface = windy_data["dewpoint-surface"]
+            telem.rh_surface = windy_data["rh-surface"]
+            telem.pressure_surface = windy_data["pressure-surface"]
+
+            telem.h = gh_h
+            telem.wind_u_h = windy_data["wind_u-" + gh_h]
+            telem.wind_v_h = windy_data["wind_v-" + gh_h]
+            telem.dewpoint_h = windy_data["dewpoint-" + gh_h]
+            telem.rh_h = windy_data["rh-" + gh_h]
+
+            jsonTelem = (telem.__dict__)
+            write_telemetry(jsonTelem, url_device)
+
+
 
 def main():
     print("main")
