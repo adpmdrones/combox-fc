@@ -361,7 +361,7 @@ while True:
 	#
 	jsonTelem = (telem.__dict__)
 	print("*" * 20)
-	print("Telemetry data:\n", jsonTelem)
+	print("Telemetry data:\n", json.dumps(jsonTelem, indent=4))
 	print("*" * 20)
 	print("URL:\n", config.url_device)
 	print("*" * 20)
