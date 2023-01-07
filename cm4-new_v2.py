@@ -18,6 +18,7 @@
 
 import schedule
 import time
+from datetime import datetime
 import requests
 import logging
 import json
@@ -154,7 +155,7 @@ def check_autopilot(data_telemetry):
 	return autopilot, mavtype
 
 def test_schedule():
-	print("*" * 20, str(time), "*" * 20)
+	print("*" * 20, datetime.utcnow(), "*" * 20)
 
 ###########################
 # Configuration variables #
@@ -215,7 +216,7 @@ adsb_list = []
 #          Start          #
 ###########################
 
-schedule.every(1).minutes.do(test_schedule)
+schedule.every(30).seconds.do(test_schedule)
 
 # Read config variables
 #
