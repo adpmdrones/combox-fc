@@ -160,7 +160,7 @@ for n in range (5):
 		jsonTelem = (telem.__dict__)
 		write_telemetry(jsonTelem, url_device)
 
-		time.sleep(2)
+		time.sleep(1.0)
 
 
 
