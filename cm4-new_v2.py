@@ -59,6 +59,7 @@ class config(object):
             #
             # Mavlink2rest
             url_uav = f"http://localhost:8088/mavlink/vehicles/{droneID}/components/1/messages" # url_uav - just for setting the variable
+			url_vehicle = "http://localhost:8088/mavlink/vehicles/"
         
             # ThingsBoard ADPM
             url_device = f"http://dashboard.adpmdrones.com:8080/api/v1/{device_token}/telemetry"
@@ -117,6 +118,7 @@ def find_mavID():
 		# vehicle ID
 		for n in range (255):
 			# Request Mavlink data
+			url = config.url_vehicle() + str(n)
 			print("Checking vehicle ID " + str(n))
 			try:
 				r = requests.get(url, timeout=2)
