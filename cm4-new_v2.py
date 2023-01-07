@@ -248,6 +248,16 @@ data = read_mavlink(url_uav)
 #
 autopilot, mavtype = check_autopilot(data)
 
+# Test scheduling jobs
+#
+schedule.every(30).seconds.do(test_schedule)
+a = config.url_device
+b = config.windy_token
+c = 0.0
+d = 0.0
+e = 1000
+schedule.every(5).minutes.do(windy_schedule, a, b, c, d, e)
+
 # Start loop
 # telemetry post to dashboard
 #
@@ -371,15 +381,13 @@ while True:
 	# jsonTelem = json.dumps(telem.__dict__)
 	# jsonTelem will be dumped in write_telemetry
 
-	# Test scheduling jobs
-	#
-	schedule.every(30).seconds.do(test_schedule)
+
+	# Update data for scheduled jobs
 	a = config.url_device
 	b = config.windy_token
 	c = data_gps_int["lat"] / 10000000
 	d = data_gps_int["lon"] / 10000000
 	e = float("{:.4f}".format(data_pressure["press_abs"]))
-	schedule.every(5).minutes.do(windy_schedule, a, b, c, d, e)
 
 	schedule.run_pending()
 
