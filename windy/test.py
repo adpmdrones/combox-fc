@@ -22,7 +22,7 @@ windy_token = "F0qmICttsRDw0UQ2G7KGw6K9B7FHngEY"
 # Windy URL
 windy_url = "https://api.windy.com/api/point-forecast/v2"
 # Windy forecast timespan
-windy_forecast = 2	# step. each step forecast is every 3 hours
+windy_forecast = 1	# step. each step forecast is every 3 hours
 
 # Post windy request data
 def get_windy(data, url, lat, lon):
