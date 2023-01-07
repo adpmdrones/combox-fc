@@ -13,7 +13,7 @@ import bisect
 
 # Gh altitude
 #
-gh = [150, 200, 300, 400, 500, 600, 700, 800, 850, 900, 925, 950, 1000]
+windy_gh = [150, 200, 300, 400, 500, 600, 700, 800, 850, 900, 925, 950, 1000]
 
 
 def get(url_device, windy_token, lat, lon, press):
@@ -43,12 +43,12 @@ def get(url_device, windy_token, lat, lon, press):
     windy_class.levels = ['surface', '1000']
     windy_class.model = 'gfs'
 
-    jsonWindy = (windy.__dict__)
-    extracted_gh_index = bisect.bisect(gh, press)
+    jsonWindy = (windy_class.__dict__)
+    extracted_gh_index = bisect.bisect(windy_gh, press)
     if extracted_gh_index == 0:
 	    extracted_gh_index = 1
 
-    levelh = str(windy_gh[gh - 1]) + "h"
+    levelh = str(windy_gh[extracted_gh_index - 1]) + "h"
 
     windy_class.levels = ['surface', levelh]
 
