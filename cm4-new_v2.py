@@ -68,6 +68,7 @@ url_device_adsb = f"http://dashboard.adpmdrones.com:8080/api/v1/{device_token_AD
 ###########################
 
 # Reading mavlink stream
+#
 def read_mavlink(url_uav):
 	while True:
 		try:
@@ -85,6 +86,7 @@ def read_mavlink(url_uav):
 			pass
 
 # Posting telemetry data 
+#
 def write_telemetry(data, url_thingsboard):
 		try:
 			# POST Telemetry data
@@ -102,6 +104,7 @@ def write_telemetry(data, url_thingsboard):
 			pass
 
 # Finding mavID
+#
 def find_mavID():
 	# We try from 1 to 255 to get automatically the mavid
 	# Finding mav id
@@ -134,6 +137,8 @@ def find_mavID():
 				pass
 		print("Retry from start...")
 
+# Check autopilot type
+#
 def check_autopilot(data_telemetry):
 	# Check autopilot
 	#
@@ -171,19 +176,24 @@ def check_autopilot(data_telemetry):
 		print("mavtype not supported. Exiting.")
 		logger.error("mavtype not supported")
 		os._exit(0)
+	
+	return autopilot, mavtype
 
 
 # Telemetry class
+#
 class telemetry:
 	droneid = 1				# DroneID
 	timestamp = ''			# timestamp
 
 # ADSB class
+#
 class telemetry_adsb:
 	droneid = 1				# DroneID
 	timestamp = ''			# timestamp
 
 # ADSB list
+# 
 adsb_list = []
 
 ###########################
@@ -199,11 +209,12 @@ url_uav = find_mavID()
 data = read_mavlink(url_uav)
 
 # Check autopilot
+# and return autopilot and mavtype
 #
 #  3 - MAV_AUTOPILOT_ARDUPILOTMEGA
 # 12 - MAV_AUTOPILOT_PX4
 #
-check_autopilot(data)
+autopilot, mavtype = check_autopilot(data)
 
 # Start loop
 # telemetry post to dashboard
@@ -214,7 +225,7 @@ while True:
 	adsb = telemetry_adsb()
 	#
 	# Reading mavlink data
-	data = read_mavlink(droneID, url_uav)
+	data = read_mavlink(url_uav)
 	telem.timestamp = data["ATTITUDE"]["status"]["time"]["last_update"]
 
 	telem.droneid = droneID
