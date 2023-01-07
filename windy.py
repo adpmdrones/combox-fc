@@ -79,6 +79,7 @@ def get(url_device, windy_token, lat, lon, press):
     print("lat :" + str(lat))
     print("lon :" + str(lon))
     print("press :" + str(press))
+    print("*" * 20)
 
     windy_class = windy_class()
 
