@@ -259,7 +259,7 @@ autopilot, mavtype = check_autopilot(data)
 # Scheduling Windy data
 # every 5 minutes
 #
-schedule.every(5).minutes.do(windy_schedule)
+schedule.every(1).minutes.do(windy_schedule)
 
 flag_windy_first_run = False
 
