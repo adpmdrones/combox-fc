@@ -37,29 +37,38 @@ class config(object):
 	###########################
 	# Configuration variables #
 	###########################
+
 	# Device UUID version 4
+	#
 	combox_UUID = "331f20a2-a36d-4a2a-add1-56dcb1757b5d"
 
 	# Device Token CM4 Test - ThingsBoard ADPM
+	#
 	device_token = "EeLqJHNQgWR4FtycieRD"
 	device_token_ADSB = "ucaEaGMnN491sfbyBP1g"
 
 	# Windy Token
+	#
 	windy_token = "F0qmICttsRDw0UQ2G7KGw6K9B7FHngEY"
 	windy_url = "https://api.windy.com/api/point-forecast/v2"
 
 	# Drone ID - just for setting the variable
+	#
 	droneID = "1"
 
 	# Wait time between reads (seconds)
+	#
 	wait_time = 5.0
 
 	# Endpoints
 	#
 	# Mavlink2rest
+	#
 	url_uav = f"http://localhost:8088/mavlink/vehicles/{droneID}/components/1/messages" # url_uav - just for setting the variableurl_vehicle = "http://localhost:8088/mavlink/vehicles/"
 	url_vehicle = "http://localhost:8088/mavlink/vehicles/"
+
 	# ThingsBoard ADPM
+	#
 	url_device = f"http://dashboard.adpmdrones.com:8080/api/v1/{device_token}/telemetry"
 	url_device_adsb = f"http://dashboard.adpmdrones.com:8080/api/v1/{device_token_ADSB}/telemetry"
 
@@ -129,6 +138,8 @@ def find_mavID(base_url):
 				# exit the loop
 				# vehicle ID found
 				flag_found_vehicle = True
+				# Returns url_uav and droneID updated
+				#
 				return(url_uav, droneID)
 			except KeyboardInterrupt:
 				os._exit(0)
@@ -178,7 +189,8 @@ def check_autopilot(data_telemetry):
 		print("mavtype not supported. Exiting.")
 		logger.error("mavtype not supported")
 		os._exit(0)
-	
+	# Returns autopilot and mavtype
+	#
 	return autopilot, mavtype
 
 # Telemetry class
@@ -236,9 +248,9 @@ while True:
 	telem.timestamp = data["ATTITUDE"]["status"]["time"]["last_update"]
 
 	telem.droneid = droneID
-	telem.combox_UUID = config.combox_UUID
 	telem.autopilot = autopilot
 	telem.mavtype = mavtype
+	telem.combox_UUID = config.combox_UUID
 
 	adsb.timestamp = telem.timestamp
 	adsb.droneid = telem.droneid
