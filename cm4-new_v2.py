@@ -154,15 +154,21 @@ def check_autopilot(data_telemetry):
 	#
 	return autopilot, mavtype
 
-def windy_schedule(url_device, windy_token, lat, lon, press):
+def windy_schedule():
 	# Windy data @location / surface / altitude
+	# Update data for scheduled jobs
+	a = config.url_device
+	b = config.windy_token
+	c = data_gps_int["lat"] / 10000000
+	d = data_gps_int["lon"] / 10000000
+	e = float("{:.4f}".format(data_pressure["press_abs"]))
 	print("*" * 20)
 	print("Read Windy data")
-	windy_data.get(url_device, \
-		windy_token, \
-		lat, \
-		lon, \
-		press \
+	windy_data.get(a, \
+		b, \
+		c, \
+		d, \
+		e \
 		)
 
 def test_schedule():
@@ -261,7 +267,7 @@ schedule.every(30).seconds.do(test_schedule)
 #c = 0.0
 #d = 0.0
 #e = 1000
-schedule.every(30).seconds.do(windy_schedule, a, b, c, d, e)
+schedule.every(30).seconds.do(windy_schedule)
 
 # Start loop
 # telemetry post to dashboard
@@ -385,14 +391,6 @@ while True:
 
 	# jsonTelem = json.dumps(telem.__dict__)
 	# jsonTelem will be dumped in write_telemetry
-
-
-	# Update data for scheduled jobs
-	a = config.url_device
-	b = config.windy_token
-	c = data_gps_int["lat"] / 10000000
-	d = data_gps_int["lon"] / 10000000
-	e = float("{:.4f}".format(data_pressure["press_abs"]))
 
 	schedule.run_pending()
 
