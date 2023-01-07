@@ -203,8 +203,7 @@ adsb_list = []
 
 # Read config variables
 #
-config = config()
-
+config = config.config()
 
 # Finding mavID from the telemetry stream
 #
