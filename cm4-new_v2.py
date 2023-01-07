@@ -192,7 +192,7 @@ class config(object):
 
 	# Wait time between reads (seconds)
 	#
-	wait_time = 5.0
+	wait_time = 2.5
 
 	# Endpoints
 	#
