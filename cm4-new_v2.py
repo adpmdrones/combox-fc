@@ -353,16 +353,16 @@ while True:
 	#
 	jsonTelem = (telem.__dict__)
 	print(jsonTelem)
-	print(config.url_device())
-	write_telemetry(jsonTelem, config.url())
+	print(config.url_device)
+	write_telemetry(jsonTelem, config.url)
 
 	# ADSB data
 	#
 	if "ADSB_VEHICLE" in data:
 		jsonADSB = (adsb.__dict__)
 		print(jsonADSB)
-		print(config.url_device_adsb())
-		write_telemetry(jsonADSB, config.url_device_adsb())
+		print(config.url_device_adsb)
+		write_telemetry(jsonADSB, config.url_device_adsb)
 
 		# Update ADSB list
 		icao = jsonADSB['adsb_icao']
@@ -392,4 +392,4 @@ while True:
 		print("\n")
 
 	# Wait for next update
-	time.sleep(config.wait_time())
+	time.sleep(config.wait_time)
