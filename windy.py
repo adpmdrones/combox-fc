@@ -72,14 +72,6 @@ def get(url_device, windy_token, lat, lon, press):
         parameters = ['wind', 'dewpoint', 'rh', 'pressure']
         levels = ['surface', '800h']
         key: 'token'
-    print("*" * 20)
-    print("Windy data")
-    print("url device :" + url_device)
-    print("windy_token :" + windy_token)
-    print("lat :" + str(lat))
-    print("lon :" + str(lon))
-    print("press :" + str(press))
-    print("*" * 20)
 
     windy_class = windy_class()
 
@@ -100,6 +92,16 @@ def get(url_device, windy_token, lat, lon, press):
     windy_class.levels = ['surface', gh_h]
 
     windy_data = get_windy(jsonWindy, windy_url)
+
+    print("*" * 20)
+    print("Windy data")
+    print("GH :", gh_h)
+    print("url device :" + url_device)
+    print("windy_token :" + windy_token)
+    print("lat :" + str(lat))
+    print("lon :" + str(lon))
+    print("press :" + str(press))
+    print("*" * 20)
 
     windy_forecast_span = windy_forecast * 3 * 3600	# transform in seconds
 
