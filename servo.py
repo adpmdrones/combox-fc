@@ -5,27 +5,28 @@ import requests
 import json
 
 
-def get(url_device, url_drone, servo_num, servo_pos):
+def get(droneID, url_device, servo_num, servo_pos):
     print("Get Servo status")
 
 
 
-def set(url_device, url_drone, servo_num, servo_pos):
+def set(droneID, url_device, servo_num, servo_pos):
     print("Set servo position")
     print(url_device)
-    print(url_drone)
+    print(droneID)
     print(servo_num)
     print(servo_pos)
+    set_servo(servo_num, servo_pos, droneID)
 
 
 
 #
 # Control Servo 1 - 16
 #
-def set_servo(servo_num: int, servo_value: int):
+def set_servo(servo_num: int, servo_pois: int, droneID=int):
     arm_message = {
         "header": {
-            "system_id": 1,
+            "system_id": droneID,
             "component_id": 1,
             "sequence": 0
         },
