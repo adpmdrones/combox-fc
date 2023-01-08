@@ -205,7 +205,7 @@ def on_message(client, userdata, msg):
 		# Update status and reply
 		print(data)
 		print(data['params'])
-		set_Value(data['params'], servo_num)
+		set_Value(servo_num, data['params'])
 
 def get_Value(servo_name):
 	print("Get Value")
@@ -213,9 +213,11 @@ def get_Value(servo_name):
 	print(servo_state)
 	return servo_state
 
-def set_Value(servo_name, position):
+def set_Value(servo_num, position):
 	print("Set Value")
-	servo.set(droneID, config.url_device, 5, position)
+	print(servo_num)
+	print(position)
+	servo.set(droneID, config.url_device, servo_num, position)
 
 
 ###########################
