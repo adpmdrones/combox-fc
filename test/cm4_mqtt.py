@@ -15,6 +15,9 @@ THINGSBOARD_HOST = 'dashboard.adpmdrones.com'
 API = "http://localhost:8088"
 ACCESS_TOKEN = 'EeLqJHNQgWR4FtycieRD'
 
+servo_state = {7: False, 11: False, 12: False, 13: False, 15: False, 16: False, 18: False, 22: False, 29: False,
+              31: False, 32: False, 33: False, 35: False, 36: False, 37: False, 38: False, 40: False}
+
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, rc, *extra_params):
     print('Connected with result code ' + str(rc))
@@ -41,6 +44,7 @@ def on_message(client, userdata, msg):
 
 def getValue():
     print("Get Value")
+    return json.dumps(gpio_state)
 
 def setValue():
     print("Set Value")
