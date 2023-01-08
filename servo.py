@@ -27,7 +27,7 @@ def set(droneID, url_device, servo_num, servo_pos):
 def set_servo(servo_num: int, servo_pos: int, droneID: int):
     servo_message = {
         "header": {
-            "system_id": droneID,
+            "system_id": int(droneID),
             "component_id": 1,
             "sequence": 0
         },
