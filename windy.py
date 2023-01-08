@@ -1,6 +1,49 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+'''
+This script contains a number of functions that perform various tasks related to retrieving 
+and processing data from the Windy API (https://www.windy.com/api), a weather forecasting service.
+
+The get_windy function sends an HTTP POST request to the specified URL (windy_url, which is 
+set to "https://api.windy.com/api/point-forecast/v2") with a JSON payload containing several key-value pairs. 
+The purpose of the request is to retrieve weather data from the Windy API for a specific location. 
+
+The function takes two arguments:
+
+data: a dictionary object containing the JSON payload to be sent in the request
+url: the URL of the Windy API endpoint to send the request to
+
+The function uses the requests library to send the HTTP POST request and returns the JSON data 
+contained in the response.
+
+The write_telemetry function sends an HTTP POST request to a ThingsBoard URL (url_thingsboard) with a 
+JSON payload containing telemetry data. The purpose of the request is to send the telemetry data to a 
+ThingsBoard server for storage and visualization. The function takes one argument:
+
+data: a dictionary object containing the JSON payload to be sent in the request
+The function uses the requests library to send the HTTP POST request and returns the status code of the response.
+
+The get function is the main function of the script. It retrieves weather data from the Windy API using 
+the get_windy function, processes the data, and sends it to a ThingsBoard server using the write_telemetry function. 
+
+The function takes four arguments:
+
+url_device: the URL of the ThingsBoard device to send the telemetry data to
+windy_token: the API token to use when accessing the Windy API
+lat: the latitude of the location to retrieve weather data for
+lon: the longitude of the location to retrieve weather data for
+press: the pressure at the location to retrieve weather data for
+
+The function first constructs a dictionary object, jsonWindy, containing the JSON payload to be sent in the request to the Windy API. 
+This payload contains several key-value pairs representing various parameters, such as the latitude and longitude of the location 
+to retrieve data for, the weather data parameters to retrieve, and the API token.
+
+The function then calls the get_windy function to retrieve the weather data from the Windy API, and processes the data to extract 
+relevant information such as wind speed and direction. It then constructs a telemetry object containing the processed data, and 
+calls the write_telemetry function to send the telemetry data to the ThingsBoard server.
+'''
+
 import time
 import requests
 import logging
