@@ -213,6 +213,7 @@ def get_Value(servo_name):
 	servo_state = servo_name + "_raw"
 	print(servo_state)
 	position = data_servo[servo_state]
+	print(position)
 	return position
 
 def set_Value(servo_num, position):
