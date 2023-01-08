@@ -48,6 +48,8 @@ def getValue():
 
 def setValue(pin, status):
     print("Set Value")
+    print(pin)
+    print(status)
     servo_state[pin] = status
 
 
