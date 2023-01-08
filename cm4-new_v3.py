@@ -197,7 +197,7 @@ def on_message(client, userdata, msg):
     data = json.loads(msg.payload)
     # Check request method
     if data['method'] == 'getValue':
-        # Reply with status fro mavlink
+        # Reply with status from mavlink
         client.publish(msg.topic.replace('request', 'response'), get_Value(), 1)
     elif data['method'] == 'setValue':
         # Update status and reply
@@ -205,12 +205,11 @@ def on_message(client, userdata, msg):
         print(data['params'])
         print('response')
 
-def get_Value(position):
-    print("Get Value")
-	#servo_state = position
-    servo_state = random.randrange(0,100, step=10)
-    print(servo_state)
-    return servo_state
+def get_Value():
+	print("Get Value")
+	servo_state = data_servo["servo5_raw"]
+	print(servo_state)
+	return servo_state
 
 def set_Value():
     print("Set Value")
