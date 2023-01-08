@@ -211,10 +211,15 @@ def on_message(client, userdata, msg):
 		#print("Method SET")
 		servo_num = config.servo_set.index(data['method'])
 		servo_num = servo_num + 1
+		position = data['params']
 		#print(servo_num)
 		# Update status and reply
 		#print(data['params'])
-		set_Value(servo_num, data['params'])
+		if position == True:
+			position = 2100
+		elif position == False:
+			position = 900
+		set_Value(servo_num, position)
 
 # Get Servo Value
 #
