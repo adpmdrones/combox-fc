@@ -196,21 +196,25 @@ def on_message(client, userdata, msg):
 	# Decode JSON request
 	data = json.loads(msg.payload)
 	# Check request method
-	if data['method'] in config.servo_set:
-		servo_num = config.servo_set.index(data['method'])
+	if data['method'].lstrip("get_") in config.servo_set:
+		servo_num = config.servo_set.index(data['method'].lstrip("get_") )
 		servo_num = servo_num + 1
 		print(servo_num)
 		# Reply with status from mavlink
 		client.publish(msg.topic.replace('request', 'response'), get_Value(data['method']), 1)
-	elif data['method'] == 'setValue':
+	elif data['method'].lstrip("set_") in config.servo_set:
+		servo_num = config.servo_set.index(data['method'].lstrip("set_") )
+		servo_num = servo_num + 1
+		print(servo_num)
 		# Update status and reply
 		print(data)
 		print(data['params'])
+		print(servo_num)
 		set_Value(servo_num, data['params'])
 
 def get_Value(servo_name):
 	print("Get Value")
-	servo_state = servo_name + "_raw"
+	servo_state = servo_name
 	print(servo_state)
 	position = data_servo[servo_state]
 	print(position)
@@ -258,8 +262,8 @@ class config(object):
 	url_vehicle = "http://localhost:8088/mavlink/vehicles/"
 	url_api = API = "http://localhost:8088"
 
-	servo_set = ["servo1", "servo2", "servo3", "servo4", "servo5", "servo6", "servo7", "servo8", \
-				"servo9", "servo10", "servo11", "servo12", "servo13", "servo14", "servo15", "servo16"]
+	servo_set = ["servo1_raw", "servo2_raw", "servo3_raw", "servo4_raw", "servo5_raw", "servo6_raw", "servo7_raw", "servo8_raw", \
+			"servo9_raw", "servo10_raw", "servo11_raw", "servo12_raw", "servo13_raw", "servo14_raw", "servo15_raw", "servo16_raw"]
 
 	# ThingsBoard ADPM
 	#
