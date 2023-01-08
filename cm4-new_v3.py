@@ -201,18 +201,19 @@ def on_message(client, userdata, msg):
 		servo_num = servo_num + 1
 		print(servo_num)
 		# Reply with status from mavlink
-		client.publish(msg.topic.replace('request', 'response'), get_Value(data['method']), 1)
+		client.publish(msg.topic.replace('request', 'response'), get_Value(data['method'], servo_num), 1)
 	elif data['method'] == 'setValue':
 		# Update status and reply
 		print(data)
 		print(data['params'])
 		set_Value(servo_num, data['params'])
 
-def get_Value(servo_name):
+def get_Value(servo_name, servo_num):
 	print("Get Value")
 	servo_state = servo_name + "_raw"
 	print(servo_state)
-	return servo_state
+	print(servo_num)
+	return servo_num
 
 def set_Value(servo_num, position):
 	print("Set Value")
