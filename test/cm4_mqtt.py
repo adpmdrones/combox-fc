@@ -47,6 +47,7 @@ def on_message(client, userdata, msg):
 def get_Value():
     print("Get Value")
     servo_state[1] = str(random.randrange(0,100, step=10))
+    print(servo_state)
     return json.dumps(servo_state)
 
 
