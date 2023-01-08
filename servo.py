@@ -12,6 +12,7 @@ def get(droneID, url_device, servo_num, servo_pos):
 
 
 def set(droneID, url_device, servo_num, servo_pos):
+    print("*" * 20)
     print("Set servo position")
     print(url_device)
     print(droneID)
@@ -44,9 +45,11 @@ def set_servo(servo_num: int, servo_pos: int, droneID: int):
             "confirmation":0
         }
     }
-    print(f"{API}/mavlink")
-    print(servo_message)
+    #print(f"{API}/mavlink")
+    #print(servo_message)
     response = requests.post(f"{API}/mavlink", json=servo_message)
+    print("Servo set -> ", requests.codes.ok)
+    print("*" * 20)
     return response.status_code == requests.codes.ok
 
 
