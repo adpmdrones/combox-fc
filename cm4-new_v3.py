@@ -197,7 +197,7 @@ def on_message(client, userdata, msg):
 	data = json.loads(msg.payload)
 	# Check request method
 	if data['method'] in config.servo_set:
-		servo_num = data['method'].index(config.servo_set)
+		servo_num = config.servo_set.index(data['method'])
 		print(servo_num)
 		# Reply with status from mavlink
 		client.publish(msg.topic.replace('request', 'response'), get_Value(data['method']), 1)
