@@ -41,7 +41,7 @@ def on_message(client, userdata, msg):
         print(data)
         print(data['params'])
         print('response')
-        setValue()
+        setValue(random.randrange(0,100, step=5))
         #setValue(5, data['params'])
         #client.publish(msg.topic.replace('request', 'response'), getValue(), 1)
         #client.publish('v1/devices/me/attributes', getValue(), 1)
@@ -49,12 +49,12 @@ def on_message(client, userdata, msg):
 def getValue():
     print("Get Value")
     print("Must read from mavlink")
-    status = 25
+    status = "25"
     return(status)
 
 def setValue(status):
     print("Set Value")
-    print(random.randrange(0,100, step=5))
+    print(status)
 
 
 client = mqtt.Client()
