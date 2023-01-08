@@ -9,9 +9,9 @@
 
 import time
 from tb_device_mqtt import TBDeviceMqttClient, TBPublishInfo
+import random
 import requests
 import json
-import os
 
 API = "http://localhost:8088"
 
@@ -19,20 +19,18 @@ thingsboard_server = "dashboard.adpmdrones.com"
 access_token = "EeLqJHNQgWR4FtycieRD"
 
 
-from time import time
-from tb_device_mqtt import TBDeviceMqttClient, TBPublishInfo
+# dependently of request method we send different data back
+def on_server_side_rpc_request(client, request_id, request_body):
+    print(request_id, request_body)
+    if request_body["method"] == "getValue":
+        print("getValue")
+    elif request_body["method"] == "setValue":
+        client.send_rpc_reply(request_id, random.randrange(1000,2000, step=250))
 
-
-telemetry_with_ts = {"servots": int(round(time() * 1000)), "servo5": 1000}
 client = TBDeviceMqttClient(thingsboard_server, access_token)
-# we set maximum amount of messages sent to send them at the same time. it may stress memory but increases performance
-client.max_inflight_messages_set(100)
+client.set_server_side_rpc_request_handler(on_server_side_rpc_request)
 client.connect()
-results = []
-result = True
-for i in range(0, 100):
-    results.append(client.send_telemetry(telemetry_with_ts))
-for tmp_result in results:
-    result &= tmp_result.get() == TBPublishInfo.TB_ERR_SUCCESS
-print("Result", str(result))
-client.disconnect()
+
+
+while True:
+    time.sleep(2)
