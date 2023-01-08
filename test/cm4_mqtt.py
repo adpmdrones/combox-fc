@@ -21,8 +21,6 @@ def on_connect(client, userdata, rc, *extra_params):
     print('Connected with result code ' + str(rc))
     # Subscribing to receive RPC requests
     client.subscribe('v1/devices/me/rpc/request/+')
-    # Sending current stastus from mavlink
-    #client.publish('v1/devices/me/attributes', 25, 1)
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
@@ -61,10 +59,15 @@ client.username_pw_set(ACCESS_TOKEN)
 # Connect to ThingsBoard using default MQTT port and 60 seconds keepalive interval
 client.connect(THINGSBOARD_HOST, 1883, 60)
 
-try:
-    client.loop_forever()
-except KeyboardInterrupt:
-    os._exit(0)
 
+def main():
+    print("main")
+    try:
+        client.loop_forever()
+    except KeyboardInterrupt:
+        os._exit(0)
 
-
+####################
+#
+if __name__ == "__main__":
+    main()
