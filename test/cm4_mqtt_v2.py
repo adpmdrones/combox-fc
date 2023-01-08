@@ -15,13 +15,13 @@ import os
 
 API = "http://localhost:8088"
 
-thingsboard_server = 'dashboard.adpmdrones.com'
-access_token = 'EeLqJHNQgWR4FtycieRD'
+thingsboard_server = "dashboard.adpmdrones.com"
+access_token = "EeLqJHNQgWR4FtycieRD"
 
 
 def main():
 
-        # Callback for server RPC requests (Used for control servo and led blink)
+    # Callback for server RPC requests (Used for control servo and led blink)
     def on_server_side_rpc_request(client, request_id, request_body):
         if request_body['method'] == 'getValue':
             servo_angle = float(request_body['params'])
@@ -37,15 +37,15 @@ def main():
     client.connect()
 
 
-def getValue(status):
-    print("Get Value")
-    print("Servo Angle Status", status)
+    def getValue(status):
+        print("Get Value")
+        print("Servo Angle Status", status)
 
 
-def setValue(pin, status):
-    print("Set Value")
-    print(pin)
-    print(status)
+    def setValue(pin, status):
+        print("Set Value")
+        print(pin)
+        print(status)
 
 
 
