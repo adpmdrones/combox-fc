@@ -9,6 +9,7 @@
 import paho.mqtt.client as mqtt
 import requests
 import json
+import os
 
 THINGSBOARD_HOST = 'dashboard.adpmdrones.com'
 API = "http://localhost:8088"
@@ -58,7 +59,7 @@ client.connect(THINGSBOARD_HOST, 1883, 60)
 try:
     client.loop_forever()
 except KeyboardInterrupt:
-    break
+    os._exit(0)
 
 
 
