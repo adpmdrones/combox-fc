@@ -36,6 +36,7 @@ def on_message(client, userdata, msg):
     if data['method'] == 'getValue':
         # Reply with status fro mavlink
         get_Value()
+        client.publish(msg.topic.replace('request', 'response'), 26, 1)
     elif data['method'] == 'setValue':
         # Update status and reply
         print(data)
