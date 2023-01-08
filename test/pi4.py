@@ -22,7 +22,7 @@ gpio_state = {7: False, 11: False, 12: False, 13: False, 15: False, 16: False, 1
 def on_connect(client, userdata, rc, *extra_params):
     print('Connected with result code ' + str(rc))
     # Subscribing to receive RPC requests
-    client.subscribe('/api/v1/devices/me/rpc/request/+')
+    client.subscribe('v1/devices/me/rpc/request/+')
     # Sending current GPIO status
     client.publish('v1/devices/me/attributes', get_gpio_status(), 1)
 
