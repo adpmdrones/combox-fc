@@ -37,16 +37,16 @@ API = "http://localhost:8088"
 # Set servo position
 #
 def set(droneID, url_device, servo_num, servo_pos):
-    print("*" * 20)
-    print("Set servo position")
-    print(url_device)
-    print(droneID)
-    print(servo_num)
-    print(servo_pos)
+    #print("*" * 20)
+    #print("Set servo position")
+    #print(url_device)
+    #print(droneID)
+    #print(servo_num)
+    #print(servo_pos)
     set_servo(servo_num, servo_pos, droneID)
 
 #
-# Control Servo 1 - 16
+# Control Servo 5 - 8
 #
 def set_servo(servo_num: int, servo_pos: int, droneID: int):
     servo_message = {
@@ -71,8 +71,8 @@ def set_servo(servo_num: int, servo_pos: int, droneID: int):
     #print(f"{API}/mavlink")
     #print(servo_message)
     response = requests.post(f"{API}/mavlink", json=servo_message)
-    print("Servo set -> ", requests.codes.ok)
-    print("*" * 20)
+    #print("Servo set -> ", requests.codes.ok)
+    #print("*" * 20)
     return response.status_code == requests.codes.ok
 
 def main():
