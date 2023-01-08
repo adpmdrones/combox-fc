@@ -196,22 +196,24 @@ def on_message(client, userdata, msg):
 	# Decode JSON request
 	data = json.loads(msg.payload)
 	# Check request method
-	if data['method'] == 'getValue':
+	if data['method'] in config.servo_set:
+		servo_num = data['method'].index(config.servo_set)
+		print(servo_num)
 		# Reply with status from mavlink
-		client.publish(msg.topic.replace('request', 'response'), get_Value(), 1)
+		client.publish(msg.topic.replace('request', 'response'), get_Value(data['method']), 1)
 	elif data['method'] == 'setValue':
 		# Update status and reply
 		print(data)
 		print(data['params'])
-		set_Value(data['params'])
+		set_Value(data['params'], servo_num)
 
-def get_Value():
+def get_Value(servo_name):
 	print("Get Value")
-	servo_state = data_servo["servo5_raw"]
+	servo_state = servo_name + "_raw"
 	print(servo_state)
 	return servo_state
 
-def set_Value(position):
+def set_Value(servo_name, position):
 	print("Set Value")
 	servo.set(droneID, config.url_device, 5, position)
 
@@ -250,6 +252,9 @@ class config(object):
 	url_uav = f"http://localhost:8088/mavlink/vehicles/{droneID}/components/1/messages" # url_uav - just for setting the variableurl_vehicle = "http://localhost:8088/mavlink/vehicles/"
 	url_vehicle = "http://localhost:8088/mavlink/vehicles/"
 	url_api = API = "http://localhost:8088"
+
+	servo_set = ["servo1", "servo2", "servo3", "servo4", "servo5", "servo6", "servo7", "servo8", \
+				"servo9", "servo10", "servo11", "servo12", "servo13", "servo14", "servo15", "servo16"]
 
 	# ThingsBoard ADPM
 	#
