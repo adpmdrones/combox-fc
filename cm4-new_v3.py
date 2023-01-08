@@ -190,6 +190,7 @@ def on_connect(client, userdata, rc, *extra_params):
     client.subscribe('v1/devices/me/rpc/request/+')
 
 # The callback for when a PUBLISH message is received from the server.
+#
 def on_message(client, userdata, msg):
 	print("*" * 20)
 	print('Topic: ' + msg.topic + '\nMessage: ' + str(msg.payload))
@@ -215,6 +216,8 @@ def on_message(client, userdata, msg):
 		#print(data['params'])
 		set_Value(servo_num, data['params'])
 
+# Get Servo Value
+#
 def get_Value(servo_name):
 	#print("Get Value")
 	servo_state = servo_name
@@ -223,6 +226,8 @@ def get_Value(servo_name):
 	#print(position)
 	return position
 
+# Set Servo Value
+#
 def set_Value(servo_num, position):
 	#print("Set Value")
 	#print(servo_num)
@@ -265,11 +270,8 @@ class config(object):
 	url_vehicle = "http://localhost:8088/mavlink/vehicles/"
 	url_api = API = "http://localhost:8088"
 
-	servo_get = ["get_servo1_raw", "get_servo2_raw", "get_servo3_raw", "get_servo4_raw", "get_servo5_raw", "get_servo6_raw", "get_servo7_raw", "get_servo8_raw", \
-			"get_servo9_raw", "get_servo10_raw", "get_servo11_raw", "get_servo12_raw", "get_servo13_raw", "get_servo14_raw", "get_servo15_raw", "get_servo16_raw"]
-
-	servo_set = ["set_servo1_raw", "set_servo2_raw", "set_servo3_raw", "set_servo4_raw", "set_servo5_raw", "set_servo6_raw", "set_servo7_raw", "set_servo8_raw", \
-			"set_servo9_raw", "set_servo10_raw", "set_servo11_raw", "set_servo12_raw", "set_servo13_raw", "set_servo14_raw", "set_servo15_raw", "set_servo16_raw"]
+	servo_get = ["get_servo1_raw", "get_servo2_raw", "get_servo3_raw", "get_servo4_raw", "get_servo5_raw", "get_servo6_raw", "get_servo7_raw", "get_servo8_raw"]
+	servo_set = ["set_servo1_raw", "set_servo2_raw", "set_servo3_raw", "set_servo4_raw", "set_servo5_raw", "set_servo6_raw", "set_servo7_raw", "set_servo8_raw"]
 
 	# ThingsBoard ADPM
 	#
