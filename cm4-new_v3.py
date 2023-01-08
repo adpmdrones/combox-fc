@@ -196,6 +196,7 @@ def on_message(client, userdata, msg):
 	# Decode JSON request
 	data = json.loads(msg.payload)
 	# Check request method
+	print(data['method'])
 	if data['method'].lstrip("get_") in config.servo_set:
 		print("Method GET")
 		servo_num = config.servo_set.index(data['method'].lstrip("get_"))
