@@ -36,7 +36,7 @@ def on_message(client, userdata, msg):
     if data['method'] == 'getValue':
         # Reply with status fro mavlink
         get_Value()
-        client.publish(msg.topic.replace('request', 'response'), 26, 1)
+        client.publish(msg.topic.replace('request', 'response'), get_Value, 1)
     elif data['method'] == 'setValue':
         # Update status and reply
         print(data)
@@ -48,12 +48,11 @@ def get_Value():
     print("Get Value")
     servo_state[1] = random.randrange(0,100, step=10)
     print(servo_state)
-    return json.dumps(servo_state)
-
-
+    return servo_state
 
 def set_Value():
     print("Set Value")
+
 
 client = mqtt.Client()
 # Register connect callback
