@@ -38,7 +38,7 @@ def on_message(client, userdata, msg):
         client.publish(msg.topic.replace('request', 'response'), getValue(), 1)
     elif data['method'] == 'setValue':
         # Update status and reply
-        setValue(data['params']['pin'], data['params']['enabled'])
+        setValue(pin, status)
         client.publish(msg.topic.replace('request', 'response'), getValue(), 1)
         client.publish('v1/devices/me/attributes', getValue(), 1)
 
