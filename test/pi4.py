@@ -10,7 +10,7 @@ import paho.mqtt.client as mqtt
 import RPi.GPIO as GPIO
 import json
 
-THINGSBOARD_HOST = 'http://dashboard.adpmdrones.com:8080/api/'
+THINGSBOARD_HOST = 'dashboard.adpmdrones.com/api/'
 ACCESS_TOKEN = 'EeLqJHNQgWR4FtycieRD'
 
 # We assume that all GPIOs are LOW
