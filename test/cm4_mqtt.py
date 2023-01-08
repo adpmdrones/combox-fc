@@ -44,6 +44,7 @@ def on_message(client, userdata, msg):
 
 def getValue():
     print("Get Value")
+    print(json.dumps(servo_state))
     return json.dumps(servo_state)
 
 def setValue(pin, status):
