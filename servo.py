@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
+##########
+# by ADPM Drones Srl 2021-2023
+##########
+#
 '''
 This script contains a function called set_servo that sends an HTTP POST request to the specified API endpoint (http://localhost:8088)
 with a JSON payload containing several key-value pairs.

@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
+#
+##########
+# by ADPM Drones Srl 2021-2023
+##########
+#
 '''
 This script contains a number of functions that perform various tasks related to retrieving 
 and processing data from the Windy API (https://www.windy.com/api), a weather forecasting service.

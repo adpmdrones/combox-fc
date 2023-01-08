@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+##########
+# by ADPM Drones Srl 2021-2023
+##########
 
 import time
 import requests
