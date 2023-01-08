@@ -293,6 +293,9 @@ client.username_pw_set(config.device_token)
 # Connect to ThingsBoard using default MQTT port and 60 seconds keepalive interval
 client.connect(config.url_base, 1883, 60)
 
+# Start MQTT Loop
+#
+client.loop_forever()
 
 # Finding mavID from the telemetry stream
 # returns url_uav and droneID
@@ -322,10 +325,6 @@ autopilot, mavtype = check_autopilot(data)
 schedule.every(5).minutes.do(windy_schedule)
 
 flag_windy_first_run = False
-
-# Start MQTT Loop
-#
-client.loop_start()
 
 # Start loop
 # telemetry post to dashboard
@@ -512,6 +511,8 @@ while True:
 	# Test servo set position
 	#
 	servo.set(droneID, config.url_device, random.randrange(5,8), random.randrange(1000,2000, step=250))
+
+
 
 	# Wait for next update
 	time.sleep(config.wait_time)
