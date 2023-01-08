@@ -15,7 +15,7 @@ import json
 
 API = "http://localhost:8088"
 
-thingsboard_server = "dashboard.adpmdrones.com:1883"
+thingsboard_server = "dashboard.adpmdrones.com"
 access_token = "EeLqJHNQgWR4FtycieRD"
 
 
@@ -27,7 +27,7 @@ def on_server_side_rpc_request(client, request_id, request_body):
     elif request_body["method"] == "setValue":
         client.send_rpc_reply(request_id, random.randrange(1000,2000, step=250))
 
-client = TBDeviceMqttClient(thingsboard_server, access_token)
+client = TBDeviceMqttClient(thingsboard_server, access_token, 1883, 5)
 client.set_server_side_rpc_request_handler(on_server_side_rpc_request)
 client.connect()
 
