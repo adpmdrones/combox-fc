@@ -25,7 +25,7 @@ def set(droneID, url_device, servo_num, servo_pos):
 # Control Servo 1 - 16
 #
 def set_servo(servo_num: int, servo_pos: int, droneID=int):
-    arm_message = {
+    servo_message = {
         "header": {
             "system_id": droneID,
             "component_id": 1,
@@ -44,8 +44,9 @@ def set_servo(servo_num: int, servo_pos: int, droneID=int):
             "confirmation":0
         }
     }
-
-    response = requests.post(f"{API}/mavlink", json=arm_message)
+    print(f"{API}/mavlink")
+    print(servo_message)
+    response = requests.post(f"{API}/mavlink", json=servo_message)
     return response.status_code == requests.codes.ok
 
 
