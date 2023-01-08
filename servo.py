@@ -6,11 +6,9 @@ import json
 
 API = "http://localhost:8088"
 
-def get(droneID, url_device, servo_num, servo_pos):
-    print("Get Servo status")
-
-
-
+#
+# Set servo position
+#
 def set(droneID, url_device, servo_num, servo_pos):
     print("*" * 20)
     print("Set servo position")
@@ -19,8 +17,6 @@ def set(droneID, url_device, servo_num, servo_pos):
     print(servo_num)
     print(servo_pos)
     set_servo(servo_num, servo_pos, droneID)
-
-
 
 #
 # Control Servo 1 - 16
@@ -52,11 +48,8 @@ def set_servo(servo_num: int, servo_pos: int, droneID: int):
     print("*" * 20)
     return response.status_code == requests.codes.ok
 
-
-
 def main():
     print("main")
-
 
 ####################
 #
