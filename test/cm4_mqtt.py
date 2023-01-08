@@ -22,8 +22,7 @@ def on_connect(client, userdata, rc, *extra_params):
     # Subscribing to receive RPC requests
     client.subscribe('v1/devices/me/rpc/request/+')
     # Sending current stastus from mavlink
-    print(getValue())
-    client.publish('v1/devices/me/attributes', getValue() , 1)
+    client.publish('v1/devices/me/attributes', get_Value() , 1)
 
 
 # The callback for when a PUBLISH message is received from the server.
