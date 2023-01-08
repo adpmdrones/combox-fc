@@ -49,12 +49,12 @@ def on_message(client, userdata, msg):
 def getValue():
     print("Get Value")
     print("Must read from mavlink")
-    status = 1500
+    status = 25
     return(status)
 
 def setValue(status):
     print("Set Value")
-    print(random.randrange(1000,2000, step=250))
+    print(random.randrange(0,100, step=5))
 
 
 client = mqtt.Client()
