@@ -10,7 +10,7 @@ def get(url_device, url_drone, servo_num, servo_pos):
 
 
 
-def set(url_device, url_drone, servonum, position):
+def set(url_device, url_drone, servo_num, position):
     print("Set servo position")
     print(url_device)
     print(url_drone)
