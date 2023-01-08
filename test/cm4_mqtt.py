@@ -22,7 +22,7 @@ def on_connect(client, userdata, rc, *extra_params):
     # Subscribing to receive RPC requests
     client.subscribe('v1/devices/me/rpc/request/+')
     # Sending current status
-    client.publish('v1/devices/me/attributes', getValue(), 1)
+    client.publish('v1/devices/me/attributes', 25, 1)
 
 
 # The callback for when a PUBLISH message is received from the server.
@@ -34,7 +34,7 @@ def on_message(client, userdata, msg):
     # Check request method
     if data['method'] == 'getValue':
         # Reply with status
-        client.publish(msg.topic.replace('request', 'response'), getValue(), 1)
+        client.publish(msg.topic.replace('request', 'response'), 25, 1)
         print("getValue dummy")
     elif data['method'] == 'setValue':
         # Update status and reply
