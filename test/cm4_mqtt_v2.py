@@ -19,35 +19,20 @@ thingsboard_server = "dashboard.adpmdrones.com"
 access_token = "EeLqJHNQgWR4FtycieRD"
 
 
-def main():
-
-    # Callback for server RPC requests (Used for control servo and led blink)
-    def on_server_side_rpc_request(client, request_id, request_body):
-        if request_body['method'] == 'getValue':
-            servo_angle = float(request_body['params'])
-            getValue(servo_angle)
-
-        elif request_body['method'] == 'setValue':
-            client.send_rpc_reply(request_id, servo_angle)
-            setValue(request_id, servo_angle)
-
-    # Connecting to ThingsBoard
-    client = TBDeviceMqttClient(thingsboard_server, access_token)
-    client.set_server_side_rpc_request_handler(on_server_side_rpc_request)
-    client.connect()
+from time import time
+from tb_device_mqtt import TBDeviceMqttClient, TBPublishInfo
 
 
-    def getValue(status):
-        print("Get Value")
-        print("Servo Angle Status", status)
-
-
-    def setValue(pin, status):
-        print("Set Value")
-        print(pin)
-        print(status)
-
-
-
-if __name__ == '__main__':
-    main()
+telemetry_with_ts = {"servots": int(round(time() * 1000)), "servo5": 1000}
+client = TBDeviceMqttClient(thingsboard_server, access_token)
+# we set maximum amount of messages sent to send them at the same time. it may stress memory but increases performance
+client.max_inflight_messages_set(100)
+client.connect()
+results = []
+result = True
+for i in range(0, 100):
+    results.append(client.send_telemetry(telemetry_with_ts))
+for tmp_result in results:
+    result &= tmp_result.get() == TBPublishInfo.TB_ERR_SUCCESS
+print("Result", str(result))
+client.disconnect()
