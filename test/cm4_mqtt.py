@@ -16,6 +16,8 @@ THINGSBOARD_HOST = 'dashboard.adpmdrones.com'
 API = "http://localhost:8088"
 ACCESS_TOKEN = 'EeLqJHNQgWR4FtycieRD'
 
+servo_state = {1: 25}
+
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, rc, *extra_params):
     print('Connected with result code ' + str(rc))
@@ -44,6 +46,8 @@ def on_message(client, userdata, msg):
 
 def get_Value():
     print("Get Value")
+    servo_state["1"] = random.randrange(0,100, step=10)
+    return json.dumps(servo_state)
 
 
 
