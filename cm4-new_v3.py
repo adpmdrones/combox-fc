@@ -213,12 +213,8 @@ def on_message(client, userdata, msg):
 		servo_num = servo_num + 1
 		position = data['params']
 		#print(servo_num)
+		#print(position)
 		# Update status and reply
-		#print(data['params'])
-		if position == True:
-			position = 2100
-		elif position == False:
-			position = 900
 		set_Value(servo_num, position)
 
 # Get Servo Value
