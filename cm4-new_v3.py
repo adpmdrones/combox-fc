@@ -199,7 +199,7 @@ def on_message(client, userdata, msg):
 	print(data['method'])
 	if data['method'] in config.servo_get:
 		print("Method GET")
-		servo_num = config.servo_set.index(data['method'].lstrip("get_"))
+		servo_num = config.servo_set.index(data['method'])
 		servo_num = servo_num + 1
 		print(servo_num)
 		# Reply with status from mavlink
@@ -207,7 +207,7 @@ def on_message(client, userdata, msg):
 
 	elif data['method'] in config.servo_set:
 		print("Method SET")
-		servo_num = config.servo_set.index(data['method'].lstrip("set_"))
+		servo_num = config.servo_set.index(data['method'])
 		servo_num = servo_num + 1
 		print(servo_num)
 		# Update status and reply
