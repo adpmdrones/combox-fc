@@ -21,8 +21,8 @@ def on_connect(client, userdata, rc, *extra_params):
     print('Connected with result code ' + str(rc))
     # Subscribing to receive RPC requests
     client.subscribe('v1/devices/me/rpc/request/+')
-    # Sending current status
-    client.publish('v1/devices/me/attributes', 25, 1)
+    # Sending current stastus from mavlink
+    client.publish('v1/devices/me/attributes', getValue() , 1)
 
 
 # The callback for when a PUBLISH message is received from the server.
@@ -33,29 +33,24 @@ def on_message(client, userdata, msg):
     data = json.loads(msg.payload)
     # Check request method
     if data['method'] == 'getValue':
-        # Reply with status
-        client.publish(msg.topic.replace('request', 'response'), 25, 1)
-        print("getValue dummy")
+        # Reply with status fro mavlink
+        getValue()
+
     elif data['method'] == 'setValue':
         # Update status and reply
         print(data)
         print(data['params'])
         print('response')
-        setValue(random.randrange(0,100, step=5))
-        #setValue(5, data['params'])
-        #client.publish(msg.topic.replace('request', 'response'), getValue(), 1)
-        #client.publish('v1/devices/me/attributes', getValue(), 1)
+        setValue(random.randrange(0,100, step=10))
 
 def getValue():
     print("Get Value")
-    print("Must read from mavlink")
-    status = "25"
-    return(status)
+    status = random.randrange(0,100, step=5)
+    return status
+
 
 def setValue(status):
     print("Set Value")
-    print(status)
-
 
 client = mqtt.Client()
 # Register connect callback
