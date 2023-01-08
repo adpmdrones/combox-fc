@@ -204,7 +204,7 @@ def on_message(client, userdata, msg):
 		print(servo_num)
 		# Reply with status from mavlink
 		client.publish(msg.topic.replace('request', 'response'), get_Value(data['method'].lstrip("get_")), 1)
-	elif data['method'].lstrip("set_") in config.servo_set:
+	elif "set_servo6_raw" in config.servo_set:
 		print("Method SET")
 		servo_num = config.servo_set.index(data['method'].lstrip("set_"))
 		servo_num = servo_num + 1
