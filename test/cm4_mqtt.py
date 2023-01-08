@@ -35,22 +35,20 @@ def on_message(client, userdata, msg):
     # Check request method
     if data['method'] == 'getValue':
         # Reply with status fro mavlink
-        getValue()
-
+        get_Value()
     elif data['method'] == 'setValue':
         # Update status and reply
         print(data)
         print(data['params'])
         print('response')
-        setValue(random.randrange(0,100, step=10))
+        set_Value(random.randrange(0,100, step=10))
 
-def getValue():
+def get_Value():
     print("Get Value")
-    status = random.randrange(0,100, step=5)
-    return status
 
 
-def setValue(status):
+
+def set_Value():
     print("Set Value")
 
 client = mqtt.Client()
