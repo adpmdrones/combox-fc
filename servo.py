@@ -4,6 +4,7 @@
 import requests
 import json
 
+API = "http://localhost:8088"
 
 def get(droneID, url_device, servo_num, servo_pos):
     print("Get Servo status")
