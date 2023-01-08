@@ -10,7 +10,6 @@ import paho.mqtt.client as mqtt
 import requests
 import json
 import os
-import random
 
 THINGSBOARD_HOST = 'dashboard.adpmdrones.com'
 API = "http://localhost:8088"
@@ -34,7 +33,7 @@ def on_message(client, userdata, msg):
     # Check request method
     if data['method'] == 'getValue':
         # Reply with status
-        client.publish(msg.topic.replace('request', 'response'), random.randrange(1000,2000, step=250), 1)
+        client.publish(msg.topic.replace('request', 'response'), 25, 1)
         print("getValue dummy")
     elif data['method'] == 'setValue':
         # Update status and reply
