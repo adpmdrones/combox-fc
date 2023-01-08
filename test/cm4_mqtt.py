@@ -25,8 +25,6 @@ def on_connect(client, userdata, rc, *extra_params):
     client.subscribe('v1/devices/me/rpc/request/+')
     # Sending current stastus from mavlink
     client.publish('v1/devices/me/attributes', 25, 1)
-    client.publish(msg.topic.replace('request', 'response'), 30, 1)
-
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
