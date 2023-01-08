@@ -197,35 +197,36 @@ def on_message(client, userdata, msg):
 	data = json.loads(msg.payload)
 	# Check request method
 	print(data['method'])
+	print("*" * 20)
 	if data['method'] in config.servo_get:
-		print("Method GET")
+		#print("Method GET")
 		servo_num = config.servo_get.index(data['method'])
 		servo_num = servo_num + 1
-		print(servo_num)
+		#print(servo_num)
 		# Reply with status from mavlink
 		client.publish(msg.topic.replace('request', 'response'), get_Value(data['method'].lstrip("get_")), 1)
 
 	elif data['method'] in config.servo_set:
-		print("Method SET")
+		#print("Method SET")
 		servo_num = config.servo_set.index(data['method'])
 		servo_num = servo_num + 1
-		print(servo_num)
+		#print(servo_num)
 		# Update status and reply
-		print(data['params'])
+		#print(data['params'])
 		set_Value(servo_num, data['params'])
 
 def get_Value(servo_name):
-	print("Get Value")
+	#print("Get Value")
 	servo_state = servo_name
-	print(servo_state)
 	position = data_servo[servo_state]
-	print(position)
+	#print(servo_state)
+	#print(position)
 	return position
 
 def set_Value(servo_num, position):
-	print("Set Value")
-	print(servo_num)
-	print(position)
+	#print("Set Value")
+	#print(servo_num)
+	#print(position)
 	servo.set(droneID, config.url_device, servo_num, position)
 
 
