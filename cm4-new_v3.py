@@ -191,19 +191,19 @@ def on_connect(client, userdata, rc, *extra_params):
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
-    print("*" * 20)
-    print('Topic: ' + msg.topic + '\nMessage: ' + str(msg.payload))
-    # Decode JSON request
-    data = json.loads(msg.payload)
-    # Check request method
-    if data['method'] == 'getValue':
-        # Reply with status from mavlink
-        client.publish(msg.topic.replace('request', 'response'), get_Value(), 1)
-    elif data['method'] == 'setValue':
-        # Update status and reply
-        print(data)
-        print(data['params'])
-        print('response')
+	print("*" * 20)
+	print('Topic: ' + msg.topic + '\nMessage: ' + str(msg.payload))
+	# Decode JSON request
+	data = json.loads(msg.payload)
+	# Check request method
+	if data['method'] == 'getValue':
+		# Reply with status from mavlink
+		client.publish(msg.topic.replace('request', 'response'), get_Value(), 1)
+	elif data['method'] == 'setValue':
+		# Update status and reply
+		print(data)
+		print(data['params'])
+		set_Value(data['params'])
 
 def get_Value():
 	print("Get Value")
@@ -211,8 +211,9 @@ def get_Value():
 	print(servo_state)
 	return servo_state
 
-def set_Value():
-    print("Set Value")
+def set_Value(position):
+	print("Set Value")
+	servo.set(droneID, config.url_device, 5, position)
 
 
 ###########################
@@ -509,7 +510,7 @@ while True:
 
 	# Test servo set position
 	#
-	servo.set(droneID, config.url_device, random.randrange(5,8), random.randrange(1000,2000, step=250))
+	#servo.set(droneID, config.url_device, random.randrange(5,8), random.randrange(1000,2000, step=250))
 
 
 
