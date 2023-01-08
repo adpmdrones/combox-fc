@@ -20,8 +20,8 @@ def on_connect(client, userdata, rc, *extra_params):
     print('Connected with result code ' + str(rc))
     # Subscribing to receive RPC requests
     client.subscribe('v1/devices/me/rpc/request/+')
-    # Sending current GPIO status
-    client.publish('v1/devices/me/attributes', get_gpio_status(), 1)
+    # Sending current status
+    client.publish('v1/devices/me/attributes', getValue(), 1)
 
 
 # The callback for when a PUBLISH message is received from the server.
@@ -31,13 +31,13 @@ def on_message(client, userdata, msg):
     data = json.loads(msg.payload)
     # Check request method
     if data['method'] == 'getGpioStatus':
-        # Reply with GPIO status
-        client.publish(msg.topic.replace('request', 'response'), get_gpio_status(), 1)
+        # Reply with status
+        client.publish(msg.topic.replace('request', 'response'), getValue(), 1)
     elif data['method'] == 'setGpioStatus':
-        # Update GPIO status and reply
-        set_gpio_status(data['params']['pin'], data['params']['enabled'])
-        client.publish(msg.topic.replace('request', 'response'), get_gpio_status(), 1)
-        client.publish('v1/devices/me/attributes', get_gpio_status(), 1)
+        # Update status and reply
+        setValue(data['params']['pin'], data['params']['enabled'])
+        client.publish(msg.topic.replace('request', 'response'), getValue(), 1)
+        client.publish('v1/devices/me/attributes', getValue(), 1)
 
 def getValue():
     print("Get Value")
