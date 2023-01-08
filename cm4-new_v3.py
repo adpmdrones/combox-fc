@@ -197,7 +197,7 @@ def on_message(client, userdata, msg):
 	data = json.loads(msg.payload)
 	# Check request method
 	print(data['method'])
-	if data['method'].lstrip("set_") in config.servo_set:
+	if data['method'].lstrip("get_") in config.servo_get:
 		print("Method GET")
 		servo_num = config.servo_set.index(data['method'].lstrip("get_"))
 		servo_num = servo_num + 1
@@ -205,7 +205,7 @@ def on_message(client, userdata, msg):
 		# Reply with status from mavlink
 		client.publish(msg.topic.replace('request', 'response'), get_Value(data['method'].lstrip("get_")), 1)
 
-	elif data['method'].lstrip("get_") in config.servo_set:
+	elif data['method'].lstrip("set_") in config.servo_set:
 		print("Method SET")
 		servo_num = config.servo_set.index(data['method'].lstrip("set_"))
 		servo_num = servo_num + 1
@@ -263,6 +263,9 @@ class config(object):
 	url_uav = f"http://localhost:8088/mavlink/vehicles/{droneID}/components/1/messages" # url_uav - just for setting the variableurl_vehicle = "http://localhost:8088/mavlink/vehicles/"
 	url_vehicle = "http://localhost:8088/mavlink/vehicles/"
 	url_api = API = "http://localhost:8088"
+
+	servo_get = ["servo1_raw", "servo2_raw", "servo3_raw", "servo4_raw", "servo5_raw", "servo6_raw", "servo7_raw", "servo8_raw", \
+			"servo9_raw", "servo10_raw", "servo11_raw", "servo12_raw", "servo13_raw", "servo14_raw", "servo15_raw", "servo16_raw"]
 
 	servo_set = ["servo1_raw", "servo2_raw", "servo3_raw", "servo4_raw", "servo5_raw", "servo6_raw", "servo7_raw", "servo8_raw", \
 			"servo9_raw", "servo10_raw", "servo11_raw", "servo12_raw", "servo13_raw", "servo14_raw", "servo15_raw", "servo16_raw"]
