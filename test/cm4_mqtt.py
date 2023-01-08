@@ -33,10 +33,10 @@ def on_message(client, userdata, msg):
     # Decode JSON request
     data = json.loads(msg.payload)
     # Check request method
-    if data['method'] == 'getGpioStatus':
+    if data['method'] == 'getValue':
         # Reply with status
         client.publish(msg.topic.replace('request', 'response'), getValue(), 1)
-    elif data['method'] == 'setGpioStatus':
+    elif data['method'] == 'setValue':
         # Update status and reply
         setValue(data['params']['pin'], data['params']['enabled'])
         client.publish(msg.topic.replace('request', 'response'), getValue(), 1)
