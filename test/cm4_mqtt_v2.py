@@ -15,7 +15,7 @@ import json
 
 API = "http://localhost:8088"
 
-thingsboard_server = "dashboard.adpmdrones.com"
+thingsboard_server = "dashboard.adpmdrones.com:1883"
 access_token = "EeLqJHNQgWR4FtycieRD"
 
 
