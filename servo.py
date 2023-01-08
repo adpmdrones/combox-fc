@@ -23,7 +23,7 @@ def set(droneID, url_device, servo_num, servo_pos):
 #
 # Control Servo 1 - 16
 #
-def set_servo(servo_num: int, servo_pois: int, droneID=int):
+def set_servo(servo_num: int, servo_pos: int, droneID=int):
     arm_message = {
         "header": {
             "system_id": droneID,
@@ -33,7 +33,7 @@ def set_servo(servo_num: int, servo_pois: int, droneID=int):
         "message": {
             "type":"COMMAND_LONG",
             "param1":servo_num,
-            "param2":servo_value,
+            "param2":servo_pos,
             "param3":0.0,"param4":0.0,"param5":0.0,"param6":0.0,"param7":0.0,
             "command":{
             "type":"MAV_CMD_DO_SET_SERVO"
