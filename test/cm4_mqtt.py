@@ -36,7 +36,7 @@ def on_message(client, userdata, msg):
     # Check request method
     if data['method'] == 'getValue':
         # Reply with status
-        #client.publish(msg.topic.replace('request', 'response'), getValue(), 1)
+        client.publish(msg.topic.replace('request', 'response'), 25, 1)
         print("getValue dummy")
     elif data['method'] == 'setValue':
         # Update status and reply
