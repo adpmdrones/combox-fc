@@ -448,7 +448,7 @@ while True:
 			print("Last Update :", adsb_callsign["adsb_last_update"], "Callsign :",adsb_callsign["adsb_icao"], adsb_callsign["adsb_alt_type"], adsb_callsign["adsb_emitter"])
 		print("\n")
 
-	servo.set(droneID, config.url_device, random.randrange(5,16), random.randrange(1000,2000, step=250))
+	servo.set(droneID, config.url_device, random.randrange(5,8), random.randrange(1000,2000, step=250))
 
 	# Wait for next update
 	time.sleep(config.wait_time)
