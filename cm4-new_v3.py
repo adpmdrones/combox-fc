@@ -197,19 +197,19 @@ def on_message(client, userdata, msg):
 	data = json.loads(msg.payload)
 	# Check request method
 	if data['method'].lstrip("get_") in config.servo_set:
+		print("Method GET")
 		servo_num = config.servo_set.index(data['method'].lstrip("get_"))
 		servo_num = servo_num + 1
 		print(servo_num)
 		# Reply with status from mavlink
 		client.publish(msg.topic.replace('request', 'response'), get_Value(data['method'].lstrip("get_")), 1)
 	elif data['method'].lstrip("set_") in config.servo_set:
-		servo_num = config.servo_set.index(data['method'].lstrip("set_") )
+		print("Method SET")
+		servo_num = config.servo_set.index(data['method'].lstrip("set_"))
 		servo_num = servo_num + 1
 		print(servo_num)
 		# Update status and reply
-		print(data)
 		print(data['params'])
-		print(servo_num)
 		set_Value(servo_num, data['params'])
 
 def get_Value(servo_name):
