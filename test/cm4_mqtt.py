@@ -10,13 +10,11 @@ import paho.mqtt.client as mqtt
 import requests
 import json
 import os
+import random
 
 THINGSBOARD_HOST = 'dashboard.adpmdrones.com'
 API = "http://localhost:8088"
 ACCESS_TOKEN = 'EeLqJHNQgWR4FtycieRD'
-
-servo_state = {5: '1000', 6: '1000', 7: '1000', 8: '1000', 9: '1000', 10: '1000', 11: '1000', 12: '1000', 13: '1000',
-              14: '1000', 15: '1000', 16: '1000'}
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, rc, *extra_params):
@@ -36,7 +34,7 @@ def on_message(client, userdata, msg):
     # Check request method
     if data['method'] == 'getValue':
         # Reply with status
-        client.publish(msg.topic.replace('request', 'response'), 25, 1)
+        client.publish(msg.topic.replace('request', 'response'), random.randrange(1000,2000, step=250), 1)
         print("getValue dummy")
     elif data['method'] == 'setValue':
         # Update status and reply
@@ -49,14 +47,12 @@ def on_message(client, userdata, msg):
 
 def getValue():
     print("Get Value")
-    print(json.dumps(servo_state))
-    return json.dumps(servo_state)
+    print("Must read from mavlink")
 
 def setValue(pin, status):
     print("Set Value")
     print(pin)
     print(status)
-    servo_state[pin] = status
 
 
 client = mqtt.Client()
