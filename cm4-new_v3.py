@@ -325,7 +325,7 @@ flag_windy_first_run = False
 
 # Start MQTT Loop
 #
-client.loop_start
+client.loop_start()
 
 # Start loop
 # telemetry post to dashboard
