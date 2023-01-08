@@ -42,7 +42,7 @@ def on_message(client, userdata, msg):
         print(data)
         print(data['params'])
         print('response')
-        set_Value(random.randrange(0,100, step=10))
+        set_Value()
 
 def get_Value():
     print("Get Value")
