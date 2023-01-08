@@ -15,8 +15,8 @@ THINGSBOARD_HOST = 'dashboard.adpmdrones.com'
 API = "http://localhost:8088"
 ACCESS_TOKEN = 'EeLqJHNQgWR4FtycieRD'
 
-servo_state = {7: False, 11: False, 12: False, 13: False, 15: False, 16: False, 18: False, 22: False, 29: False,
-              31: False, 32: False, 33: False, 35: False, 36: False, 37: False, 38: False, 40: False}
+servo_state = {5: 1000, 6: 1000, 7: 1000, 8: 1000, 9: 1000, 10: 1000, 11: 1000, 12: 1000, 13: 1000,
+              14: 1000, 15: 1000, 16: 1000}
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, rc, *extra_params):
@@ -44,10 +44,11 @@ def on_message(client, userdata, msg):
 
 def getValue():
     print("Get Value")
-    return json.dumps(gpio_state)
+    return json.dumps(servo_state)
 
-def setValue():
+def setValue(pin, status):
     print("Set Value")
+    servo_state[pin] = status
 
 
 client = mqtt.Client()
