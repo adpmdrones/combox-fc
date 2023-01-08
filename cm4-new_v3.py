@@ -295,7 +295,7 @@ client.connect(config.url_base, 1883, 60)
 
 # Start MQTT Loop
 #
-client.loop_forever()
+client.loop_start()
 
 # Finding mavID from the telemetry stream
 # returns url_uav and droneID
