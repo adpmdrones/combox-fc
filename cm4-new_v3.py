@@ -197,7 +197,7 @@ def on_message(client, userdata, msg):
 	data = json.loads(msg.payload)
 	# Check request method
 	print(data['method'])
-	if data['method'].lstrip("get_") in config.servo_get:
+	if data['method'] in config.servo_get:
 		print("Method GET")
 		servo_num = config.servo_set.index(data['method'].lstrip("get_"))
 		servo_num = servo_num + 1
@@ -205,7 +205,7 @@ def on_message(client, userdata, msg):
 		# Reply with status from mavlink
 		client.publish(msg.topic.replace('request', 'response'), get_Value(data['method'].lstrip("get_")), 1)
 
-	elif data['method'].lstrip("set_") in config.servo_set:
+	elif data['method'] in config.servo_set:
 		print("Method SET")
 		servo_num = config.servo_set.index(data['method'].lstrip("set_"))
 		servo_num = servo_num + 1
@@ -264,11 +264,11 @@ class config(object):
 	url_vehicle = "http://localhost:8088/mavlink/vehicles/"
 	url_api = API = "http://localhost:8088"
 
-	servo_get = ["servo1_raw", "servo2_raw", "servo3_raw", "servo4_raw", "servo5_raw", "servo6_raw", "servo7_raw", "servo8_raw", \
-			"servo9_raw", "servo10_raw", "servo11_raw", "servo12_raw", "servo13_raw", "servo14_raw", "servo15_raw", "servo16_raw"]
+	servo_get = ["get_servo1_raw", "get_servo2_raw", "get_servo3_raw", "get_servo4_raw", "get_servo5_raw", "get_servo6_raw", "get_servo7_raw", "get_servo8_raw", \
+			"get_servo9_raw", "get_servo10_raw", "get_servo11_raw", "get_servo12_raw", "get_servo13_raw", "get_servo14_raw", "get_servo15_raw", "get_servo16_raw"]
 
-	servo_set = ["servo1_raw", "servo2_raw", "servo3_raw", "servo4_raw", "servo5_raw", "servo6_raw", "servo7_raw", "servo8_raw", \
-			"servo9_raw", "servo10_raw", "servo11_raw", "servo12_raw", "servo13_raw", "servo14_raw", "servo15_raw", "servo16_raw"]
+	servo_set = ["set_servo1_raw", "set_servo2_raw", "set_servo3_raw", "set_servo4_raw", "set_servo5_raw", "set_servo6_raw", "set_servo7_raw", "set_servo8_raw", \
+			"set_servo9_raw", "set_servo10_raw", "set_servo11_raw", "set_servo12_raw", "set_servo13_raw", "set_servo14_raw", "set_servo15_raw", "set_servo16_raw"]
 
 	# ThingsBoard ADPM
 	#
