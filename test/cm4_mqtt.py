@@ -6,6 +6,10 @@
 ##########
 #
 
+'''
+https://antima.it/tutorial-utilizzare-mqtt-con-python-parte-2-callback-e-loop/?unapproved=249&moderation-hash=9a5e6c6a86663fafe619e4889fa25bf1#comment-249
+'''
+
 import paho.mqtt.client as mqtt
 import requests
 import json
